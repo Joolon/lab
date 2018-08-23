@@ -72,7 +72,7 @@ class Databases
 
     public function and_where($column, $oper, $value)
     {
-        $this->sql = $this->sql . " WHERE $column $oper $value";
+        $this->sql = $this->sql . " AND $column $oper $value";
         return $this;
     }
 
