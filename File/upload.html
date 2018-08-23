@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+<body>
+上传文件(必须是post方式提交)
+<form action="upload_file.php" method="post" name="a" enctype="multipart/form-data">
+    <label>Filename:</label>
+    <input type="file" name="file"/>
+    <br />
+    <input type="submit" name="submit" value="Submit" />
+</form>
+<br/>
+<a href="readfile.php">读取文件</a>
+<br/>
+<a href="create_write_file.php">创建和写入文件</a>
+<br/>
+<a href="download.php">文件下载</a>
+<br/>
+上传图片
+<form action="../ImageLib/upload_photo.php" method="post" name="a" enctype="multipart/form-data">
+    <label>Filename:</label>
+    <input type="file" name="photo" />
+    <br />
+    <input type="submit" name="submit" value="Submit" />
+</form>
+
+<br/><br/>
+<a href="show_image.php">显示图片</a>
+<br/>
+
+</body>
+</html>

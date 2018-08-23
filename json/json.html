@@ -1,0 +1,78 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ver
+ * Date: 15-9-16
+ * Time: 下午9:28
+ */
+
+/**
+ * JSON  JavaScript 对象表示法
+ * JSON 使用JavaScript语言来描述，但是独立于平台
+ * 是轻量级的文本数据交换格式
+ * JSON 比XML更快，可以通过Ajax传输
+ * JSON 文件类型是.json
+ *
+ * 语法：数据在名称/值对中，花括号保存对象，方括号保存数组(数组可以包含对象)
+ *
+ *
+ * 自己的理解：可以看作是对象的数组表示方式
+ */
+
+?>
+<html>
+
+<!--例子，放在script标签中-->
+<!--array数组包含三个对象-->
+<script>
+    var JSONObj = {
+        "name":"zhangsan",
+        "age":"22",
+        "array": [
+            { "firstName":"John" , "lastName":"Doe" },
+            { "firstName":"Anna" , "lastName":"Smith" },
+            { "firstName":"Peter" , "lastName":"Jones" }
+        ],
+        "object":{}
+    };
+
+    // 对象数组
+    var employees = [
+        { "firstName":"Bill" , "lastName":"Gates" },
+        { "firstName":"George" , "lastName":"Bush" },
+        { "firstName":"Thomas" , "lastName": "Carter" }
+    ];
+
+    <!--访问数据-->
+    document.getElementById('name').innerHTML = JSONObj.name;
+    document.getElementById('age').innerHTML = JSONObj.array[0].firstName;
+
+    <!--访问对象数组的内容-->
+    employees[0].firstName = "boss";// 赋值
+    document.getElementById('lastname0').innerHTML = employees[0].firstName;// 获取值,输出boss
+
+
+    <!--JSON文本转换为JavaScript对象-->
+    var txt = '{ "employees" : [' +
+        '{ "firstName":"Bill" , "lastName":"Gates" },' +
+        '{ "firstName":"George" , "lastName":"Bush" },' +
+        '{ "firstName":"Thomas" , "lastName":"Carter" } ]}';
+    <!--eval()将JSON文本转换为JavaScript对象，注意括号不能少，这样才能避免语法错误-->
+    var obj = eval ("(" + txt + ")");
+    <!--在网页中使用JSON对象：通过JS控制元素内容输出-->
+    document.getElementById("fname").innerHTML = obj.employees[1].firstName;
+    document.getElementById("lname").innerHTML = obj.employees[1].lastName;
+
+
+
+
+</script>
+
+<body>
+
+<p>
+    First Name: <span id="fname"></span><br />
+    Last Name: <span id="lname"></span><br />
+</p>
+</body>
+</html>

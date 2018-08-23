@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Form</title>
+</head>
+<body>
+<!--$_SERVER['PHP_SELF'] 返回当前执行的脚本的文件名-->
+<!--表单提交输入框右边显示错误信息  思路：表单提交到当前页面，执行判断函数，如果没有错误就跳转到其他页面，有错误就显示错误信息，输入框右边加上<?php echo $inputError;?>  即可-->
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+Name: <input type="text" name="name"><br/>
+E-mail: <input type="text" name="email">*<?php echo $emailError;?><br/>
+Website: <input type="text" name="website"><br/>
+Comment: <textarea name="comment" rows="5" cols="40"></textarea><br/>
+Gender:<input type="radio" name="gender" value="female">Female
+<input type="radio" name="gender" value="male">Male<br/>
+<input type="submit" value="提交"><br/>
+
+
+</form>
+</body>
+</html>
+
