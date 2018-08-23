@@ -14,7 +14,7 @@ class HttpTool{
      * @param $url
      * @return bool
      */
-    function checkUrlIsValid($url){
+    public static function checkUrlIsValid($url){
         $result = get_headers($url,1);
         if(preg_match('/200/',$result[0])){
             return true;
