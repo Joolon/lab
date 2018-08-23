@@ -18,6 +18,18 @@ BR;
 }
 
 
+function debug_test($type,$message){
+    if(is_string($message)){
+        echo $type.':'.$message.'<br/>';
+    }else{
+        echo $type.':';
+        print_r($message);
+        echo "<br/>";
+    }
+
+}
+
+
 // 金额转成中文
 function num_to_cn($num)
 {
@@ -69,22 +81,6 @@ function num_to_cn($num)
     return $str;
 }
 
-
-function httpCheck()
-{
-    // HTTP 认证机制（只有在PHP作为Apache模块时才有效，CGI模式无效）
-    if (!isset($_SERVER['PHP_AUTH_USER'])) {
-        // 向浏览器发送认证请求(实名认证)，输入的用户名、密码和认证类型保存在$_SERVER和$HTTP_SERVER_VARS中
-        header('WWW-Authenticate:Basic realm="My Realm"');// Basic B要大写，否则可能浏览器不兼容
-        header('HTTP/1.0 401 Unauthorized');
-        echo 'Text to send if user hits Cancel button';
-        exit;
-    } else {
-        echo "<p>HELLO {$_SERVER['PHP_AUTH_USER']}.</p>";
-        echo "<p>YOU Entered {$_SERVER['PHP_AUTH_PW']} AS YOU  PASSWORD.</p>";
-
-    }
-}
 
 
 /**

@@ -6,16 +6,114 @@
  * User：Jolon
  * Time: 15-2-9 下午9:13
  */
-class Arraytool
+class ArrayTool
 {
+
+
+    /**
+     * 递归计算数组所有元素的和
+     *      该函数用于解决array_sum的短板，支持N维数组。
+     * @param array $arr  多维数组
+     * @return float|int  若不是数组则返回原参数
+     */
+    public static function arraySumRecursive($arr){
+        static $sum = 0;
+
+        if(is_array($arr)){
+            foreach($arr as $value){
+                if(is_array($value)){
+                    self::arraySumRecursive($value);// 递归求和
+                }
+            }
+            $sum += array_sum($arr);// array_sum只计算一维数组的和，即元素是数组类型的不参与计算
+        }else{
+            $sum = $arr;
+        }
+
+        return $sum;
+    }
+
+
+
+    /**
+     * 取得数组中的某一列的 集合
+     * @param array  $array 目标数组
+     * @param string $column 目标列名
+     * @param $indexKey
+     * @return array
+     */
+    public static function getArrayColumn($array,$column,$indexKey = null){
+        if(function_exists('array_column')){
+            return array_column($array,$column,$indexKey);
+        }else{
+            $res = array();
+            foreach ($array as $key => $value) {
+                foreach ($value as $k1 => $v1){
+                    if( $k1 === $column){
+                        if($indexKey){
+                            $res[$value[$indexKey]] = $v1;
+                        }else{
+                            $res[] = $v1;
+                        }
+                    }
+                }
+
+            }
+            return $res;
+        }
+    }
+
+
+    /**
+     * 二维数组指定列的值作为键
+     */
+    public static function arrayColumnsToKey($array,$column){
+
+        $arr_tmp = array();
+        if(count($array)){
+            foreach($array as $value){
+                $arr_tmp[$value[$column]] = $value;
+            }
+        }
+
+        return $arr_tmp;
+
+    }
+
+
+    /**
+     * 二维数组根据 指定键名 排序
+     * @param $array
+     * @param $key
+     * @param string $order
+     * @return array
+     */
+    public static function arrSort($array,$key,$order = "asc"){//asc是升序 desc是降序
+        $arr_num   =   $arr    =   array();
+        foreach($array as $k => $v){
+            $arr_num[$k] = $v[$key];
+        }
+        if($order == 'asc'){
+            asort($arr_num);
+        }else{
+            arsort($arr_num);
+        }
+
+        foreach($arr_num as $k => $v){
+            $arr[$k] = $array[$k];
+        }
+        return $arr;
+    }
+
 
     /**
      * 单元素的二维数组转一维数组
-     * @param unknown $input $columnKey
-     * @return 指定键名的一维数组
+     * @param $input
+     * @param $columnKey
+     * @param null $indexKey
+     * @return array
      */
-    public static function array_columns($input, $columnKey, $indexKey = NULL)
-    {
+    public static function arrayColumns($input, $columnKey, $indexKey = NULL){
         $columnKeyIsNumber = (is_numeric($columnKey)) ? TRUE : FALSE;
         $indexKeyIsNull = (is_null($indexKey)) ? TRUE : FALSE;
         $indexKeyIsNumber = (is_numeric($indexKey)) ? TRUE : FALSE;
@@ -46,9 +144,9 @@ class Arraytool
 
     /**
      * 去掉一维数组中的前后导空格
+     * @param $array
      */
-    public static function my_array_walk_trim(&$array)
-    {
+    public static function arrayWalkTrim(&$array){
         function element_trim(&$element, $key)
         {
             $element = trim($element);
@@ -58,10 +156,12 @@ class Arraytool
     }
 
     /**
-     * 将数组的元素用指定字符拼接起来
+     *  将数组的元素用指定字符拼接起来
+     * @param $arr
+     * @param $separator
+     * @return string
      */
-    public static function array_to_str($arr, $separator)
-    {
+    public static function arrayToStr($arr, $separator){
         $str = '';
         if ($arr and !empty($arr)) {
             foreach ($arr as $e) {
@@ -74,9 +174,12 @@ class Arraytool
 
     /**
      * 将数组的键值指定为新数组的键名
-     * return 一维数组
+     * @param $arr
+     * @param $key
+     * @param null $obj
+     * @return array
      */
-    public static function array_value_to_key($arr, $key, $obj = NULL)
+    public static function arrayValueToKey($arr, $key, $obj = NULL)
     {
         $return = array();
         foreach ($arr as $arr_key => $arr_value) {
@@ -98,9 +201,12 @@ class Arraytool
     /**
      * 按$value为二维数组分类
      * $key分类键值 筛选键值$value(可为array)
-     * @return 键名为$value[]的三维数组
+     * @param $arr
+     * @param $key
+     * @param $value
+     * @return array 键名为$value[]的三维数组
      */
-    public static function array_grouping($arr, $key, $value)
+    public static function arrayGrouping($arr, $key, $value)
     {
         $arr_push = array();
         foreach ($arr as $arr_key => $arr_value) {
@@ -119,11 +225,11 @@ class Arraytool
 
     /**
      * 按$value为二维数组分组
-     * 无条件
-     * return 键名为$value[]的三维数组
-     * 数组内容无删减
+     * @param array $arr
+     * @param $obj
+     * @return array  键名为$value[]的三维数组
      */
-    public static function array_grouping_without_judge(array $arr, $obj)
+    public static function arrayGroupingWithoutJudge(array $arr, $obj)
     {
         $arr_push = array();
         foreach ($arr as $val) {
@@ -134,13 +240,14 @@ class Arraytool
 
     /**
      * 对象转化成数组
+     * @param $obj
+     * @return array
      */
-    public static function object_to_array($obj)
-    {
+    public static function objectToArray($obj){
         $_arr = is_object($obj) ? get_object_vars($obj) : $obj;
         if ($_arr) {
             foreach ($_arr as $key => $val) {
-                $val = (is_array($val) || is_object($val)) ? self::object_to_array($val) : $val;
+                $val = (is_array($val) || is_object($val)) ? self::objectToArray($val) : $val;
                 $arr[$key] = $val;
             }
         }
@@ -150,12 +257,13 @@ class Arraytool
     /**
      * kdw
      * 取出二维数组中的某一列的值
-     * $input 传入的二维数组
-     * $columnKey  某一列名
-     * $indexKey 新数组的key
+     * @param $input 传入的二维数组
+     * @param $columnKey  某一列名
+     * @param $indexKey 新数组的key
      * PHP 5.4版本自带
+     * @return array
      */
-    public static function array_column($input, $columnKey, $indexKey = NULL)
+    public static function arrayColumn($input, $columnKey, $indexKey = NULL)
     {
         if (!function_exists('array_column')) {
             $columnKeyIsNumber = (is_numeric($columnKey)) ? TRUE : FALSE;

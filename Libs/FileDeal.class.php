@@ -236,6 +236,32 @@ class FileDeal
         closedir($handle_dir);
     }
 
+
+    /**
+     * 删除指定的文件夹下所有的文件（递归删除）
+     * @param string $dirName  文件夹路径
+     * @return int $fileCount 已删除的文件的个数
+     */
+    function delFileInDir($dirName){
+        $fileCount = 0;
+        if(file_exists($dirName) && $handle=opendir($dirName)){
+            while(false!==($item = readdir($handle))){
+                if($item!= "." && $item != ".."){
+                    if(file_exists($dirName.'/'.$item) && is_dir($dirName.'/'.$item)){
+                        $fileCount += delFileInDir($dirName.'/'.$item);
+                    }else{
+                        if(unlink($dirName.'/'.$item)){
+                            $fileCount ++;
+                        }
+                    }
+                }
+            }
+            closedir( $handle);
+        }
+        return $fileCount;
+    }
+
+
     public function getInfoFromWeb($url)
     {
         $html = file_get_contents($url);

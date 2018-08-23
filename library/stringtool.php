@@ -6,10 +6,39 @@
  * User：Jolon
  * Time: 2015-02-09 下午9:13
  */
-class Stringtool
+class StringTool
 {
 
-    // 汉字转拼音
+
+    /**
+     * GUID生成企业系统生成 36 位唯一序号
+     * @return string
+     */
+    public static function getGuid()
+    {
+        // 判断是否有内置 GUID 生成函数
+        if (function_exists('com_create_guid')) {
+            return com_create_guid();
+        } else {
+            mt_srand((double)microtime() * 10000); // optional for php 4.2.0 and up.
+            $charid = strtoupper(md5(uniqid(rand(), true)));
+            $hyphen = chr(45); // "-"
+            $guid = substr($charid, 0, 8) . $hyphen
+                . substr($charid, 8, 4) . $hyphen
+                . substr($charid, 12, 4) . $hyphen
+                . substr($charid, 16, 4) . $hyphen
+                . substr($charid, 20, 12);
+
+            return $guid;
+        }
+    }
+
+    /**
+     * 汉字转拼音
+     * @param $_String
+     * @param string $_Code
+     * @return string
+     */
     public function pinyin($_String, $_Code = 'gb2312')
     {
 
@@ -82,18 +111,5 @@ class Stringtool
         return $_Res;
     }
 
-    // 打印
-    public static function show($obj)
-    {
-        if (empty($obj)) {
-            echo 'null';
-        } elseif (is_array($obj)) {
-            echo '<pre>';
-            print_r($obj);
-            echo '</pre>';
-        } else {
-            echo $obj;
-        }
-        echo '<hr/>';
-    }
+
 }
