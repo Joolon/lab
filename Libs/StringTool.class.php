@@ -9,27 +9,71 @@
 class StringTool
 {
 
+    /**
+     * 判断字符串是否 只含有字母、数字、下划线、短横线（验证文件名是否合乎要求）
+     * @param $content
+     * @return bool
+     */
+    public static function verifyStringIsBase($content){
+
+        // 上传失败,文件名只能含有字母、数字、下划线、短横线
+        if(!preg_match("/^[0-9a-zA-Z_\-]+$/", $content)){// 禁止含有中文
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * 判断字符串中是否含有中文
+     * @param $content
+     * @return bool
+     */
+    public static function verifyStringHasCNWord($content){
+
+        $pattern = '/[^\x00-\x80]/';
+        if(preg_match($pattern,$content)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    /**
+     * 判断字符串是否 全部是中文
+     * @param $content
+     * @return bool
+     */
+    public static function verifyStringOnlyCNWord($content){
+        $pattern = "[^\x80-\xff]";
+        if(!eregi($pattern,$content)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     /**
      * GUID生成企业系统生成 36 位唯一序号
      * @return string
      */
-    public static function getGuid()
+    public static function getGuId()
     {
         // 判断是否有内置 GUID 生成函数
         if (function_exists('com_create_guid')) {
             return com_create_guid();
         } else {
             mt_srand((double)microtime() * 10000); // optional for php 4.2.0 and up.
-            $charid = strtoupper(md5(uniqid(rand(), true)));
+            $charId = strtoupper(md5(uniqid(rand(), true)));
             $hyphen = chr(45); // "-"
-            $guid = substr($charid, 0, 8) . $hyphen
-                . substr($charid, 8, 4) . $hyphen
-                . substr($charid, 12, 4) . $hyphen
-                . substr($charid, 16, 4) . $hyphen
-                . substr($charid, 20, 12);
+            $guId = substr($charId, 0, 8) . $hyphen
+                . substr($charId, 8, 4) . $hyphen
+                . substr($charId, 12, 4) . $hyphen
+                . substr($charId, 16, 4) . $hyphen
+                . substr($charId, 20, 12);
 
-            return $guid;
+            return $guId;
         }
     }
 
