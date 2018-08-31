@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Created by Lon
+ * Created by JoLon
  * AES128加解密类
  * User: zwl
  * Date: 2018/2/6

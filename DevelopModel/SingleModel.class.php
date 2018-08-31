@@ -1,7 +1,7 @@
 <?php
 /**
  * 单例模式
- * Created by PhpStorm.
+ * Created by JoLon.
  * User: JoLon
  * Date: 2016/9/26
  * Time: 17:50

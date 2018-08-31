@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Created by PhpStorm.
+ * Created by JoLon.
  * 字符串处理的工具类
  * User：Jolon
  * Time: 2015-02-09 下午9:13
