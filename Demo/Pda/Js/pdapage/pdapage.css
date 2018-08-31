@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+/*分页*/
+.pageGro{ margin-top: 10px;height:33px; font-size:10px; }
+.pageGro div,.pageGro div ul li{color:#999; line-height:25px; float:left;padding-left: 1px;padding-right:1px;margin-left: 2px;}
+.pageGro div ul li{ min-width:25px; text-align:center;background:#ffffff; border:1px solid #999; list-style:none;}
+.pageGro div ul li.on{ color:#fff; background:#3c90d9; border:1px solid #3c90d9;}

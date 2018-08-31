@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.login {
+    text-align: center;
+    margin-top: 5%;
+    width: 90%;
+    margin-left: 5%;
+    font-size: 12px;
+    /*background-color: #D7D7D7;*/
+}
+.from-login {
+    /*background-color: #D7D7D7;*/
+    padding:20px 5px 25px ;
+}
+.from-login table{
+    background-color: #D7D7D7;
+    width: 100%;
+    border:1px solid #D3D3D3
+}
+
+.from-login table tr{
+    height: 38px;
+}
+.from-login button {
+    background-color: #169BD5;
+    height: 10%;
+    width: 25%;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.from-login td label{
+    width: 25%;
+    text-align: right;
+    font-size: 15px;
+}
+.from-login td input{
+    width: 55%;
+    height: 30px;
+    font-size: 18px;
+}

@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+table{
+    width:96%; height:calc(90% - 50px);margin: 5px 3px 3px 5px;background-color: #FFFFFF;
+}
+table .table-head{
+    background-color: #E4E4E4;
+}
+table tr {
+    height: 40px;
+}
+table tr td{
+    font-size: 15px;
+}
+table tr th,td {
+    text-align: left;
+}
+table tr th span {
+    margin-left: 5px;
+}
+table tr td input {
+    width: 180px;
+    margin: 3px 0px 0px 10px;
+}
+table tr td span {
+    margin-left: 5px;
+    width: 90%;
+}
