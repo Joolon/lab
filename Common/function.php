@@ -6,6 +6,8 @@
  * Time: 11:05
  */
 
+
+// 调试函数
 function echo_br($times = 1)
 {
     // 输出多个换行符
@@ -17,7 +19,7 @@ BR;
     echo $s;
 }
 
-
+// 调试函数
 function debug_test($type,$message){
     if(is_string($message)){
         echo $type.':'.$message.'<br/>';
@@ -27,6 +29,20 @@ function debug_test($type,$message){
         echo "<br/>";
     }
 
+}
+
+// 调试函数
+function print_pre($value){
+    echo '<pre>';
+    print_r($value);
+    echo '</pre>';
+}
+
+// 调试函数
+function var_dump_pre($value){
+    echo '<pre>';
+    var_dump($value);
+    echo '</pre>';
 }
 
 

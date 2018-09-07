@@ -1,4 +1,7 @@
 <?php
+namespace Libs;
+
+
 /**
  * Created by JoLon.
  * User: JoLon

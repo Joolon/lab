@@ -1,4 +1,5 @@
 <?php
+namespace Libs;
 
 /**
  * Created by JoLon.
@@ -7,7 +8,6 @@
  * Date: 2016/10/12
  * Time: 8:55
  */
-namespace File;
 
 class FileDeal
 {

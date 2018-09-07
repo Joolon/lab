@@ -1,4 +1,6 @@
 <?php
+namespace Libs;
+
 
 /**
  * Created by JoLon.
@@ -8,10 +10,6 @@
  */
 class TimeTool
 {
-
-
-
-
     /**
      * 从一个字符串中提取第一个日期并验证日期，验证成功返回日期，失败返回false
      * @param string $string  目标字符串

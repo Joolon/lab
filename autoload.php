@@ -17,6 +17,8 @@ spl_autoload_register(function ($class) {
         $file = $class . '.class.php';
         if (file_exists($file)) {
             include $file;
+        }else{
+            throw new Exception('Class Not Found');
         }
     }
 });

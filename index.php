@@ -31,6 +31,13 @@ include_once 'Common/function.php';
 
 
 use \Db\Databases;
+use \Libs\FileDirDeal;
+
+//print_pre(Databases::getInstance());exit;
+
+$list = FileDirDeal::readAllFile('d:/phpStudy/WWW/lab',array('gif','php'),true,true,true);
+//print_pre($list);
+//exit;
 
 $results = Databases::getInstance()
     ->select('account','id')
