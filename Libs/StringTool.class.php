@@ -9,6 +9,18 @@ namespace Libs;
  */
 class StringTool
 {
+    /**
+     * 去除字符串里面的中文空格，中文全角空格，换行符制表符回车符
+     * @param $string
+     * @return mixed
+     */
+    public static function customStrReplace($string){
+        $search = array(" ","　"," ","\n","\r","\t");
+        $replace = array("","","","","");
+
+        $string = str_replace($search,$replace ,$string);
+        return $string;
+    }
 
     /**
      * 判断字符串是否 只含有字母、数字、下划线、短横线（验证文件名是否合乎要求）

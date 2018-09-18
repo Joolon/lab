@@ -1,4 +1,5 @@
 <?php
+namespace Db;
 
 /**
  * Created by JoLon.
@@ -6,7 +7,6 @@
  * Date: 2016/10/12
  * Time: 15:59
  */
-namespace Db;
 
 class Databases
 {
@@ -52,11 +52,11 @@ class Databases
         return $this;
     }
 
-    public function where($column, $oper, $value)
+    public function where($column, $operator, $value)
     {
-        switch ($oper) {
+        switch ($operator) {
             case 'LIKE':
-                $this->sql = $this->sql . " WHERE $column $oper '%$value%' ";
+                $this->sql = $this->sql . " WHERE $column $operator '%$value%' ";
                 break;
 
             case 'IN':
@@ -65,14 +65,14 @@ class Databases
                 break;
 
             default :
-                $this->sql = $this->sql . " WHERE $column $oper '$value' ";
+                $this->sql = $this->sql . " WHERE $column $operator '$value' ";
         }
         return $this;
     }
 
-    public function and_where($column, $oper, $value)
+    public function and_where($column, $operator, $value)
     {
-        $this->sql = $this->sql . " AND $column $oper $value";
+        $this->sql = $this->sql . " AND $column $operator $value";
         return $this;
     }
 

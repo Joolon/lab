@@ -1,4 +1,6 @@
 <?php
+namespace DevelopModel;
+
 /**
  * 单例模式
  * Created by JoLon.
@@ -6,7 +8,6 @@
  * Date: 2016/9/26
  * Time: 17:50
  */
-namespace DevelopModel;
 
 class SingleModel
 {
