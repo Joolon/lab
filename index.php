@@ -32,18 +32,33 @@ include_once 'Common/function.php';
 
 use \Db\Databases;
 use \Libs\FileDirDeal;
+use \Libs\TimeTool;
+
+
+include_once 'Libs\TimeTool.class.php';
 
 //print_pre(Databases::getInstance());exit;
-
-$list = FileDirDeal::readAllFile('d:/phpStudy/WWW/lab',array('gif','php'),true,true,true);
+//
+//$list = FileDirDeal::readAllFile('d:/phpStudy/WWW/lab',array('gif','php'),true,true,true);
 //print_pre($list);
 //exit;
+//
+//$results = Databases::getInstance()
+//    ->select('account','id')
+//    ->from('xy_user')
+//    ->where('account', '=', 'admin')
+//    ->execue('yeagleplan')
+////    ->compile();
+//    ->current();
+//
+//print_r($results);exit;
 
-$results = Databases::getInstance()
-    ->select('account','id')
-    ->from('xy_user')
-    ->where('account', '=', 'admin')
-    ->execue('yeagleplan')
-//    ->compile();
-    ->current();
+include_once 'Demo\Redis\redisdemo.php';
+
+
+
+
+
+
+
 

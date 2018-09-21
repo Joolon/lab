@@ -1,4 +1,7 @@
 <?php
+use DevelopModel\RedisHandle;
+
+
 // Redis是什么？ Redis是一个完全开源免费的（C语言编写），遵循BSD协议的，高性能的Key-Value数据库。
 // Redid所有命令集合  https://redis.io/commands  （PHP Redis类的方法名称对应 redis 的命令名）
 
@@ -25,28 +28,33 @@
 // 2、RBAC 管理（基于角色的访问控制）
 
 
-
-
 echo "<pre>";
 set_time_limit(0);
 
-$redis = new Redis();
-$redis->connect('127.0.0.1', 6379);
-//$redis->close();// 关闭 Redis 连接
 
-// 检测 redis 服务是否启动
-try {
-    $redis->auth('admin123');
-    $ping = $redis->ping();// 连通返回 +PONG
-    echo "Connection to server successfully<br/>";
-} catch (Exception $e) {
-    echo "<font color='red'>Error：".$e->getMessage() . '</font><br/>';
+$redis = RedisHandle::getRedis();
+if(RedisHandle::getError()){
+    echo "<font color='red'>Error：".RedisHandle::getError(). '</font><br/>';
     exit;
 }
 
+//$redis = new Redis();
+//$redis->connect('127.0.0.1', 6379);
+////$redis->close();// 关闭 Redis 连接
+//
+//// 检测 redis 服务是否启动
+//try {
+//    $redis->auth('admin123');
+//    $ping = $redis->ping();// 连通返回 +PONG
+//    echo "Connection to server successfully<br/>";
+//} catch (Exception $e) {
+//    echo "<font color='red'>Error：".$e->getMessage() . '</font><br/>';
+//    exit;
+//}
+
 
 $redis->echo('Hello World');// 未测试通过
-$select_res = $redis->select(1);//默认选择 0号数据库，切换数据库 默认只有16( 0-15 )个数据库
+$select_res = $redis->select(3);//默认选择 0号数据库，切换数据库 默认只有16( 0-15 )个数据库
 
 $redis->flushDB();// 删除 当前数据库 中所有数据
 //$redis->flushAll();// 删除 Redis服务器中所有数据库的所有数据
@@ -268,8 +276,8 @@ $z_set_res1 = $redis->zInter('school_985_211_score_same',['school_985_score','sc
 
 $z_set_res1 = $redis->zRange('school_985_score',0,-1);                      // 通过索引 获取 有序集合成员（所有成员）
 $z_set_res1 = $redis->zDelete('school_985_score','中山');                   // 删除指定的元素
-$redis->zDeleteRangeByRank('school_985_score',0,1);           // 分数从 低 到 高 排序后，根据索引删除元素
-$redis->zDeleteRangeByScore('school_985_score',2,4);          //  分数从 低 到 高 排序后，根据分数范围删除 元素
+$redis->zDeleteRangeByRank('school_985_score',0,1);                         // 分数从 低 到 高 排序后，根据索引删除元素
+$redis->zDeleteRangeByScore('school_985_score',2,4);                        //  分数从 低 到 高 排序后，根据分数范围删除 元素
 $z_set_res1 = $redis->zRange('school_985_score',0,-1);                      // 通过索引 获取 有序集合成员（所有成员）
 
 
