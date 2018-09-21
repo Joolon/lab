@@ -39,6 +39,7 @@ include_once 'Libs\TimeTool.class.php';
 
 //print_pre(Databases::getInstance());exit;
 //
+//include_once 'Demo\Redis\redisdemo.php';
 //$list = FileDirDeal::readAllFile('d:/phpStudy/WWW/lab',array('gif','php'),true,true,true);
 //print_pre($list);
 //exit;
@@ -53,7 +54,7 @@ include_once 'Libs\TimeTool.class.php';
 //
 //print_r($results);exit;
 
-include_once 'Demo\Redis\redisdemo.php';
+include_once 'Demo\Memcache\memcachedemo.php';
 
 
 
