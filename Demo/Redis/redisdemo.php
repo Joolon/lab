@@ -1,5 +1,4 @@
 <?php
-
 // Redis是什么？ Redis是一个完全开源免费的（C语言编写），遵循BSD协议的，高性能的Key-Value数据库。
 // Redid所有命令集合  https://redis.io/commands  （PHP Redis类的方法名称对应 redis 的命令名）
 
@@ -29,6 +28,7 @@
 
 
 echo "<pre>";
+set_time_limit(0);
 
 $redis = new Redis();
 $redis->connect('127.0.0.1', 6379);
@@ -44,8 +44,13 @@ try {
     exit;
 }
 
+
 $redis->echo('Hello World');// 未测试通过
-$select_res = $redis->select(2);//默认选择 0号数据库，切换数据库 默认只有16( 0-15 )个数据库
+$select_res = $redis->select(1);//默认选择 0号数据库，切换数据库 默认只有16( 0-15 )个数据库
+
+$redis->flushDB();// 删除 当前数据库 中所有数据
+//$redis->flushAll();// 删除 Redis服务器中所有数据库的所有数据
+
 
 //$res = $redis->config('SET','requirepass','admin1');// 动态修改Redis服务器密码（修改密码后要重新连接）
 $res = $redis->config('GET','requirepass');// 获取配置信息：密码
@@ -72,6 +77,22 @@ $redis->set('l_id4',4,10);
 $redis->set('l_id5',5,10);
 $redis->set('l_id6',6,10);
 $redis->set('l_id7',7,10);
+
+
+// 对相似数据分组设置键 便于可视化工具管理
+$redis->set('l_name:a1','木');// Redis Desktop Manager: l_name/ 生成文件夹
+$redis->set('l_name:a2','木');
+$redis->set('l_name:a3','木');
+$redis->set('l_name:a4','木');
+$redis->set('l_name:a5','木');
+$redis->set('l_name:a6','木');
+
+$redis->set('l_name:list:a1','水');// Redis Desktop Manager: l_name/list/ 生成文件夹
+$redis->set('l_name:list:a2','水');
+$redis->set('l_name:list:a3','水');
+$redis->set('l_name:list:a4','水');
+$redis->set('l_name:list:1:2:3:4:5:6:7:8:a5','水');
+$redis->set('l_name:list:1:2:3:4:5:6:7:8:9:10:11:12:13:14:!5:16:17:a6','水');
 
 
 $l_res1  = $redis->set('l_name1','风',10);// $timeout = 10s
