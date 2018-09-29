@@ -1,0 +1,112 @@
+j2se是java的桌面应用平台
+j2ee，其中的e表示enterprise，即企业是意思，即java企业应用平台，用于大型的分布式的开发程序。
+j2me，m表示mobile，即移动平台，用于开发手机，嵌入cpu机器的开发平台。
+
+P配置环境：
+1、JDK是整个java开发的核心，它包含了JAVA的运行环境（JVM+Java系统类库）和JAVA工具。
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  jdk-8u181-windows-x64.exe
+安装JDK的时候也会安装JRE
+2、配置环境变量
+
+
+
+
+
+语法：
+1、标识符以字母、$、下划线开头
+2、标识符必须由字母、$、下划线、数字组成
+3、关键字不能作为标识符
+4、语法对标识符大小写敏感
+
+
+JAVA修饰符：
+访问控制修饰符：public < protected < default < private  
+
+	default默认修饰符：什么也不写情况下生效，在同一个包内的类都可以访问。
+非访问控制修饰符：final,abstract,strictfp,synchronized,transient,volatile
+	final修饰的类不能被继承，修饰的方法不能被继承类重新定义，修饰的变量不能被修改。
+	abstract:
+		抽象方法是指没有任何实现的方法，该方法在子类中被实现。
+		抽象类：有一个抽象方法的类必须被定义为抽象类，而抽象类不一定有抽象方法。继承自抽象的的非抽象子类必须实现父类中所有的抽象方法。
+	synchronized:用来修饰某方法只能被一个线程访问。
+
+
+
+变量类型：局部变量，成员变量，静态变量，枚举变量
+
+继承：被继承的类称为超类（super class），派生类称为子类（subclass）
+
+
+
+
+JAVA对象：
+概念：类、多态、继承、封装、抽象、实例、方法、重载
+对象是类的一个实例，类是实例化（new一个）对象的模板
+类的变量：局部变量（方法内定义）、成员变量（非静态变量）、类变量（静态变量）; 静态变量存储在静态存储区，在第一次访问时创建，在程序结束后销毁。
+构造方法：每个类都至少有一个构造方法（多态实现），实例化对象的时候会调用该方法，构造法方法名称必须与类名一致
+
+
+
+一个源文件中有多个类：一个源文件中最多有一个public类，可以有多个非public类，源文件的名称和public类名称一致，
+
+包的概念：包是用来对类和接口进行分类，相似的类和接口放在同一个包中。
+导入包：import语句可以根据路径导入指定的类文件。
+
+程序都是从main方法开始执行;
+变量就是申请内存来存储内容，创建变量的时候就在内存中申请了空间，根据变量的类型来开辟存储空间，存储空间开辟后只能存储该类型的值。变量被声明之后其数据类型不能被改变。
+
+
+数据类型（基本数据类型或原生数据类型）与字节长度：byte(1),short(2),int(4),long(8),float(4),double(8),boolean(1位),char(2)
+无需强记，可以代码获得，如Byte二进制位数Byte.SIZE,最大值Byte.MAX_VALUE,最小值Byte.MIN_VALUE。
+
+包装类：Number包装类：Integer、Long、Byte、Double、Float、Short都是抽象类 Number 的子类，所有使用包装类声明的变量可以拆箱成为内置类型，内置类型封装成包装类。
+	【注意：包装类数据类型和基本数据类型是不一样的，double声明的是基本数据类型的数据，Double声明的是Double包装类类型的数据，数据是对象，可以调用Number下的方法。】
+	字符包装类：Character类，实现包装类与内置类型之间的转换。
+	Character ch = new Character('a');// 装箱：变成包装类的类型变量
+	bool isUpper = ch.isUpperCase();
+	
+定义数组：  
+	int[] idList = {1,2,3};//
+	int[] idList = new int[10];// 必须确定数组的长度
+	int idList[][] = new int[3][4];// 多维数组
+	
+
+
+
+运算符：
+	逻辑运算符->短路逻辑运算符：是指两个操作数做逻辑与（&&）运算时，当第一个操作数结果为false时第二个操作不会被执行。
+	instanceof：用来检测操作对数是否是一个特定类型（如，Integer,String,某类或某接口。是根据变量的实际类型判断，而不是变量声明的类型）。
+	
+	equals 与== 的区别：==比较的是对象的地址，equals比较的是对象的内容。
+	
+	Math类：数值操作类，三角函数，数值比较
+		intValue()方法只是去掉小数部分，而不是四舍五入转成整数。
+	Character类：单个字符操作类，内置方法isLetter(),isDigit(),isWhiteSpcae(),isUpperCase(),isLowerCase(),toUpperCase(),toLowerCase(),toString()。
+	String类：字符串操作类，String创建的对象的值不能更改，要修改的话使用StringBuffer类或StringBuilder类。
+		【StringBuffer类与StringBuilder类：在多线程情况下必须使用StringBuffer，其他情况下通常使用StringBuilder类。】
+		String类实例化的对象不能修改只是
+			String nowString = new String("ACBD");
+			nowString.append("www");// 失败：不能修改（对象不能修改）
+			
+			{// 这不是修改原对象，而是创建了一个新的对象，会分配两个存储空间
+				String nowString = new String("ACBD");
+				nowString = "www";
+			}
+		
+			StringBuffer sBuffer = new StringBuffer("http://");
+			sBuffer.append("www");// 可以修改成功
+
+
+for增强循环：又称为foreach()循环
+	fror(String username:userlist){// 遍历userlist列表的元素到 username 中
+		System.out.println(username);// 遍历到的当前元素的值
+	}
+	
+
+
+
+
+
+
+
+

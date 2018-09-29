@@ -180,6 +180,42 @@ class IOCSVFile
         return $data;
     }
 
+
+    /**     * 文章访问日志     *
+     * 下载的日志文件通常很大, 所以先设置csv相关的Header头, 然后打开     * PHP output流,
+     * 渐进式的往output流中写入数据, 写到一定量后将系统缓冲冲刷到响应中     * 避免缓冲溢出     */
+
+    public static function exportExcel($columns,$dataList,$file_name = '')
+    {
+        set_time_limit(0);
+        $file_name .= date('YmdHis') . '.xlsx';
+
+        //设置好告诉浏览器要下载excel文件的headers
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment; filename="' . $file_name . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+
+        $fp = fopen('php://output', 'a');//打开output流
+
+        mb_convert_variables('GBK', 'UTF-8', $columns);
+        fputcsv($fp, $columns);//将数据格式化为CSV格式并写入到output流中
+        foreach($dataList as $data){
+            mb_convert_variables('GBK', 'UTF-8', $data);
+            fputcsv($fp, $data);// 数组数据自动根据逗号拼接成字符串，所以生成的xlsx文件里面 数据都只能在一列里面，并不会展示到对应的数据列
+
+            // 实现 文件下载进度，每生成一部分数据就输出到文件中，文件一直在增大，下载的时候并不能知道文件大小
+            ob_flush();
+            flush();//必须同时使用 ob_flush() 和flush() 函数来刷新输出缓冲。
+        }
+
+        fclose($fp);
+        exit();
+    }
+
+
 }
 
 
