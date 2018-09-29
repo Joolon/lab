@@ -4,7 +4,7 @@
  * 保存采购运行后统计的数据
  */
 
-include_once BASE_PATH.'class/FileCache.php';
+include_once BASE_PATH.'class/FileCache.class.php';
 
 
 // 当前统计的数据

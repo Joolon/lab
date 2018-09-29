@@ -16,6 +16,7 @@ class FileDeal
      * 在指定文件夹中创建文件
      * @param $file_path
      * @param $file_name
+     * @return bool
      */
     public static function createFile($file_path, $file_name)
     {

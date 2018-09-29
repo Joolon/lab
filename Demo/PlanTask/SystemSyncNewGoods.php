@@ -7,7 +7,7 @@ include 'taskbase.php';
 include BASE_PATH."include/config.php";
 include_once BASE_PATH.'class/Goods.class.php';
 include_once BASE_PATH.'class/NewGoods.class.php';
-include_once BASE_PATH.'class/Storages.class.php';
+include_once BASE_PATH . 'class/Storages.class.php';
 
 $startime	= time();
 $uptSystemTask = "update system_task set taskstatus=1,taskstarttime=".time().",RunTime=0 where ID=90 ";

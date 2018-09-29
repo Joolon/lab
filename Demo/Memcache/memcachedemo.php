@@ -34,7 +34,7 @@ $key_res1 = $memcache->add('l_name_3', '交',0,10);                   // 若key�
 $key_res1 = $memcache->replace('l_name_3', '加',0,10);               // 若key存在改变其值，否则不做操作
 $key_res1 = $memcache->replace('l_name_not_exists', '加',0,10);      // 若key存在改变其值，否则不做操作
 
-$key_res1 = $memcache->get('l_name_1');                              // 获取指定 KEY 的值
+$key_res1 = $memcache->get('l_name_1');                              // 获取指定 KEY 的值                              // 获取 Memcache 的版本号
 $key_res1 = $memcache->get(['l_name_1','l_name_3','l_name_not_exists','l_name_not_exists_1']);// 获取 多个 KEY 的值（返回存在的 KEY-VALUE 数组）
 $key_res1 = $memcache->delete('l_name_33');                          // 删除指定的 KEY
 
