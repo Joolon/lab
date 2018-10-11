@@ -89,10 +89,14 @@ use app\config\Vhelper;
 
 $js = <<<JS
 
+// 点击 加号 追加一行 输入框
 $("#plus-daily").click(function(){
     var html = $("#plus-daily-sales").html();
     $("#daily-sales-list").append($(html));
 });
+
+// 注意不能用 $("#minus-daily").on("click" 的形式，否则不能根据 ID 触发 点击事件
+// 点击 减号 去掉当前一行输入框
 $(document).on("click","#minus-daily",function(){
     $(this).parent().parent().remove();
 });

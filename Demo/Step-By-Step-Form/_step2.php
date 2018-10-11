@@ -183,6 +183,9 @@ foreach($model->purchaseTacticsSuggest as $suggest){
 
 $js = <<<JS
 
+
+// 点击 加号 追加一行 输入框
+// $("#plus-suggest-type1,#plus-suggest-type2,#plus-suggest-type3") 表示可以响应 三个 ID 的点击事件
 $("#plus-suggest-type1,#plus-suggest-type2,#plus-suggest-type3").click(function(){
     var ptr = $(this).parent().parent().parent().parent();
     var html = ptr.children('div').eq(0).html();
@@ -193,6 +196,8 @@ $("#plus-suggest-type1,#plus-suggest-type2,#plus-suggest-type3").click(function(
     ptr.children('div').last().find('input').val('');// 添加的 HTML 标签INPUT输入框的值设为空
 });
 
+// 注意不能用 $("#minus-daily").on("click" 的形式，否则不能根据 ID 触发 点击事件
+// 点击 减号 去掉当前一行输入框
 $(document).on("click","#minus-suggest-type1,#minus-suggest-type2,#minus-suggest-type3",function(){
     $(this).parent().parent().remove();
 });
