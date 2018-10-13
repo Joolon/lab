@@ -300,4 +300,43 @@ class ArrayTool
         }
     }
 
+    /**
+     * 将 多维数组（最多三维） 拼接成 一维数组的 字符串
+     * @param array     $arr
+     * @param string    $SPACE_CHARACTER
+     * @return array|bool  array.字符串列表  false.非数组或超过三维
+     */
+    public static function multiArrayToString($arr,$SPACE_CHARACTER = '-'){
+
+        $stringList = [];// 字符串 列表
+        if (!is_array($arr)) return false;
+
+        foreach ($arr as $key1 => $value1) {
+            if (is_array($value1)) {
+                $str1 = $key1;
+                foreach ($value1 as $key2 => $value2) {
+                    // 键值拼接成字符串
+                    $str2 = $str1 . $SPACE_CHARACTER . $key2;
+                    if (is_array($value2)) {
+                        foreach ($value2 as $key3 => $value3) {
+                            if(is_array($value3)) return false;
+
+                            // 键值拼接成字符串
+                            $str3 = $str2 . $SPACE_CHARACTER . $key3 . $SPACE_CHARACTER . $value3;
+
+                            $stringList[] = $str3;
+                        }
+                    } else {
+                        $stringList[] = $str2;
+                    }
+                }
+            } else {
+                // 键值拼接成字符串
+                $stringList[] = $key1 . $SPACE_CHARACTER . $value1;
+            }
+        }
+
+        return $stringList;
+    }
+
 }
