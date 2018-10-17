@@ -339,4 +339,36 @@ class ArrayTool
         return $stringList;
     }
 
+
+    /**
+     * 根据父子关系   将一维数组转成多维数组
+     * @param array     $data           一维数组列表
+     * @param int       $pId            父ID
+     * @param string    $parent_index   父ID对应的索引
+     * @param string    $index          子ID对应的索引
+     * @return mixed
+     *      array(
+     *          数组元素
+     *          ...
+     *          ...
+     *          child_list => array( 子元素列表   // 新增一列元素 存储子元素列表 )
+     *      )
+     */
+    public static function arrayToTree($data,$pId,$parent_index,$index){
+        $tree = '';
+        foreach ($data as $key => $value) {
+            // 获取当前父 ID 下的子元素
+            if ($value[$parent_index] == $pId) {
+                $sub_value = self::arrayToTree($data,$value[$index],$parent_index,$index);// 当前 ID 下的子元素
+
+                $value['child_list'] = $sub_value;// 子元素列表
+                $tree[$value[$index]] = $value;
+            }
+        }
+
+        return $tree;
+    }
+
+
+
 }
