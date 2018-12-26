@@ -1,13 +1,14 @@
 <?php
+use DevelopModel\MongoHandle;
+
 /**
  * Created by PhpStorm.
- * User: Administrator
+ * User: Jolon
  * Date: 2018/12/14 0014
  * Time: 21:28
  */
 
 /*
- *
  * RDBMS  关系型数据库管理系统
  *      关系型数据库遵循的原则：ACID (原子性、一致性、独立性、持久性)
  *      A（Atomicity）原子性：事务里的操作要么全部执行，要么全都不执行。只要有一个失败，事务就会回滚。（记录全部操作的逆操作，当发生异常时回滚执行全部逆操作）
@@ -37,7 +38,6 @@
  *      更快的速度：拥有多台计算机的计算能力，比其他单一计算机系统效率快的多
  *      更高的性能：
  */
-
 
 /*
  * NoSQL ：Not Only SQL  不仅仅是SQL
@@ -99,5 +99,55 @@
  * ObjectId（12字节唯一识别码）：_id 每个文档都有唯一的 _id 键来确保文档中数据的唯一性。相较于自动增加的主键，_id 的方式更适合多服务器间的同步。
  * 固定集合：具有固定长度的集合，增删查改的速度非常快，插入数据时自动淘汰最早的数据。
  * 管理工具：RockMongo （PHP5开发的Web管理工具，类似 phpMyAdmin）
- * 
+ *
+ *
+ * 安装与使用
+ * 搭建服务器：http://www.runoob.com/mongodb/mongodb-window-install.html  （若 MSI 文件安装不成功，尝试使用 ZIP 文件搭建）
+ * 创建数据库目录：C:\>mkdir data    数据文件夹
+ *                 C:\data>mkdir db  数据库文件夹
+ * 启动服务：C:\MongoDB\bin\mongod --dbpath C:\data\db
+ *           C:\MongoDB\bin\mongo.exe  客户端连接
+ * 查看安装是否成功：db.version()  查看安装的版本号
+ *
  */
+
+
+echo "<pre>";
+set_time_limit(0);
+
+$mongo = MongoHandle::getMongo();
+if(MongoHandle::getError()){
+    echo "<font color='red'>Error：".MongoHandle::getError(). '</font><br/>';
+    exit;
+}
+$db_mongo = $mongo->demo1;
+$collection = $db_mongo->createCollection('users');
+$collection = $db_mongo->createCollection('users1');
+$collection = $db_mongo->createCollection('users2');
+$collection = $db_mongo->createCollection('users3');
+
+$document = array(
+    "title"       => "MongoDB",
+    "description" => "database",
+    "likes"       => 100,
+    "url"         => "http://www.runoob.com/mongodb/",
+    "by", "菜鸟教程"
+);
+
+$res = $collection->insert($document);// 插入文档
+$collection->update(array("title"=>"MongoDB"), array('$set'=>array("title"=>"MongoDB 教程")),array('multiple' => '1'));
+$collection->remove(array(),array('justOne' => false));// justOne=>true 删除所有
+
+$cursor = $collection->find();
+foreach ($cursor as $document) {
+    echo $document["title"] . "\n";
+}
+
+print_r($cursor);
+
+print_r($mongo);
+
+
+
+
+

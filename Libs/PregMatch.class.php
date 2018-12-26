@@ -12,6 +12,9 @@ namespace Libs;
 /**
  * 正则表达式
  * 作用：快速简单查找、匹配、替换单词和句子，用最少的代码实现以上功能
+ * 优点：方便地对文本格式进行验证、查找和替换，能够很好地弥补 php 内置函数的不足，
+ * 缺点：难读，复杂的表达式会难以维护；性能问题、执行效率，回溯会使得引擎的效率极其低下（使用精确匹配、原子组等）。
+ *
  *
  * 正则中“字符”的含义
  * ^ 匹配开始字符  ：^foo 表示匹配以foo开头的字符串
@@ -93,8 +96,8 @@ namespace Libs;
  
  /**
  * 常用正则表达式
- * @url https://c.runoob.com/front-end/854
- * 
+ * @link https://c.runoob.com/front-end/854
+ * @link http://www.cnblogs.com/dengyang/p/3164402.html
  *
  * 
  */
@@ -256,6 +259,9 @@ class PregMatch
             return false;
         }
     }
+
+
+
 
 
 

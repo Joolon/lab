@@ -54,7 +54,8 @@ include_once 'Libs\TimeTool.class.php';
 //
 //print_r($results);exit;
 
-include_once 'Demo\Memcache\memcachedemo.php';
+//include_once 'Demo\Memcache\memcachedemo.php';
+include_once 'Demo\MangoDB\mangodbdemo.php';
 
 
 

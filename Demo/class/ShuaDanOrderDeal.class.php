@@ -5,7 +5,7 @@ include_once dirname(__FILE__)."/publicClass/LogOper.class.php";
 /**
  * 刷单处理方法类
  * Created by PhpStorm.
- * User: Administrator
+ * User: Jolon
  * Date: 2017/7/17
  * Time: 17:12
  */
