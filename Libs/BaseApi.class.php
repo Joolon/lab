@@ -10,6 +10,17 @@ class BaseApi {
 
 
     /**
+     * 验证json的合法性
+     * @param $string
+     * @return bool
+     */
+    public static function isJson($string)
+    {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
+
+    /**
      * GET 方式发送 CURL 请求
      * @param $url
      * @param array $parameters
@@ -33,7 +44,7 @@ class BaseApi {
 
         if($error) return $error;
 
-        return json_decode($result,true);
+        return $result;
     }
 
     /**
@@ -44,6 +55,7 @@ class BaseApi {
      */
     public static function curlPost($url,$data = array()){
         $postHeader = array("Content-type: application/json");// 注意设置header，设置出错会导致数据传输不成功
+        $data = is_array($data)?json_encode($data):$data;
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -58,7 +70,7 @@ class BaseApi {
 
         if($error) return $error;
 
-        return json_decode($result,true);
+        return $result;
     }
 
 }
