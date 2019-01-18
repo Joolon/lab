@@ -17,6 +17,10 @@ class CurlRequest {
 
     }
 
+    public function getSecretKey(){
+        return self::SECRET_KEY;
+    }
+
     /**
      * 根据时间戳生成 签名字符串
      * @param string $timestamp 时间戳
@@ -59,7 +63,7 @@ class CurlRequest {
      */
     public function getSignature($timestamp){
         $arr['timestamp'] = $timestamp;
-        $arr['token']     = self::SECRET_KEY;
+        $arr['token']     = $this->getSecretKey();
 
         sort($arr, SORT_STRING);//按照首字母大小写顺序排序
         $str       = implode($arr);//拼接成字符串
