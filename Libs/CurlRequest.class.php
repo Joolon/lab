@@ -40,10 +40,10 @@ class CurlRequest {
      * @param $params
      * @return bool
      * @example
-     *              $params = array(
+     *          $params = array(
      *              'timestamp' => 时间戳,
      *              'signature' => 签名
-     *              )
+     *          )
      */
     public function validToken($params){
         $timestamp = isset($params['timestamp']) ? $params['timestamp'] : '';
@@ -117,9 +117,10 @@ class CurlRequest {
      * @param string $url   请求链接
      * @param array  $data  发送的数据
      * @param array  $token 授权参数
+     * @param array  $header 头信息
      * @return mixed|string
      */
-    public function curlPost($url, $data = [], $token = []){
+    public function curlPost($url, $data = [], $token = [],$header = []){
         if($token){
             $url .= '?'.http_build_query($token);
         }
@@ -127,6 +128,10 @@ class CurlRequest {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, 1);
+
+        if ($header) {
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        }
         if($data){// 传递参数
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         }

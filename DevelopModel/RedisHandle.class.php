@@ -12,6 +12,10 @@ class RedisHandle{
     private static $_message = null;// 提示信息
     private static $_error   = null;// 错误信息
 
+    private static $_host     = '47.107.183.46';
+    private static $_port     = '6379';
+    private static $_password = 'root.Jolon.123456';
+
     private function __construct()
     {
 
@@ -32,10 +36,10 @@ class RedisHandle{
         }else{
             // 实例化对象
             self::$_handler = new \Redis();
-            self::$_handler->connect('127.0.0.1', 6379);
+            self::$_handler->connect(self::$_host, self::$_port);
 
             try{// 判断连接是否成功
-                self::$_handler->auth('admin123');
+                self::$_handler->auth(self::$_password);
                 self::$_handler->ping();// 连通返回 +PONG
 
                 self::setMessage('SUCCESS');

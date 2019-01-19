@@ -37,6 +37,8 @@ if(RedisHandle::getError()){
     echo "<font color='red'>Error：".RedisHandle::getError(). '</font><br/>';
     exit;
 }
+$redis->set('user:name','fasf12333da');
+echo 1;exit;
 
 //$redis = new Redis();
 //$redis->connect('127.0.0.1', 6379);
