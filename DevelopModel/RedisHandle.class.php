@@ -36,9 +36,9 @@ class RedisHandle{
         }else{
             // 实例化对象
             self::$_handler = new \Redis();
-            self::$_handler->connect(self::$_host, self::$_port);
 
             try{// 判断连接是否成功
+                self::$_handler->connect(self::$_host, self::$_port,3);
                 self::$_handler->auth(self::$_password);
                 self::$_handler->ping();// 连通返回 +PONG
 
