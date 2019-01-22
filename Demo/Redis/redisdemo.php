@@ -38,6 +38,7 @@ if(RedisHandle::getError()){
     exit;
 }
 $redis->set('user:name','fasf12333da');
+var_dump($redis->get('user:name'));
 echo 1;exit;
 
 //$redis = new Redis();

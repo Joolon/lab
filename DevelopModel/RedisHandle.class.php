@@ -14,7 +14,7 @@ class RedisHandle{
 
     private static $_host     = '47.107.183.46';
     private static $_port     = '6379';
-    private static $_password = 'root.Jolon.123456';
+    private static $_password = 'Admin123456';
 
     private function __construct()
     {
