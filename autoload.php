@@ -15,7 +15,7 @@ spl_autoload_register(function ($class) {
     // $class 其实是命名空间
     if ($class) {
         $class = str_replace('\\', '/', $class);// 命名空间分隔线与服务器系统目录分隔线对应
-        $file = $class . '.class.php';
+        $file = BASE_PATH.$class . '.class.php';
         if (file_exists($file)) {
             include $file;
         }else{
