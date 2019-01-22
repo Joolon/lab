@@ -35,11 +35,11 @@ use \Libs\FileDirDeal;
 use \Libs\TimeTool;
 
 
-include_once 'Libs\TimeTool.class.php';
+include_once 'Libs/TimeTool.class.php';
 
 //print_pre(Databases::getInstance());exit;
 //
-include_once 'Demo\Redis\redisdemo.php';exit;
+include_once 'Demo/Redis/redisdemo.php';exit;
 //$list = FileDirDeal::readAllFile('d:/phpStudy/WWW/lab',array('gif','php'),true,true,true);
 //print_pre($list);
 //exit;
