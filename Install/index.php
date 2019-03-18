@@ -1,10 +1,5 @@
 <?php
 
-include 'auto.php';
-
-if (IS_SAE)
-    header("Location: index_sae.php");
-
 if (file_exists('./install.lock')) {
     echo '
 		<html>
@@ -33,7 +28,7 @@ define("SIMPLEWIND_CMF_VERSION", '20131111');
 //数据库
 $sqlFile = 'yeagleplan.sql';
 $configFile = 'config.php';
-if (!file_exists(SITEDIR . 'install/' . $sqlFile) || !file_exists(SITEDIR . 'install/' . $configFile)) {
+if (!file_exists(SITEDIR . 'install/' . $configFile)) {
     echo '缺少必要的安装文件!';
     exit;
 }

@@ -10,10 +10,10 @@ return array(
     'DB_USER' => 'root',
     'DB_PWD' => 'root',
     'DB_PORT' => '3306',
-    'DB_PREFIX' => 'yp_',
+    'DB_PREFIX' => 'sp_',
     //密钥
-    "AUTHCODE" => 'ziCTkyfXpCE9nqTCHB',
+    "AUTHCODE" => 'gOUiQku9AnQCL6xJ0T',
     //cookies
-    "COOKIE_PREFIX" => 'WkPzDo_',
+    "COOKIE_PREFIX" => 'YyhAtP_',
 );
 ?>
