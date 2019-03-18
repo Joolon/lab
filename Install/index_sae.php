@@ -30,8 +30,8 @@ if (!file_exists(SITEDIR . 'install/' . $sqlFile) || !file_exists(SITEDIR . 'ins
     echo '缺少必要的安装文件!';
     exit;
 }
-$Title = "ThinkCMF";
-$Powered = "Powered by www.thinkcmf.com";
+$Title = "YEaglePlan";
+$Powered = "Powered by www.YEaglePlan.com";
 $steps = array(
     '1' => '安装许可协议',
     '2' => '运行环境检测',

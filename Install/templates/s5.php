@@ -30,7 +30,7 @@
     $(function () {
         $.ajax({
             type: "POST",
-            url: "http://www.thinkcmf.com/service/installinfo.php",
+            url: "http://www.YEaglePlan.com/service/installinfo.php",
             data: {host: '<?php echo $host;?>', ip: '<?php echo $ip?>'},
             dataType: 'json',
             success: function () {
