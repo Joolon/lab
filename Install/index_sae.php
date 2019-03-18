@@ -51,7 +51,7 @@ if ((int)$_SERVER['SERVER_PORT'] != 80) {
 $domain = $domain . $rootpath;
 
 // mysql
-$conn = @mysql_connect(SAE_MYSQL_HOST_M . ':' . SAE_MYSQL_PORT, SAE_MYSQL_USER, SAE_MYSQL_PASS);
+$conn = @mysqli_connect(SAE_MYSQL_HOST_M . ':' . SAE_MYSQL_PORT, SAE_MYSQL_USER, SAE_MYSQL_PASS);
 // kvdb
 $kv = new SaeKV();
 $kv_ini = $kv->init();
@@ -107,7 +107,7 @@ switch ($step) {
 
         if ($_GET['testdbpwd']) {
             $dbHost = $_POST['dbHost'] . ':' . $_POST['dbPort'];
-            $conn = @mysql_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd']);
+            $conn = @mysqli_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd']);
             if ($conn) {
                 die("1");
             } else {

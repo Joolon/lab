@@ -74,7 +74,7 @@ switch ($step) {
         } else {
             $gd = '<font color=green>[√]On</font> ' . $tmp['GD Version'];
         }
-        if (function_exists('mysql_connect')) {
+        if (function_exists('mysqli_connect')) {
             $mysql = '<span class="correct_span">&radic;</span> 已安装';
         } else {
             $mysql = '<span class="correct_span error_span">&radic;</span> 出现错误';
@@ -109,7 +109,7 @@ switch ($step) {
     case '3':
         if ($_GET['testdbpwd']) {
             $dbHost = $_POST['dbHost'] . ':' . $_POST['dbPort'];
-            $conn = @mysql_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd']);
+            $conn = @mysqli_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd']);
             if ($conn) {
                 die("1");
             } else {
@@ -147,7 +147,7 @@ switch ($step) {
             //关键词
             $seo_keywords = addslashes(trim($_POST['keywords']));
 
-            $conn = @ mysql_connect($dbHost, $dbUser, $dbPwd);
+            $conn = @ mysqli_connect($dbHost, $dbUser, $dbPwd);
             if (!$conn) {
                 $arr['msg'] = "连接数据库失败!";
                 echo json_encode($arr);
