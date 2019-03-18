@@ -28,7 +28,7 @@ define("SIMPLEWIND_CMF_VERSION", '20131111');
 //数据库
 $sqlFile = 'yeagleplan.sql';
 $configFile = 'config.php';
-if (!file_exists(SITEDIR . 'install/' . $configFile)) {
+if (!file_exists(SITEDIR . 'Install/' . $configFile)) {
     echo '缺少必要的安装文件!';
     exit;
 }
