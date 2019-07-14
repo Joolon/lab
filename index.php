@@ -16,10 +16,12 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) die('require PHP > 5.3.0 !');
 define('DS', DIRECTORY_SEPARATOR);
 define('BASE_PATH', dirname(__FILE__).DS);
 
-include_once BASE_PATH.'Install'.DS.'check_install.php';
+//include_once BASE_PATH.'Install'.DS.'check_install.php';
 
 include_once BASE_PATH.'autoload.php';// 自动加载类文件
 include_once BASE_PATH.'Common/function.php';
+
+include_once BASE_PATH.'Demo/Redis/test_seckill.php';
 
 
 
