@@ -1,44 +1,7 @@
 <?php
 include_once 'index.php';
 
-
-function sumOfInts($ints)
-{
-    return array_sum($ints);
-}
-
-//var_dump(sumOfInts(2));exit;
-
-
-
-
-
-
-//define('SITES', [
-//   'Google',
-//   'Jser',
-//   'Taobao'
-//]);
-//
-//var_dump(SITES);exit;
-
-
-$result = ['name' => 'name1'];
-$result2 = ['name' => 'name2','age' => 'age2'];
-
-
-$username = $result['name1'] ??'nobody';
-//$username = $post_data['payment_explain'] ?? $require_info['payment_explain'] ?? '';
-
-
-var_dump($username);exit;
-var_dump(isset($result['name'])?:'');exit;
-
-
-
-
 /*
-
 PHP7 三元运算符：缩写形式  前面表达式为真 则返回表达式的结果，否则返回 设定值
 
 常量数组：defind 定义常量的值为数组
@@ -47,10 +10,6 @@ PHP7 三元运算符：缩写形式  前面表达式为真 则返回表达式的
 拓展：移除了 MsSQL  MySQL 等拓展
 加入：
 1、空合并运算符（??）优化 isset()方法（使用 ?? 即使变量未定义也不会报错，使用 ?: 如果变量未定义则报致命错误）
-
-
-
-
 
 
 
