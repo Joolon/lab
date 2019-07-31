@@ -9,8 +9,8 @@
 namespace Libs\MyRabbitMQ;
 
 class ConsumerMQ extends BaseMQ{
-    private $q_name = 'hello'; //队列名
-    private $route  = 'hello'; //路由key
+    private $q_name = 'word'; //队列名
+    private $route  = '123456'; //路由key
 
     /**
      * ConsumerMQ constructor.
@@ -20,26 +20,26 @@ class ConsumerMQ extends BaseMQ{
         parent::__construct();
     }
 
-    /** 接受消息 如果终止 重连时会有消息
+    /**
+     * 接受消息 如果终止 重连时会有消息
+     * @param array|string   $fun_name 回调方法
+     * @param bool $auto_ack 自动确认回执
      * @throws \AMQPChannelException
      * @throws \AMQPConnectionException
      * @throws \AMQPExchangeException
      * @throws \AMQPQueueException
      */
-    public function run(){
-
+    public function run($fun_name,$auto_ack = true){
         //创建交换机
         $ex = $this->exchange();
         $ex->setType(AMQP_EX_TYPE_DIRECT); //direct类型
         $ex->setFlags(AMQP_DURABLE); //持久化
-        //echo "Exchange Status:".$ex->declare()."\n";
 
         //创建队列
         $q = $this->queue();
-        //var_dump($q->declare());exit();
         $q->setName($this->q_name);
         $q->setFlags(AMQP_DURABLE); //持久化
-        //echo "Message Total:".$q->declareQueue()."\n";
+        echo "Message Total:".$q->declareQueue()."\n";
 
         //绑定交换机与队列，并指定路由键
         echo 'Queue Bind: '.$q->bind($this->exchange, $this->route)."\n";
@@ -47,12 +47,10 @@ class ConsumerMQ extends BaseMQ{
         //阻塞模式接收消息
         echo "Message:\n";
         while(true){
-            $q->consume(function($envelope, $queue){
-                $msg = $envelope->getBody();
-                echo $msg."\n"; //处理消息
-                $queue->ack($envelope->getDeliveryTag()); //手动发送ACK应答
-            });
-            //$q->consume('processMessage', AMQP_AUTOACK); //自动ACK应答
+            if($q->declareQueue() <=0 ) break;
+
+            if ($auto_ack) $q->consume($fun_name, AMQP_AUTOACK);
+            else $q->consume($fun_name);
         }
         $this->close();
     }

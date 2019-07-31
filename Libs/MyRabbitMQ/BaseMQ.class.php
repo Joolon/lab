@@ -17,64 +17,61 @@ namespace Libs\MyRabbitMQ;
  * Class BaseMQ
  * @package MyObjSummary\rabbitMQ
  */
-class BaseMQ
-{
+class BaseMQ {
     /** MQ Channel
      * @var \AMQPChannel
      */
-    public $AMQPChannel ;
+    public $AMQPChannel;
 
     /** MQ Link
      * @var \AMQPConnection
      */
-    public $AMQPConnection ;
+    public $AMQPConnection;
 
     /** MQ Envelope
      * @var \AMQPEnvelope
      */
-    public $AMQPEnvelope ;
+    public $AMQPEnvelope;
 
     /** MQ Exchange
      * @var \AMQPExchange
      */
-    public $AMQPExchange ;
+    public $AMQPExchange;
 
     /** MQ Queue
      * @var \AMQPQueue
      */
-    public $AMQPQueue ;
+    public $AMQPQueue;
 
     /** conf
      * @var
      */
-    public $conf ;
+    public $conf;
 
     /** exchange
      * @var
      */
-    public $exchange ;
+    public $exchange;
 
     /** link
      * BaseMQ constructor.
      * @throws \AMQPConnectionException
      */
-    public function __construct()
-    {
-        $conf = require 'config.php' ;
+    public function __construct(){
+        $conf = require 'config.php';
         if(!$conf)
             throw new \AMQPConnectionException('config error!');
-        $this->conf  = $conf['host'] ;
-        $this->exchange = $conf['exchange'] ;
+        $this->conf           = $conf['host'];
+        $this->exchange       = $conf['exchange'];
         $this->AMQPConnection = new \AMQPConnection($this->conf);
-        if (!$this->AMQPConnection->connect())
+        if(!$this->AMQPConnection->connect())
             throw new \AMQPConnectionException("Cannot connect to the broker!\n");
     }
 
     /**
      * close link
      */
-    public function close()
-    {
+    public function close(){
         $this->AMQPConnection->disconnect();
     }
 
@@ -82,11 +79,11 @@ class BaseMQ
      * @return \AMQPChannel
      * @throws \AMQPConnectionException
      */
-    public function channel()
-    {
-        if(!$this->AMQPChannel) {
+    public function channel(){
+        if(!$this->AMQPChannel){
             $this->AMQPChannel = new \AMQPChannel($this->AMQPConnection);
         }
+
         return $this->AMQPChannel;
     }
 
@@ -95,13 +92,13 @@ class BaseMQ
      * @throws \AMQPConnectionException
      * @throws \AMQPExchangeException
      */
-    public function exchange()
-    {
-        if(!$this->AMQPExchange) {
+    public function exchange(){
+        if(!$this->AMQPExchange){
             $this->AMQPExchange = new \AMQPExchange($this->channel());
             $this->AMQPExchange->setName($this->exchange);
         }
-        return $this->AMQPExchange ;
+
+        return $this->AMQPExchange;
     }
 
     /** queue
@@ -109,22 +106,22 @@ class BaseMQ
      * @throws \AMQPConnectionException
      * @throws \AMQPQueueException
      */
-    public function queue()
-    {
-        if(!$this->AMQPQueue) {
+    public function queue(){
+        if(!$this->AMQPQueue){
             $this->AMQPQueue = new \AMQPQueue($this->channel());
         }
-        return $this->AMQPQueue ;
+
+        return $this->AMQPQueue;
     }
 
     /** Envelope
      * @return \AMQPEnvelope
      */
-    public function envelope()
-    {
-        if(!$this->AMQPEnvelope) {
+    public function envelope(){
+        if(!$this->AMQPEnvelope){
             $this->AMQPEnvelope = new \AMQPEnvelope();
         }
+
         return $this->AMQPEnvelope;
     }
 }

@@ -10,7 +10,6 @@
  * 定义一个自动加载类文件方法
  * 分析：加载类时如果找不到类则根据该类的命名空间加载该类的文件
  */
-
 spl_autoload_register(function ($class) {
     // $class 其实是命名空间
     if ($class) {
@@ -19,7 +18,7 @@ spl_autoload_register(function ($class) {
         if (file_exists($file)) {
             include $file;
         }else{
-            throw new Exception('Class Not Found');
+            throw new Exception('自动加载：Class Not Found'.$file);
         }
     }
 });

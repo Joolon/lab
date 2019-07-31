@@ -8,7 +8,7 @@
 
 namespace Libs\MyRabbitMQ;
 
-class ProductMQ extends BaseMQ {
+class ProduceMQ extends BaseMQ {
     private $routes = ['hello', 'word']; //路由key
 
     /**
@@ -30,12 +30,12 @@ class ProductMQ extends BaseMQ {
         //创建交换机对象
         $ex = $this->exchange();
         //消息内容
-        $message = 'product message '.rand(1, 99999);
         //开始事务
         $channel->startTransaction();
         $sendEd = true;
         foreach($this->routes as $route){
-            $sendEd = $ex->publish($message, $route);
+            $message = 'product message '.rand(10000, 99999);
+            $sendEd  = $ex->publish($message, $route);
             echo "Send Message:".$sendEd."\n";
         }
         if(!$sendEd){
