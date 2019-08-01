@@ -9,22 +9,25 @@
 namespace Libs\MyRabbitMQ;
 
 class ProduceMQ extends BaseMQ {
-    private $routes = ['111111','222222']; //路由key
 
     /**
-     * ProductMQ constructor.
+     * ProduceMQ constructor.
+     * @param $conf
+     * @param $exchange
      * @throws \AMQPConnectionException
      */
-    public function __construct(){
-        parent::__construct();
+    public function __construct($conf,$exchange){
+        parent::__construct($conf,$exchange);
     }
 
     /** 只控制发送成功 不接受消费者是否收到
+     * @param $message
+     * @param $k_route
      * @throws \AMQPChannelException
      * @throws \AMQPConnectionException
      * @throws \AMQPExchangeException
      */
-    public function run(){
+    public function send($message,$k_route = null){
         $channel = $this->channel();//创建频道
         $this->exchange();//创建交换机对象
 
@@ -32,20 +35,8 @@ class ProduceMQ extends BaseMQ {
         $channel->startTransaction();//开始事务
         $sendEd = true;
 
-        $message = 'product message '.rand(10000, 99999);
-
-        //$this->example_fanout($message);
-        //$this->example_direct($message);
-
-
-//        print_r($this->routes);exit;
-//        for($i = 0;$i < 10;$i ++){
-//            $message = 'product message '.rand(10000, 99999);
-//            foreach($this->routes as $route){
-//                $sendEd  = $this->AMQPExchange->publish($message);// 交换机名称、
-//                echo "Send Message:".$route.'  --->>>  '.$sendEd."\n";
-//            }
-//        }
+        //$this->type_fanout($message);
+        $this->type_direct($message,$k_route);
 
         if(!$sendEd){
             $channel->rollbackTransaction();// 回滚事务
@@ -62,7 +53,7 @@ class ProduceMQ extends BaseMQ {
      * @throws \AMQPConnectionException
      * @throws \AMQPExchangeException
      */
-    public function example_fanout($message) {
+    public function type_fanout($message) {
         $sendEd  = $this->AMQPExchange->publish($message);// 交换机名称、
         echo "Send Message:".$sendEd."\n";
     }
@@ -70,16 +61,22 @@ class ProduceMQ extends BaseMQ {
     /**
      * direct：将Exchange接收到的消息发送给Binding key与Routing key完全匹配的Queue
      * @param $message
+     * @param $k_route
      * @throws \AMQPChannelException
      * @throws \AMQPConnectionException
      * @throws \AMQPExchangeException
      */
-    public function example_direct($message){
-        foreach($this->routes as $route){
-            // 发送消息到指定的交换机、指定Route规则的队列中
-            // Binding key 用户消息中携带过去
-            $sendEd  = $this->AMQPExchange->publish($message,$route);
-            echo "Send Message:".$route.'  --->>>  '.$sendEd."\n";
+    public function type_direct($message,$k_route){
+        // 发送消息到指定的交换机、指定Route规则的队列中
+        // Binding key 用户消息中携带过去
+        if(is_array($k_route)){
+            foreach($k_route as $route){
+                $sendEd  = $this->AMQPExchange->publish($message,$route);
+                echo "Send Message:".$route.'  --->>>  '.$sendEd."\n";
+            }
+        }else{
+            $sendEd  = $this->AMQPExchange->publish($message,$k_route);
+            echo "Send Message:".$k_route.'  --->>>  '.$sendEd."\n";
         }
     }
 }

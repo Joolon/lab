@@ -16,7 +16,7 @@ return [
         'vhost'    => 'testhost',
     ],
     //交换机
-    'exchange' => 'word',
+    'exchange' => 'amq.direct',
     //路由
     'routes'   => [],
 ];

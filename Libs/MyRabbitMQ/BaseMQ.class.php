@@ -53,17 +53,19 @@ class BaseMQ {
      */
     public $exchange;
 
-    /** link
+    /**
      * BaseMQ constructor.
+     * @param $conf
+     * @param $exchange
      * @throws \AMQPConnectionException
      */
-    public function __construct(){
-        $conf = require 'config.php';
+    public function __construct($conf,$exchange){
         if(!$conf)
             throw new \AMQPConnectionException('config error!');
-        $this->conf           = $conf['host'];
-        $this->exchange       = $conf['exchange'];
+        $this->conf           = $conf;
+        $this->exchange       = $exchange;
         $this->AMQPConnection = new \AMQPConnection($this->conf);
+
         if(!$this->AMQPConnection->connect())
             throw new \AMQPConnectionException("Cannot connect to the broker!\n");
     }
