@@ -13,7 +13,7 @@ class ConsumerClient1{
     public function processMessage($envelope, $queue) {
         $msg = $envelope->getBody();
         $envelopeID = $envelope->getDeliveryTag();
-        file_put_contents("d:/test_consumer.log", date('Y-m-d H:i:s').$msg.'|'.$envelopeID.PHP_EOL,FILE_APPEND);
+        file_put_contents("d:/test_consumer_2.log", date('Y-m-d H:i:s').$msg.'|'.$envelopeID.PHP_EOL,FILE_APPEND);
         $queue->ack($envelopeID);// 手动发送 ACK
     }
 }

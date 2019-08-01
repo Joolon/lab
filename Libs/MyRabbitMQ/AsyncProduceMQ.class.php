@@ -20,6 +20,14 @@ class AsyncProduceMQ extends AsyncBaseMQ {
         parent::__construct($conf,$exchange);
     }
 
+    /**
+     * 析构函数
+     */
+    public function __destruct(){
+        // TODO: Implement __destruct() method.
+        $this->close();
+    }
+
     /** 只控制发送成功 不接受消费者是否收到
      * @param $message
      * @param $k_route
@@ -42,8 +50,7 @@ class AsyncProduceMQ extends AsyncBaseMQ {
             $channel->rollbackTransaction();// 回滚事务
         }
         $channel->commitTransaction(); //提交事务
-        $this->close();
-        die;
+
     }
 
     /**

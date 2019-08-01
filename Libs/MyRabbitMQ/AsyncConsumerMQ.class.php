@@ -9,8 +9,6 @@
 namespace Libs\MyRabbitMQ;
 
 class AsyncConsumerMQ extends AsyncBaseMQ{
-    private $q_name = 'word'; //队列名
-    private $route  = '123456'; //路由key
 
     /**
      * AsyncConsumerMQ constructor.
@@ -51,10 +49,12 @@ class AsyncConsumerMQ extends AsyncBaseMQ{
         //阻塞模式接收消息
         echo "Message:\n";
         while(true){
+            sleep(1);
             if($this->AMQPQueue->declareQueue() <=0 ) break;
 
             if ($auto_ack) $this->AMQPQueue->consume($fun_name, AMQP_AUTOACK);
             else $this->AMQPQueue->consume($fun_name);
+
         }
         $this->close();
     }
