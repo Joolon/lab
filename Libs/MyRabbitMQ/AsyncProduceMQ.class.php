@@ -28,8 +28,8 @@ class AsyncProduceMQ extends AsyncBaseMQ {
      * @throws \AMQPExchangeException
      */
     public function send($message,$k_route = null){
-        $channel = $this->channel();//创建频道
-        $this->exchange();//创建交换机对象
+        $channel = $this->channel();//创建频道实例
+        $this->exchange();//创建交换机对象实例
 
         //消息内容
         $channel->startTransaction();//开始事务

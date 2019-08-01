@@ -1,5 +1,5 @@
 <?php
-use \Libs\MyRabbitMQ\ConsumerMQ;
+use \Libs\MyRabbitMQ\AsyncConsumerMQ;
 
 set_time_limit(0);
 include_once '../../index.php';
@@ -17,11 +17,17 @@ class ConsumerClient1{
         $queue->ack($envelopeID);
     }
 }
-
 $client1 = new ConsumerClient1();
 
+
+
+$rb_conf     = require 'config.php';
+$rb_exchange = 'amq.direct';
+$rb_queue    = 'fanout_1';
+
+
 try{
-    (new ConsumerMQ)->run(array($client1,'processMessage'),false);
+    (new AsyncConsumerMQ($rb_conf['host'],$rb_exchange))->run(array($client1,'processMessage'),$rb_queue);
 }catch(\Exception $exception){
     var_dump($exception->getMessage());
 }
