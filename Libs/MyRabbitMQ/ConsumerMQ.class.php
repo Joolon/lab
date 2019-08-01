@@ -37,7 +37,7 @@ class ConsumerMQ extends BaseMQ{
 
         //创建队列
         $q = $this->queue();
-        $q->setName($this->q_name);
+        $q->setName($this->q_name);// Jo:会自动创建与交换机的绑定关系
         $q->setFlags(AMQP_DURABLE); //持久化
         echo "Message Total:".$q->declareQueue()."\n";
 

@@ -9,7 +9,7 @@
 namespace Libs\MyRabbitMQ;
 
 class ProduceMQ extends BaseMQ {
-    private $routes = ['hello', 'word']; //路由key
+    private $routes = ['111111','222222']; //路由key
 
     /**
      * ProductMQ constructor.
@@ -25,24 +25,61 @@ class ProduceMQ extends BaseMQ {
      * @throws \AMQPExchangeException
      */
     public function run(){
-        //频道
-        $channel = $this->channel();
-        //创建交换机对象
-        $ex = $this->exchange();
+        $channel = $this->channel();//创建频道
+        $this->exchange();//创建交换机对象
+
         //消息内容
-        //开始事务
-        $channel->startTransaction();
+        $channel->startTransaction();//开始事务
         $sendEd = true;
-        foreach($this->routes as $route){
-            $message = 'product message '.rand(10000, 99999);
-            $sendEd  = $ex->publish($message, $route);
-            echo "Send Message:".$sendEd."\n";
-        }
+
+        $message = 'product message '.rand(10000, 99999);
+
+        //$this->example_fanout($message);
+        //$this->example_direct($message);
+
+
+//        print_r($this->routes);exit;
+//        for($i = 0;$i < 10;$i ++){
+//            $message = 'product message '.rand(10000, 99999);
+//            foreach($this->routes as $route){
+//                $sendEd  = $this->AMQPExchange->publish($message);// 交换机名称、
+//                echo "Send Message:".$route.'  --->>>  '.$sendEd."\n";
+//            }
+//        }
+
         if(!$sendEd){
-            $channel->rollbackTransaction();
+            $channel->rollbackTransaction();// 回滚事务
         }
         $channel->commitTransaction(); //提交事务
         $this->close();
         die;
+    }
+
+    /**
+     * fanout：将Exchange接收到的消息发送给与其绑定的所有Quenue
+     * @param $message
+     * @throws \AMQPChannelException
+     * @throws \AMQPConnectionException
+     * @throws \AMQPExchangeException
+     */
+    public function example_fanout($message) {
+        $sendEd  = $this->AMQPExchange->publish($message);// 交换机名称、
+        echo "Send Message:".$sendEd."\n";
+    }
+
+    /**
+     * direct：将Exchange接收到的消息发送给Binding key与Routing key完全匹配的Queue
+     * @param $message
+     * @throws \AMQPChannelException
+     * @throws \AMQPConnectionException
+     * @throws \AMQPExchangeException
+     */
+    public function example_direct($message){
+        foreach($this->routes as $route){
+            // 发送消息到指定的交换机、指定Route规则的队列中
+            // Binding key 用户消息中携带过去
+            $sendEd  = $this->AMQPExchange->publish($message,$route);
+            echo "Send Message:".$route.'  --->>>  '.$sendEd."\n";
+        }
     }
 }
