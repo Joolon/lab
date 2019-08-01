@@ -8,16 +8,18 @@
 
 namespace Libs\MyRabbitMQ;
 
-class ConsumerMQ extends BaseMQ{
+class AsyncConsumerMQ extends AsyncBaseMQ{
     private $q_name = 'word'; //队列名
     private $route  = '123456'; //路由key
 
     /**
-     * ConsumerMQ constructor.
+     * AsyncConsumerMQ constructor.
+     * @param $conf
+     * @param $exchange
      * @throws \AMQPConnectionException
      */
-    public function __construct(){
-        parent::__construct();
+    public function __construct($conf,$exchange){
+        parent::__construct($conf,$exchange);
     }
 
     /**

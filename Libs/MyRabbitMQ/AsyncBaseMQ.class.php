@@ -8,7 +8,8 @@
 
 namespace Libs\MyRabbitMQ;
 
-/** Member
+/**
+ * Member
  *  AMQPChannel
  *  AMQPConnection
  *  AMQPEnvelope
@@ -17,8 +18,10 @@ namespace Libs\MyRabbitMQ;
  * Class BaseMQ
  * @package MyObjSummary\rabbitMQ
  */
-class BaseMQ {
-    /** MQ Channel
+class AsyncBaseMQ {
+
+    /**
+     * MQ Channel
      * @var \AMQPChannel
      */
     public $AMQPChannel;

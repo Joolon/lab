@@ -8,7 +8,7 @@
 
 namespace Libs\MyRabbitMQ;
 
-class ProduceMQ extends BaseMQ {
+class AsyncProduceMQ extends AsyncBaseMQ {
 
     /**
      * ProduceMQ constructor.

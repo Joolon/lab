@@ -1,5 +1,5 @@
 <?php
-use \Libs\MyRabbitMQ\ProduceMQ;
+use \Libs\MyRabbitMQ\AsyncProduceMQ;
 
 include_once '../../index.php';
 
@@ -9,7 +9,7 @@ $rb_msg      = 'product message '.rand(10000, 99999);
 $rb_route    = '111111';
 
 try{
-    (new ProduceMQ($rb_conf['host'],$rb_exchange))->send($rb_msg,$rb_route);
+    (new AsyncProduceMQ($rb_conf['host'],$rb_exchange))->send($rb_msg,$rb_route);
 }catch(\Exception $exception){
     var_dump($exception->getMessage());
 }
