@@ -64,11 +64,16 @@ abstract class Parenter {
         $user     = $this->config['user'];
         $password = $this->config['password'];
         $vhost    = $this->config['vhost'];
+
         if(empty($host) || empty($port) || empty($user) || empty($password)){
             throw new \Exception('RabbitMQ的连接配置不正确');
         }
-        //创建链接
-        $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
+
+        if(! ($this->connection instanceof AMQPStreamConnection)){
+            //创建链接
+            $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
+        }
+
         //创建信道
         $this->channel = $this->connection->channel();
         $this->createExchange();
