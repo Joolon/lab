@@ -12,10 +12,9 @@ $exchangeName = 'amq.direct';//交换机名
 $queueName    = 'kd_sms_send_q'; //队列名称
 $routingKey   = '111111';//路由关键字(也可以省略)
 
-
-$consumer = new Consumer($exchangeName,$queueName,$routingKey,'direct',$rb_conf);
-//$consumer->dealMq(false);
-$consumer->dealMq(true);
+$consumer = new Consumer($rb_conf,$exchangeName,$queueName,$routingKey,'direct');
+//$consumer->run(false);
+$consumer->run(true);
 
 
 echo 'sss_mq';exit;

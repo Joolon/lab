@@ -30,26 +30,33 @@ abstract class Parenter {
 
     /**
      * Parenter constructor.
+     * @param array  $config
      * @param        $exchangeName
      * @param        $queueName
      * @param        $routeKey
      * @param string $exchangeType
-     * @param array  $config
      */
-    public function __construct($exchangeName, $queueName, $routeKey, $exchangeType = 'direct', $config = array()){
-        $this->exchangeName = empty($exchangeName) ? '' : $exchangeName;
-        $this->queueName    = empty($queueName) ? '' : $queueName;
-        $this->routeKey     = empty($routeKey) ? '' : $routeKey;
-        $this->exchangeType = empty($exchangeType) ? '' : 'direct';
-        if(!empty($config)){
-            $this->setConfig($config);
+    public function __construct($config = array(),$exchangeName, $queueName, $routeKey, $exchangeType = 'direct'){
+        try{
+            $this->exchangeName = empty($exchangeName) ? '' : $exchangeName;
+            $this->queueName    = empty($queueName) ? '' : $queueName;
+            $this->routeKey     = empty($routeKey) ? '' : $routeKey;
+            $this->exchangeType = empty($exchangeType) ? '' : 'direct';
+            if(!empty($config)){
+                $this->setConfig($config);
+            }
+
+            $this->createConnect();
+
+        }catch(\Exception $e){
+            echo $e->getMessage();
+            die;
         }
-        $this->createConnect();
     }
 
     /**
      * 创建连接与信道
-     * @throws Exception
+     * @throws \Exception
      */
     private function createConnect(){
         $host     = $this->config['host'];
@@ -58,7 +65,7 @@ abstract class Parenter {
         $password = $this->config['password'];
         $vhost    = $this->config['vhost'];
         if(empty($host) || empty($port) || empty($user) || empty($password)){
-            throw new Exception('RabbitMQ的连接配置不正确');
+            throw new \Exception('RabbitMQ的连接配置不正确');
         }
         //创建链接
         $this->connection = new AMQPStreamConnection($host, $port, $user, $password, $vhost);
@@ -67,13 +74,16 @@ abstract class Parenter {
         $this->createExchange();
     }
 
-    //创建交换机
+    /**
+     * 创建交换机
+     */
     private function createExchange(){
         //创建交换机$channel->exchange_declare($exhcange_name,$type,$passive,$durable,$auto_delete);
         //passive: 消极处理， 判断是否存在队列，存在则返回，不存在直接抛出 PhpAmqpLib\Exception\AMQPProtocolChannelException 异常
         //durable：true、false true：服务器重启会保留下来Exchange。警告：仅设置此选项，不代表消息持久化。即不保证重启后消息还在
         //autoDelete:true、false.true:当已经没有消费者时，服务器是否可以删除该Exchange
         $this->channel->exchange_declare($this->exchangeName, $this->exchangeType, false, true, false);
+
         //passive: 消极处理， 判断是否存在队列，存在则返回，不存在直接抛出 PhpAmqpLib\Exception\AMQPProtocolChannelException 异常
         //durable：true、false true：在服务器重启时，能够存活
         //exclusive ：是否为当前连接的专用队列，在连接断开后，会自动删除该队列
@@ -82,7 +92,10 @@ abstract class Parenter {
         $this->channel->queue_declare($this->queueName, false, true, false, false);
     }
 
-    //发送消息
+    /**
+     * 发送消息（自动创建 AMQPMessage 对象数据）
+     * @param $data
+     */
     public function sendMessage($data){
         //创建消息$msg = new AMQPMessage($data,$properties)
         //#$data  string类型 要发送的消息
@@ -91,10 +104,14 @@ abstract class Parenter {
         $this->channel->basic_publish($msg, $this->exchangeName, $this->routeKey);
     }
 
-    //处理消息
-    public function dealMq($flag){
+    /**
+     * 处理消息
+     * @param boolean $flag  是否自动确认
+     */
+    public function run($flag = true){
         $this->autoAck = $flag;
         $this->channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
+
         //prefetchSize：0
         //prefetchCount：会告诉RabbitMQ不要同时给一个消费者推送多于N个消息，即一旦有N个消息还没有ack，则该consumer将block掉，直到有消息ack
         //global：true\false 是否将上面设置应用于channel，简单点说，就是上面限制是channel级别的还是consumer级别
@@ -111,17 +128,21 @@ abstract class Parenter {
         $this->channel->basic_consume($this->queueName, '', false, $this->autoAck, false, false, function($msg){
             $this->get($msg);
         });
+
         //监听消息
         while(count($this->channel->callbacks)){
             $this->channel->wait();
         }
     }
 
+    /**
+     * 回调函数 处理消息
+     * @param object $msg  消息体
+     */
     public function get($msg){
         $param = $msg->body;
         $this->doProcess($param);
-        if(!$this->autoAck){
-            //手动ack应答
+        if(!$this->autoAck){//手动ack应答
             $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
         }
     }
@@ -129,9 +150,9 @@ abstract class Parenter {
     abstract public function doProcess($param);
 
     /**
-     *
+     * 关闭连接
      */
-    public function closeConnetct(){
+    public function closeConnect(){
         $this->channel->close();
         $this->connection->close();
     }
@@ -139,11 +160,11 @@ abstract class Parenter {
     /**
      * 重新设置MQ的链接配置
      * @param $config
-     * @throws Exception
+     * @throws \Exception
      */
     public function setConfig($config){
         if(!is_array($config)){
-            throw new Exception('config不是一个数组');
+            throw new \Exception('config不是一个数组');
         }
         foreach($config as $key => $value){
             $this->config[$key] = $value;

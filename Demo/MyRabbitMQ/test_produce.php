@@ -11,12 +11,12 @@ $exchangeName = 'amq.direct';//交换机名
 $queueName    = 'kd_sms_send_q'; //队列名称
 $routingKey   = '111111';//路由关键字(也可以省略)
 
-$publisherMQ = new Publisher($exchangeName,$queueName,$routingKey,'direct',$rb_conf);
+$publisherMQ = new Publisher($rb_conf,$exchangeName,$queueName,$routingKey,'direct');
 
 for($i = 0; $i < 3000; $i++){
     $msgBody = 'product message '.'-'.$i;//.'-'.rand(10000, 99999);
     $publisherMQ->sendMessage($msgBody);
 }
 
-$publisherMQ->closeConnetct();
+$publisherMQ->closeConnect();
 echo 'sss_mq';exit;
