@@ -28,7 +28,7 @@ class Consumer extends Parenter {
      */
     public function doProcess($msg){
 
-        file_put_contents("d:/test_consumer_1.log", date('Y-m-d H:i:s')."\r ".$msg.PHP_EOL,FILE_APPEND);
+        file_put_contents("d:/test_consumer_1.log", date('Y-m-d H:i:s').$msg.PHP_EOL,FILE_APPEND);
         echo $msg."\n";
     }
 }
