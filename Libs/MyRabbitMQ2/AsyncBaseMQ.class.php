@@ -6,7 +6,7 @@
  * Time: 11:45
  */
 
-namespace Libs\MyRabbitMQ;
+namespace Libs\MyRabbitMQ2;
 
 /**
  * Member

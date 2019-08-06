@@ -6,7 +6,7 @@
  * Time: 11:46
  */
 
-namespace Libs\MyRabbitMQ;
+namespace Libs\MyRabbitMQ2;
 
 class AsyncConsumerMQ extends AsyncBaseMQ{
 

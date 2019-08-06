@@ -1,5 +1,5 @@
 <?php
-use \Libs\MyRabbitMQ\AsyncConsumerMQ;
+use \Libs\MyRabbitMQ2\AsyncConsumerMQ;
 
 set_time_limit(0);
 include_once '../../index.php';
@@ -8,7 +8,7 @@ include_once '../../index.php';
 /**
  * Class ConsumerClient1
  */
-class ConsumerClient1{
+class ConsumerClient2{
 
     public function processMessage($envelope, $queue) {
         $msg = $envelope->getBody();
@@ -17,7 +17,7 @@ class ConsumerClient1{
         $queue->ack($envelopeID);// 手动发送 ACK
     }
 }
-$client1 = new ConsumerClient1();
+$client2 = new ConsumerClient2();
 
 
 
@@ -27,7 +27,7 @@ $rb_queue    = 'fanout_1';
 
 
 try{
-    (new AsyncConsumerMQ($rb_conf['host'],$rb_exchange))->run(array($client1,'processMessage'),$rb_queue);
+    (new AsyncConsumerMQ($rb_conf['host'],$rb_exchange))->run(array($client2,'processMessage'),$rb_queue);
 }catch(\Exception $exception){
     var_dump($exception->getMessage());
 }

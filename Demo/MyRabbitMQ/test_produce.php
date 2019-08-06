@@ -1,22 +1,22 @@
 <?php
-use \Libs\MyRabbitMQ\AsyncProduceMQ;
-
 include_once '../../index.php';
-
-$rb_conf     = require 'config.php';
-$rb_exchange = 'amq.direct';
-$rb_route    = '111111';
+include_once BASE_PATH.'/vendor/autoload.php';
 
 
-try{
-    $asyncProduceMQ = (new AsyncProduceMQ($rb_conf['host'], $rb_exchange));
-    for($i = 0; $i < 3000; $i++){
-        $rb_msg      = 'product message '.'-'.$i;//.'-'.rand(10000, 99999);
-        $asyncProduceMQ->send($rb_msg, $rb_route);
-    }
+use \Libs\MyRabbitMQ\Publisher;
 
-}catch(\Exception $exception){
-    var_dump($exception->getMessage());
+$rb_conf      = require 'config.php';
+$rb_conf      = $rb_conf['host'];
+$exchangeName = 'amq.direct';//交换机名
+$queueName    = 'kd_sms_send_q'; //队列名称
+$routingKey   = '111111';//路由关键字(也可以省略)
+
+$publisherMQ = new Publisher($exchangeName,$queueName,$routingKey,'direct',$rb_conf);
+
+for($i = 0; $i < 3000; $i++){
+    $msgBody = 'product message '.'-'.$i;//.'-'.rand(10000, 99999);
+    $publisherMQ->sendMessage($msgBody);
 }
 
+$publisherMQ->closeConnetct();
 echo 'sss_mq';exit;

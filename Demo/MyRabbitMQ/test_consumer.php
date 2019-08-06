@@ -1,35 +1,21 @@
 <?php
-use \Libs\MyRabbitMQ\AsyncConsumerMQ;
-
 set_time_limit(0);
+
 include_once '../../index.php';
+include_once BASE_PATH.'/vendor/autoload.php';
+
+use \Libs\MyRabbitMQ\Consumer;
+
+$rb_conf      = require 'config.php';
+$rb_conf      = $rb_conf['host'];
+$exchangeName = 'amq.direct';//交换机名
+$queueName    = 'kd_sms_send_q'; //队列名称
+$routingKey   = '111111';//路由关键字(也可以省略)
 
 
-/**
- * Class ConsumerClient1
- */
-class ConsumerClient1{
+$consumer = new Consumer($exchangeName,$queueName,$routingKey,'direct',$rb_conf);
+//$consumer->dealMq(false);
+$consumer->dealMq(true);
 
-    public function processMessage($envelope, $queue) {
-        $msg = $envelope->getBody();
-        $envelopeID = $envelope->getDeliveryTag();
-        file_put_contents("d:/test_consumer.log", date('Y-m-d H:i:s').$msg.'|'.$envelopeID.PHP_EOL,FILE_APPEND);
-        $queue->ack($envelopeID);// 手动发送 ACK
-    }
-}
-$client1 = new ConsumerClient1();
-
-
-
-$rb_conf     = require 'config.php';
-$rb_exchange = 'amq.direct';
-$rb_queue    = 'fanout_1';
-
-
-try{
-    (new AsyncConsumerMQ($rb_conf['host'],$rb_exchange))->run(array($client1,'processMessage'),$rb_queue);
-}catch(\Exception $exception){
-    var_dump($exception->getMessage());
-}
 
 echo 'sss_mq';exit;
