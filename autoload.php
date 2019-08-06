@@ -17,6 +17,8 @@ spl_autoload_register(function ($class) {
         $file = BASE_PATH.$class . '.class.php';
         if (file_exists($file)) {
             include $file;
+        }elseif(file_exists(BASE_PATH.$class . '.php')){
+            include BASE_PATH.$class . '.php';
         }else{
             throw new Exception('自动加载：Class Not Found'.$file);
         }
