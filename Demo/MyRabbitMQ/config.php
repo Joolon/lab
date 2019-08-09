@@ -9,7 +9,7 @@
 return [
     //配置
     'host'     => [
-        'host'     => '127.0.0.1',
+        'host'     => '47.107.183.46',
         'port'     => '5672',
         'user'     => 'admin',
         'password' => 'admin',

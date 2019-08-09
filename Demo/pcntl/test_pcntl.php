@@ -35,12 +35,12 @@ if( $pid  < 0 ){
 // 设置进程标题
 cli_set_process_title('testtesttest');
 
-// 该进程 将会一直执行
-while(1){
-    sleep(1);
-    file_put_contents('./log.txt',"test-".date('Y-m-d H:i:s').PHP_EOL,FILE_APPEND);
-    echo "test-".date('Y-m-d H:i:s').PHP_EOL;
-}
+//// 该进程 将会一直执行
+//while(1){
+//    sleep(1);
+//    file_put_contents('./log.txt',"test-".date('Y-m-d H:i:s').PHP_EOL,FILE_APPEND);
+//    echo "test-".date('Y-m-d H:i:s').PHP_EOL;
+//}
 
 
 

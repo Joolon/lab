@@ -1,7 +1,10 @@
 <?php
+set_time_limit(0);
+
 include_once '../../index.php';
 include_once BASE_PATH.'/vendor/autoload.php';
 
+//include_once BASE_PATH.'/Demo/pcntl/test_pcntl.php';
 
 use \Libs\MyRabbitMQ\Publisher;
 
@@ -13,7 +16,7 @@ $routingKey   = '111111';//路由关键字(也可以省略)
 
 $publisherMQ = new Publisher($rb_conf,$exchangeName,$queueName,$routingKey,'direct');
 
-for($i = 0; $i < 3000; $i++){
+for($i = 0; $i < 3000000; $i++){
     $msgBody = 'product message '.'-'.$i;//.'-'.rand(10000, 99999);
     $publisherMQ->sendMessage($msgBody);
 }
