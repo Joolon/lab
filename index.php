@@ -8,6 +8,7 @@
  */
 
 header("Content-type: text/html; charset=utf-8");
+ini_set('date.timezone','Asia/Shanghai');
 
 // 检测 PHP 环境是否符合要求
 if (version_compare(PHP_VERSION, '5.3.0', '<')) die('require PHP > 5.3.0 !');
@@ -21,8 +22,7 @@ define('BASE_PATH', dirname(__FILE__).DS);
 include_once BASE_PATH.'autoload.php';// 自动加载类文件
 include_once BASE_PATH.'Common/function.php';
 
-include_once BASE_PATH.'Demo/Redis/test_seckill.php';
-
+//include_once BASE_PATH.'Demo/Redis/test_seckill.php';
 
 
 
