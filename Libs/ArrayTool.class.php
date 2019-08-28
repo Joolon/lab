@@ -1,4 +1,5 @@
 <?php
+
 namespace Libs;
 
 /**
@@ -7,14 +8,13 @@ namespace Libs;
  * User：Jolon
  * Time: 15-2-9 下午9:13
  */
-class ArrayTool
-{
+class ArrayTool {
 
 
     /**
      * 递归计算数组所有元素的和
      *      该函数用于解决array_sum的短板，支持N维数组。
-     * @param array $arr  多维数组
+     * @param array $arr 多维数组
      * @return float|int  若不是数组则返回原参数
      */
     public static function arraySumRecursive($arr){
@@ -35,22 +35,21 @@ class ArrayTool
     }
 
 
-
     /**
      * 取得数组中的某一列的 集合
-     * @param array  $array 目标数组
+     * @param array  $array  目标数组
      * @param string $column 目标列名
-     * @param $indexKey
+     * @param        $indexKey
      * @return array
      */
-    public static function getArrayColumn($array,$column,$indexKey = null){
+    public static function getArrayColumn($array, $column, $indexKey = null){
         if(function_exists('array_column')){
-            return array_column($array,$column,$indexKey);
+            return array_column($array, $column, $indexKey);
         }else{
             $res = array();
-            foreach ($array as $key => $value) {
-                foreach ($value as $k1 => $v1){
-                    if( $k1 === $column){
+            foreach($array as $key => $value){
+                foreach($value as $k1 => $v1){
+                    if($k1 === $column){
                         if($indexKey){
                             $res[$value[$indexKey]] = $v1;
                         }else{
@@ -60,6 +59,7 @@ class ArrayTool
                 }
 
             }
+
             return $res;
         }
     }
@@ -68,7 +68,7 @@ class ArrayTool
     /**
      * 二维数组指定列的值作为键
      */
-    public static function arrayColumnsToKey($array,$column){
+    public static function arrayColumnsToKey($array, $column){
 
         $arr_tmp = array();
         if(count($array)){
@@ -84,13 +84,13 @@ class ArrayTool
 
     /**
      * 二维数组根据 指定键名 排序
-     * @param $array
-     * @param $key
+     * @param        $array
+     * @param        $key
      * @param string $order
      * @return array
      */
-    public static function arrSort($array,$key,$order = "asc"){//asc是升序 desc是降序
-        $arr_num   =   $arr    =   array();
+    public static function arrSort($array, $key, $order = "asc"){//asc是升序 desc是降序
+        $arr_num = $arr = array();
         foreach($array as $k => $v){
             $arr_num[$k] = $v[$key];
         }
@@ -103,36 +103,37 @@ class ArrayTool
         foreach($arr_num as $k => $v){
             $arr[$k] = $array[$k];
         }
+
         return $arr;
     }
 
 
     /**
      * 单元素的二维数组转一维数组
-     * @param $input
-     * @param $columnKey
+     * @param      $input
+     * @param      $columnKey
      * @param null $indexKey
      * @return array
      */
-    public static function arrayColumns($input, $columnKey, $indexKey = NULL){
-        $columnKeyIsNumber = (is_numeric($columnKey)) ? TRUE : FALSE;
-        $indexKeyIsNull = (is_null($indexKey)) ? TRUE : FALSE;
-        $indexKeyIsNumber = (is_numeric($indexKey)) ? TRUE : FALSE;
-        $result = array();
+    public static function arrayColumns($input, $columnKey, $indexKey = null){
+        $columnKeyIsNumber = (is_numeric($columnKey)) ? true : false;
+        $indexKeyIsNull    = (is_null($indexKey)) ? true : false;
+        $indexKeyIsNumber  = (is_numeric($indexKey)) ? true : false;
+        $result            = array();
 
-        foreach ((array)$input AS $key => $row) {
-            if ($columnKeyIsNumber) {
+        foreach((array)$input AS $key => $row){
+            if($columnKeyIsNumber){
                 $tmp = array_slice($row, $columnKey, 1);
-                $tmp = (is_array($tmp) && !empty($tmp)) ? current($tmp) : NULL;
-            } else {
-                $tmp = isset($row[$columnKey]) ? $row[$columnKey] : NULL;
+                $tmp = (is_array($tmp) && !empty($tmp)) ? current($tmp) : null;
+            }else{
+                $tmp = isset($row[$columnKey]) ? $row[$columnKey] : null;
             }
-            if (!$indexKeyIsNull) {
-                if ($indexKeyIsNumber) {
+            if(!$indexKeyIsNull){
+                if($indexKeyIsNumber){
                     $key = array_slice($row, $indexKey, 1);
-                    $key = (is_array($key) && !empty($key)) ? current($key) : NULL;
+                    $key = (is_array($key) && !empty($key)) ? current($key) : null;
                     $key = is_null($key) ? 0 : $key;
-                } else {
+                }else{
                     $key = isset($row[$indexKey]) ? $row[$indexKey] : 0;
                 }
             }
@@ -148,8 +149,7 @@ class ArrayTool
      * @param $array
      */
     public static function arrayWalkTrim(&$array){
-        function element_trim(&$element, $key)
-        {
+        function element_trim(&$element, $key){
             $element = trim($element);
         }
 
@@ -164,9 +164,9 @@ class ArrayTool
      */
     public static function arrayToStr($arr, $separator){
         $str = '';
-        if ($arr and !empty($arr)) {
-            foreach ($arr as $e) {
-                $str .= $str ? $separator . "'" . $e . "'" : "'" . $e . "'";
+        if($arr and !empty($arr)){
+            foreach($arr as $e){
+                $str .= $str ? $separator."'".$e."'" : "'".$e."'";
             }
         }
 
@@ -175,27 +175,27 @@ class ArrayTool
 
     /**
      * 将数组的键值指定为新数组的键名
-     * @param $arr
-     * @param $key
+     * @param      $arr
+     * @param      $key
      * @param null $obj
      * @return array
      */
-    public static function arrayValueToKey($arr, $key, $obj = NULL)
-    {
+    public static function arrayValueToKey($arr, $key, $obj = null){
         $return = array();
-        foreach ($arr as $arr_key => $arr_value) {
-            if ($obj) {
-                if (is_array($obj)) {
-                    foreach ($obj as $value_arr_key => $value_arr_value) {
+        foreach($arr as $arr_key => $arr_value){
+            if($obj){
+                if(is_array($obj)){
+                    foreach($obj as $value_arr_key => $value_arr_value){
                         $return[$arr_value[$key]][$value_arr_value] = $arr_value[$value_arr_value];
                     }
-                } else {
+                }else{
                     $return[$arr_value[$key]] = $arr_value[$obj];
                 }
-            } else {
+            }else{
                 $return[$arr_value[$key]] = $arr_value;
             }
         }
+
         return $return;
     }
 
@@ -207,35 +207,35 @@ class ArrayTool
      * @param $value
      * @return array 键名为$value[]的三维数组
      */
-    public static function arrayGrouping($arr, $key, $value)
-    {
+    public static function arrayGrouping($arr, $key, $value){
         $arr_push = array();
-        foreach ($arr as $arr_key => $arr_value) {
-            if (is_array($value)) {
-                if (in_array($value, $arr_value[$key])) {
+        foreach($arr as $arr_key => $arr_value){
+            if(is_array($value)){
+                if(in_array($value, $arr_value[$key])){
                     $arr_push[$arr_value[$key]][] = $arr_value;
                 }
-            } else {
-                if ($arr_value[$key] == $value) {
+            }else{
+                if($arr_value[$key] == $value){
                     $arr_push[$value][] = $arr_value;
                 }
             }
         }
+
         return $arr_push;
     }
 
     /**
      * 按$value为二维数组分组
      * @param array $arr
-     * @param $obj
+     * @param       $obj
      * @return array  键名为$value[]的三维数组
      */
-    public static function arrayGroupingWithoutJudge(array $arr, $obj)
-    {
+    public static function arrayGroupingWithoutJudge(array $arr, $obj){
         $arr_push = array();
-        foreach ($arr as $val) {
+        foreach($arr as $val){
             $arr_push[$val[$obj]][] = $val;
         }
+
         return $arr_push;
     }
 
@@ -246,93 +246,95 @@ class ArrayTool
      */
     public static function objectToArray($obj){
         $_arr = is_object($obj) ? get_object_vars($obj) : $obj;
-        if ($_arr) {
-            foreach ($_arr as $key => $val) {
-                $val = (is_array($val) || is_object($val)) ? self::objectToArray($val) : $val;
+        if($_arr){
+            foreach($_arr as $key => $val){
+                $val       = (is_array($val) || is_object($val)) ? self::objectToArray($val) : $val;
                 $arr[$key] = $val;
             }
         }
+
         return isset($arr) ? $arr : array();
     }
 
     /**
      * kdw
      * 取出二维数组中的某一列的值
-     * @param $input 传入的二维数组
+     * @param $input      传入的二维数组
      * @param $columnKey  某一列名
-     * @param $indexKey 新数组的key
-     * PHP 5.4版本自带
+     * @param $indexKey   新数组的key
+     *                    PHP 5.4版本自带
      * @return array
      */
-    public static function arrayColumn($input, $columnKey, $indexKey = NULL)
-    {
-        if (!function_exists('array_column')) {
-            $columnKeyIsNumber = (is_numeric($columnKey)) ? TRUE : FALSE;
-            $indexKeyIsNull = (is_null($indexKey)) ? TRUE : FALSE;
-            $indexKeyIsNumber = (is_numeric($indexKey)) ? TRUE : FALSE;
-            $result = array();
+    public static function arrayColumn($input, $columnKey, $indexKey = null){
+        if(!function_exists('array_column')){
+            $columnKeyIsNumber = (is_numeric($columnKey)) ? true : false;
+            $indexKeyIsNull    = (is_null($indexKey)) ? true : false;
+            $indexKeyIsNumber  = (is_numeric($indexKey)) ? true : false;
+            $result            = array();
 
-            foreach ((array)$input AS $key => $row) {
-                if ($columnKeyIsNumber) {
+            foreach((array)$input AS $key => $row){
+                if($columnKeyIsNumber){
                     $tmp = array_slice($row, $columnKey, 1);
-                    $tmp = (is_array($tmp) && !empty($tmp)) ? current($tmp) : NULL;
-                } else {
-                    $tmp = isset($row[$columnKey]) ? $row[$columnKey] : NULL;
+                    $tmp = (is_array($tmp) && !empty($tmp)) ? current($tmp) : null;
+                }else{
+                    $tmp = isset($row[$columnKey]) ? $row[$columnKey] : null;
                 }
-                if (!$indexKeyIsNull) {
-                    if ($indexKeyIsNumber) {
+                if(!$indexKeyIsNull){
+                    if($indexKeyIsNumber){
                         $key = array_slice($row, $indexKey, 1);
-                        $key = (is_array($key) && !empty($key)) ? current($key) : NULL;
+                        $key = (is_array($key) && !empty($key)) ? current($key) : null;
                         $key = is_null($key) ? 0 : $key;
-                    } else {
+                    }else{
                         $key = isset($row[$indexKey]) ? $row[$indexKey] : 0;
                     }
                 }
 
-                if (!in_array($tmp, $result)) {
+                if(!in_array($tmp, $result)){
                     $result[$key] = $tmp;
                 }
             }
 
             return $result;
-        } else {
+        }else{
             return array_column($input, $columnKey, $indexKey);
         }
     }
 
     /**
      * 将 多维数组（最多三维） 拼接成 一维数组的 字符串
-     * @param array     $arr
-     * @param string    $SPACE_CHARACTER
+     * @param array  $arr
+     * @param string $SPACE_CHARACTER
      * @return array|bool  array.字符串列表  false.非数组或超过三维
      */
-    public static function multiArrayToString($arr,$SPACE_CHARACTER = '-'){
+    public static function multiArrayToString($arr, $SPACE_CHARACTER = '-'){
 
         $stringList = [];// 字符串 列表
-        if (!is_array($arr)) return false;
+        if(!is_array($arr))
+            return false;
 
-        foreach ($arr as $key1 => $value1) {
-            if (is_array($value1)) {
+        foreach($arr as $key1 => $value1){
+            if(is_array($value1)){
                 $str1 = $key1;
-                foreach ($value1 as $key2 => $value2) {
+                foreach($value1 as $key2 => $value2){
                     // 键值拼接成字符串
-                    $str2 = $str1 . $SPACE_CHARACTER . $key2;
-                    if (is_array($value2)) {
-                        foreach ($value2 as $key3 => $value3) {
-                            if(is_array($value3)) return false;
+                    $str2 = $str1.$SPACE_CHARACTER.$key2;
+                    if(is_array($value2)){
+                        foreach($value2 as $key3 => $value3){
+                            if(is_array($value3))
+                                return false;
 
                             // 键值拼接成字符串
-                            $str3 = $str2 . $SPACE_CHARACTER . $key3 . $SPACE_CHARACTER . $value3;
+                            $str3 = $str2.$SPACE_CHARACTER.$key3.$SPACE_CHARACTER.$value3;
 
                             $stringList[] = $str3;
                         }
-                    } else {
+                    }else{
                         $stringList[] = $str2;
                     }
                 }
-            } else {
+            }else{
                 // 键值拼接成字符串
-                $stringList[] = $key1 . $SPACE_CHARACTER . $value1;
+                $stringList[] = $key1.$SPACE_CHARACTER.$value1;
             }
         }
 
@@ -342,57 +344,55 @@ class ArrayTool
 
     /**
      * 根据父子关系   将一维数组转成多维数组
-     * @param array     $data           一维数组列表
-     * @param int       $pId            父ID
-     * @param string    $parent_index   父ID对应的索引
-     * @param string    $index          子ID对应的索引
+     * @param array  $data         一维数组列表
+     * @param int    $pId          父ID
+     * @param string $parent_index 父ID对应的索引
+     * @param string $index        子ID对应的索引
      * @return mixed
-     *      array(
-     *          数组元素
-     *          ...
-     *          ...
-     *          child_list => array( 子元素列表   // 新增一列元素 存储子元素列表 )
-     *      )
+     *                             array(
+     *                             数组元素
+     *                             ...
+     *                             ...
+     *                             child_list => array( 子元素列表   // 新增一列元素 存储子元素列表 )
+     *                             )
      */
-    public static function arrayToTree($data,$pId,$parent_index,$index){
+    public static function arrayToTree($data, $pId, $parent_index, $index){
         $tree = '';
-        foreach ($data as $key => $value) {
+        foreach($data as $key => $value){
             // 获取当前父 ID 下的子元素
-            if ($value[$parent_index] == $pId) {
-                $sub_value = self::arrayToTree($data,$value[$index],$parent_index,$index);// 当前 ID 下的子元素
+            if($value[$parent_index] == $pId){
+                $sub_value = self::arrayToTree($data, $value[$index], $parent_index, $index);// 当前 ID 下的子元素
 
-                $value['child_list'] = $sub_value;// 子元素列表
+                $value['child_list']  = $sub_value;// 子元素列表
                 $tree[$value[$index]] = $value;
             }
         }
 
         return $tree;
     }
-	
-	/**
-	 * 去除多维数组中的空值
-	 * @author 
-	 * @param array $arr 目标数组
-	 * @param array $values 去除的值  默认 去除  '',null,false,0,'0',[]
-	 * @return mixed
-	 */
-	public static function filter_array($arr, $values = ['', null, false, 0, '0',[]]) {
-		foreach ($arr as $k => $v) {
-			if (is_array($v) && count($v)>0) {
-				$arr[$k] = self::filter_array($v, $values);
-			}
-			foreach ($values as $value) {
-				if ($v === $value) {
-					unset($arr[$k]);
-					break;
-				}
-			}
-		}
-		return $arr;
-	}
-	
-	
 
+    /**
+     * 去除多维数组中的空值
+     * @author
+     * @param array $arr    目标数组
+     * @param array $values 去除的值  默认 去除  '',null,false,0,'0',[]
+     * @return mixed
+     */
+    public static function filter_array($arr, $values = ['', null, false, 0, '0', []]){
+        foreach($arr as $k => $v){
+            if(is_array($v) && count($v) > 0){
+                $arr[$k] = self::filter_array($v, $values);
+            }
+            foreach($values as $value){
+                if($v === $value){
+                    unset($arr[$k]);
+                    break;
+                }
+            }
+        }
+
+        return $arr;
+    }
 
 
 }
