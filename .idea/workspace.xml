@@ -9,115 +9,52 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Loader.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/Loader.class.php">
+    <leaf>
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-              <folding />
+            <state relative-caret-position="125">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/build.php">
+      <file leaf-file-name="autoload_classmap.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="autoload_namespaces.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_namespaces.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="autoload_psr4.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_psr4.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="175">
+              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApiBaseAction.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/ApiBaseAction.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
+      <file leaf-file-name="test.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/Alidayu/test.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="BaseAction.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/BaseAction.class.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/Alidayu/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="7" column="14" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="7" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="3" lean-forward="false" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loginfilter.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/loginfilter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pda.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/pda.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="router.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/router.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Common/function.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="43" column="9" lean-forward="false" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DB.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/DB.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3393">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#DBClass#0;n#!!top" expanded="false" />
-                <marker date="1535713591634" expanded="true" signature="11422:11468" ph="SELECT ${$fi... ${$table}" />
-                <marker date="1535713591634" expanded="true" signature="11514:11547" ph="SELECT ${$fi... ${$table}" />
-                <marker date="1535713591634" expanded="true" signature="12930:12967" ph="INSERT INTO ${$table}... " />
-                <marker date="1535713591634" expanded="true" signature="13607:13660" ph="UPDATE ${$ta... " />
-                <marker date="1535713591634" expanded="true" signature="13921:13946" ph="DELETE FROM " />
-              </folding>
+            <state relative-caret-position="625">
+              <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -132,14 +69,37 @@
       <find>Created by PhpStorm.</find>
       <find>User: Administrator</find>
       <find>Jolon</find>
+      <find>$dv[</find>
+      <find>ThinkCMF</find>
+      <find>IS_SAE</find>
+      <find>IS_BAE</find>
+      <find>IS_CLOUD</find>
+      <find>IO_TRUE_NAME</find>
+      <find>缺少必要的安装文件!</find>
+      <find>install</find>
+      <find>Install</find>
+      <find>出现错误</find>
+      <find>mysql_connect</find>
+      <find>创建数据</find>
+      <find>get</find>
+      <find>getUser</find>
+      <find>AMQPEnvelope</find>
+      <find>Exception</find>
+      <find>AMQPConnection</find>
+      <find>AMQPStreamConnection</find>
+      <find>password</find>
+      <find>closeConnect</find>
     </findStrings>
     <replaceStrings>
       <replace>Created by Jolon</replace>
       <replace>User: Jolon &lt;179777072@qq.com&gt;</replace>
       <replace>Lon</replace>
+      <replace>,</replace>
+      <replace>YEaglePlan</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\phpStudy\WWW\lab\Demo\Pda</dir>
+      <dir>D:\phpStudy\WWW\lab\Install</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -148,47 +108,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Libs/PregMatch.class.php" />
-        <option value="$PROJECT_DIR$/Libs/RequestFile.class.php" />
+        <option value="$PROJECT_DIR$/Demo/my-queue/rabbitMq.php" />
+        <option value="$PROJECT_DIR$/Libs/HttpTool.class.php" />
         <option value="$PROJECT_DIR$/test.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/arrayfunction.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/dirfilehelp.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/httptool.php" />
-        <option value="$PROJECT_DIR$/Libs/HttpTool.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/skuimageurl.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/stringfunction.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/timefunction.php" />
-        <option value="$PROJECT_DIR$/Common/function_string.php" />
-        <option value="$PROJECT_DIR$/Common/function.php" />
-        <option value="$PROJECT_DIR$/Libs/HelperTool.class.php" />
-        <option value="$PROJECT_DIR$/Libs/Tools/uploadimage.php" />
-        <option value="$PROJECT_DIR$/File/FileDeal.class.php" />
-        <option value="$PROJECT_DIR$/Libs/FileDeal.class.php" />
-        <option value="$PROJECT_DIR$/Libs/ImageDeal.class.php" />
-        <option value="$PROJECT_DIR$/ImageLib/ImageTool.class.php" />
-        <option value="$PROJECT_DIR$/library/timetool.php" />
-        <option value="$PROJECT_DIR$/library/stringtool.php" />
-        <option value="$PROJECT_DIR$/library/ArrayTool.php" />
-        <option value="$PROJECT_DIR$/Common/function_array.php" />
-        <option value="$PROJECT_DIR$/Common/function_time.php" />
-        <option value="$PROJECT_DIR$/library/StringTool.php" />
-        <option value="$PROJECT_DIR$/library/TimeTool.php" />
+        <option value="$PROJECT_DIR$/Demo/rabbit_mq/config.php" />
+        <option value="$PROJECT_DIR$/Demo/rabbit_mq/BaseMQ.php" />
+        <option value="$PROJECT_DIR$/Demo/rabbit_mq/ProductMQ.php" />
+        <option value="$PROJECT_DIR$/Demo/rabbit_mq/ConsumerMQ.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/ProductMQ.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/ConsumerMQ.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/BaseMQ.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/BaseMQ.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/ConsumerMQ.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/ProductMQ.php" />
+        <option value="$PROJECT_DIR$/Libs/DbTool.class.php" />
+        <option value="$PROJECT_DIR$/compare7_5.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/ProductMQ.class.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/test_mq.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/ConsumerMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/config.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/ProduceMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/BaseMQ.class.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ2/AsyncBaseMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/AsyncBaseMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/Parenter.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/AsyncProduceMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ_2/AsyncProduceMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ_2/AsyncConsumerMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ_2/AsyncBaseMQ.class.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/AsyncProduceMQ.php" />
+        <option value="$PROJECT_DIR$/autoload.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/AsyncConsumerMQ.class.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ2/test_consumer.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ2/test_consumer_2.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ2/test_consumer_3.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ2/test_produce.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/Publisher.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/test_consumer_3.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/test_consumer_2.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/Consumer.php" />
+        <option value="$PROJECT_DIR$/test1.php" />
+        <option value="$PROJECT_DIR$/test_pcntl.php" />
+        <option value="$PROJECT_DIR$/Libs/MyRabbitMQ/Parenter.php" />
+        <option value="$PROJECT_DIR$/Demo/pcntl/test_pcntl.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/test_consumer.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/test_produce.php" />
+        <option value="$PROJECT_DIR$/Demo/MyRabbitMQ/config.php" />
+        <option value="$PROJECT_DIR$/test3.php" />
+        <option value="$PROJECT_DIR$/Libs/ArrayTool.class.php" />
         <option value="$PROJECT_DIR$/Libs/StringTool.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/Lib/AES128Security.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Action/IndexAction.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Action/SkuHelpApiAction.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Action/StockAction.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Action/StockApiAction.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Common/function.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/Lib/CustomException.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/Lib/Loader.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/build.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Action/ApiBaseAction.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/App/Action/BaseAction.class.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/index.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/loginfilter.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/pda.php" />
-        <option value="$PROJECT_DIR$/Demo/Pda/router.php" />
       </list>
     </option>
   </component>
@@ -198,116 +168,81 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/php-amqplib/php-amqplib" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="3" />
+    <option name="y" value="2" />
+    <option name="width" value="1278" />
+    <option name="height" value="918" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Demo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Demo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pda" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lab" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Demo" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pda" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Lib" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Alidayu" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="composer" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lab" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lab" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php-amqplib" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="getSupplierPurchaseNum&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.eslint.eslintPackage" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\phpStudy\WWW\lab\vendor" />
+      <recent name="D:\phpStudy\WWW\lab" />
+      <recent name="D:\phpStudy\WWW\lab\Demo\MyRabbitMQ" />
+      <recent name="D:\phpStudy\WWW\lab\Demo" />
       <recent name="D:\phpStudy\WWW\lab\Libs" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\phpStudy\WWW\lab\library" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\phpStudy\WWW\lab\Demo\pcntl" />
+      <recent name="D:\phpStudy\WWW\lab\Demo\MyRabbitMQ" />
+      <recent name="D:\phpStudy\WWW\lab\Demo\Redis" />
       <recent name="D:\phpStudy\WWW\lab\Libs" />
-      <recent name="D:\phpStudy\WWW\lab\Common" />
-      <recent name="D:\phpStudy\WWW\lab" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -350,9 +285,6 @@
       <PhpTestRunnerSettings />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -373,9 +305,14 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -391,309 +328,390 @@
       <workItem from="1535458075693" duration="115000" />
       <workItem from="1535627951137" duration="1281000" />
       <workItem from="1535713752879" duration="292000" />
+      <workItem from="1548142936886" duration="3692000" />
+      <workItem from="1548423939805" duration="1796000" />
+      <workItem from="1548851621674" duration="1043000" />
+      <workItem from="1548895356831" duration="1484000" />
+      <workItem from="1548899764018" duration="852000" />
+      <workItem from="1548906192999" duration="475000" />
+      <workItem from="1548926166253" duration="670000" />
+      <workItem from="1552890370394" duration="3882000" />
+      <workItem from="1555827890746" duration="1387000" />
+      <workItem from="1559547447611" duration="1984000" />
+      <workItem from="1559613095518" duration="9369000" />
+      <workItem from="1561689787586" duration="3485000" />
+      <workItem from="1563103393246" duration="4517000" />
+      <workItem from="1563152459114" duration="616000" />
+      <workItem from="1563531905723" duration="1859000" />
+      <workItem from="1563537350779" duration="633000" />
+      <workItem from="1563887275349" duration="586000" />
+      <workItem from="1564542894314" duration="18761000" />
+      <workItem from="1564622855990" duration="11391000" />
+      <workItem from="1564639618670" duration="28000" />
+      <workItem from="1564665623034" duration="4004000" />
+      <workItem from="1564672410751" duration="822000" />
+      <workItem from="1564724013801" duration="607000" />
+      <workItem from="1564967301497" duration="703000" />
+      <workItem from="1564997426234" duration="7032000" />
+      <workItem from="1565053225640" duration="11456000" />
+      <workItem from="1565140211820" duration="659000" />
+      <workItem from="1565167919102" duration="2051000" />
+      <workItem from="1565226232535" duration="327000" />
+      <workItem from="1565226876430" duration="1237000" />
+      <workItem from="1565259377490" duration="1590000" />
+      <workItem from="1565332377874" duration="10025000" />
+      <workItem from="1565399338833" duration="104000" />
+      <workItem from="1566291846372" duration="3641000" />
+      <workItem from="1566355424201" duration="1166000" />
+      <workItem from="1566388692544" duration="537000" />
+      <workItem from="1566992114344" duration="2889000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3659000" />
+    <option name="totallyTimeSpent" value="121019000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20628998" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19206008" />
+      <window_info anchor="bottom" id="TODO" order="0" />
+      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info id="Structure" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Common/function_string.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/TimeTool.class.php">
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ2/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state relative-caret-position="250">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Common/function_time.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/HttpTool.class.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/amqp/amqp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="413">
+          <caret line="1096" column="26" selection-start-line="1096" selection-start-column="17" selection-end-line="1096" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/ImageDeal.class.php">
+    <entry file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="62" column="22" lean-forward="false" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
+        <state relative-caret-position="288">
+          <caret line="316" column="20" selection-start-line="316" selection-start-column="20" selection-end-line="316" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/ArrayTool.class.php">
+    <entry file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AMQPChannel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="91" column="43" lean-forward="true" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
+        <state relative-caret-position="400">
+          <caret line="913" column="21" selection-start-line="913" selection-start-column="8" selection-end-line="913" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/PregMatch.class.php">
+    <entry file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Message/AMQPMessage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2331">
-          <caret line="224" column="0" lean-forward="false" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        <state relative-caret-position="325">
+          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ2/test_consumer_3.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/MyRabbitMQ2/AsyncConsumerMQ.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ2/test_produce.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/MyRabbitMQ2/AsyncProduceMQ.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/MyRabbitMQ2/AsyncBaseMQ.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-760">
+          <caret line="73" column="5" lean-forward="true" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ2/test_consumer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ2/test_consumer_2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AMQPStreamConnection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/MyRabbitMQ/Parenter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="109" column="5" lean-forward="true" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ/test_consumer_3.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ/test_consumer_2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="62" column="37" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Libs/MyRabbitMQ/Consumer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/Redis/test_seckill.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="24" column="55" lean-forward="true" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/arrayfunction.php" />
-    <entry file="file://$PROJECT_DIR$/Db/Pdo.class.php">
+    <entry file="file://$PROJECT_DIR$/Demo/pcntl/test_pcntl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="1050">
+          <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/dirfilehelp.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/httptool.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/HttpTool.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/orderdeal.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/skuimageurl.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/stringfunction.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/HelperTool.class.php">
+    <entry file="file://$PROJECT_DIR$/Libs/MyRabbitMQ/Publisher.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        <state relative-caret-position="500">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/timefunction.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/Tools/uploadimage.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/FileDeal.class.php">
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ/test_consumer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/FileDeal.class.php">
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ/test_produce.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="262" column="0" lean-forward="false" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/ImageDeal.class.php">
+    <entry file="file://$PROJECT_DIR$/Demo/MyRabbitMQ/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="62" column="22" lean-forward="false" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
+        <state relative-caret-position="400">
+          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ImageLib/ImageTool.class.php" />
-    <entry file="file://$PROJECT_DIR$/Common/function.php">
+    <entry file="file://$PROJECT_DIR$/test2.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="73" column="22" selection-start-line="71" selection-start-column="4" selection-end-line="73" selection-end-column="22" />
+          <folding>
+            <element signature="e#33#1059#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DevelopModel/SingleModel.class.php">
+    <entry file="file://$PROJECT_DIR$/test3.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-500">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Common/function_array.php" />
-    <entry file="file://$PROJECT_DIR$/Common/function_string.php" />
-    <entry file="file://$PROJECT_DIR$/library/StringTool.php" />
-    <entry file="file://$PROJECT_DIR$/library/TimeTool.php" />
-    <entry file="file://$PROJECT_DIR$/Common/function_time.php" />
-    <entry file="file://$PROJECT_DIR$/library/ArrayTool.php" />
-    <entry file="file://$PROJECT_DIR$/Libs/RequestFile.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="51" column="5" lean-forward="false" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Libs/StringTool.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="51" column="14" lean-forward="false" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/AES128Security.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="3" lean-forward="false" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/IndexAction.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/SkuHelpApiAction.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/StockAction.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
+        <state relative-caret-position="100">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/StockApiAction.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
+        <state relative-caret-position="50">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/CustomException.class.php">
+    <entry file="file://$PROJECT_DIR$/Libs/ArrayTool.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
+        <state relative-caret-position="6625">
+          <caret line="265" column="20" selection-start-line="265" selection-start-column="20" selection-end-line="265" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/Loader.class.php">
+    <entry file="file://$PROJECT_DIR$/Libs/Vhelper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
+        <state relative-caret-position="7425">
+          <caret line="311" selection-start-line="311" selection-end-line="311" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/build.php">
+    <entry file="file://$PROJECT_DIR$/Libs/StringTool.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/ApiBaseAction.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="250">
+          <caret line="126" column="22" selection-start-line="126" selection-start-column="22" selection-end-line="126" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/BaseAction.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="7" column="14" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="7" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="1450">
+          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/index.php">
+    <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Action/IndexAction.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="3" lean-forward="false" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/loginfilter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/pda.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Demo/Pda/App/Common/function.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="43" column="9" lean-forward="false" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="-325">
+          <caret line="32" column="47" lean-forward="true" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/DB.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3393">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#DBClass#0;n#!!top" expanded="false" />
-            <marker date="1535713591634" expanded="true" signature="11422:11468" ph="SELECT ${$fi... ${$table}" />
-            <marker date="1535713591634" expanded="true" signature="11514:11547" ph="SELECT ${$fi... ${$table}" />
-            <marker date="1535713591634" expanded="true" signature="12930:12967" ph="INSERT INTO ${$table}... " />
-            <marker date="1535713591634" expanded="true" signature="13607:13660" ph="UPDATE ${$ta... " />
-            <marker date="1535713591634" expanded="true" signature="13921:13946" ph="DELETE FROM " />
-          </folding>
+        <state relative-caret-position="-1650" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/Pda/Lib/Loader.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-760" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/Pda/build.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-75" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/Pda/pda.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/Pda/router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/Pda/Js/alertPopShow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/Alidayu/test.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_psr4.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_namespaces.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/Alidayu/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
         </state>
       </provider>
     </entry>

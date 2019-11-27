@@ -1,0 +1,1 @@
+D:\phpStudy\php\php-7.0.12-nts\php.exe -q D:\phpStudy\WWW\lab\Demo\MyRabbitMQ\test_produce.php

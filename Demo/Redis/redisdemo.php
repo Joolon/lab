@@ -3,6 +3,7 @@ use DevelopModel\RedisHandle;
 
 
 // Redis是什么？ Redis是一个完全开源免费的（C语言编写），遵循BSD协议的，高性能的Key-Value数据库。
+// Redis是基于C/S模型以及响应/请求协议的TCP服务
 // Redid所有命令集合  https://redis.io/commands  （PHP Redis类的方法名称对应 redis 的命令名）
 
 
@@ -10,12 +11,21 @@ use DevelopModel\RedisHandle;
 // 1、支持持久化（可将内存中的数据保存到磁盘中，重启的时候再次加载到内存中）
 // 2、除支持Key-Value类型数据外，还支持list、set、zset、hash等结构的数据
 // 3、支持master-slave 主从模式的备份
+// 4、Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。
+
 
 // Redis的优势：
 // 1、性能极高，每秒支持11万次读，8.1万次写操作
 // 2、丰富的数据类型
-// 3、操作的原子性（要么成功要么啥都不做），支持事务
+// 3、事务（假事务：事务中任意命令执行失败，其余的命令依然被执行）
 // 4、丰富的特性：支持publish/subscribe、通知、数据有效期
+// 5、管道技术：可以显著提升redis的性能（五倍）
+// 6、redis分区：就是创建多个redis服务器连接（不同的数据根据范围/哈希字符串运算分配到对应的服务器中保存）
+
+
+// 分区的方式：
+// 1.数值类型范围分区
+// 2.非数值md5加密，取第一位字母的数值，再取模
 
 
 // PHP 版本: 5.6.27 NTS
@@ -26,6 +36,14 @@ use DevelopModel\RedisHandle;
 // 应用：
 // 1、存储 SESSION 数据
 // 2、RBAC 管理（基于角色的访问控制）
+
+
+// Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
+// string: int 类型的数据也当字符串保存
+// hash是string类型的 field和value的映射表，可以理解为JSON或serialize格式的数据，非常适合存储对象（可以40多亿个元素）
+// list是不唯一的字符串列表，可以从首尾添加或获取元素，元素的值不是唯一的（可以40多亿个元素）
+// set是唯一的字符串列表（可以40多亿个元素）
+// zset是唯一的字符串列表，每个元素都会关联一个double类型的分数，可以根据doule类型的值设置 元素排序（可以40多亿个元素）
 
 
 echo "<pre>";
@@ -67,7 +85,6 @@ $redis->flushDB();// 删除 当前数据库 中所有数据
 $res = $redis->config('GET','requirepass');// 获取配置信息：密码
 
 
-// Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
 
 
 // 对键的操作

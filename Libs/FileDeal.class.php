@@ -107,7 +107,26 @@ class FileDeal
         }
     }
 
+	/**
+	 * 下载一个远程文件到指定的 文件中
+	 * @param string $ap_fileName 文件
+	 * @param string $url 远程文件
+	 */
+	public static function downFile($ap_fileName,$url){
+		$dir = dirname($ap_fileName);
+		self::createFile($dir);
 
+		$fp = @fopen($ap_fileName,'w+');
+		$content =  file_get_contents($url);
+		fwrite($fp, $content);
+
+	}
+
+	/**
+	 * 下载本地文件目录中的一个文件 到客户端
+	 * @param string $file_dir  文件路径
+	 * @param string $file_name 文件名
+	 */
     public static function downloadFile($file_dir = "upload/", $file_name = "a.doc")
     {
         $file_path = $file_dir . $file_name;// 要下载的文件名
@@ -260,6 +279,59 @@ class FileDeal
             closedir( $handle);
         }
         return $fileCount;
+    }
+	
+    /**
+     * 删除一个文件夹下面的子文件夹以及所有文件，并且删除根目录（递归删除）
+     * @param $dirName
+     * @return bool
+     */
+    public function removeDir($dirName){
+        if(!is_dir($dirName)){
+            return false;
+        }
+        $handle = @opendir($dirName);
+        while(($file = @readdir($handle)) !== false){
+            //判断是不是文件 .表示当前文件夹 ..表示上级文件夹 =2
+            if($file != '.' && $file != '..'){
+                $dir = $dirName.'/'.$file;
+                if(is_dir($dir)){
+                    $this->removeDir($dir);
+                    @rmdir($dir);// 删除所有文件后删除文件夹
+                }else{
+                    @unlink($dir);
+                }
+            }
+        }
+        closedir($handle);
+        @rmdir($dir);// 删除所有文件后删除文件夹
+        return true;
+    }
+	
+    /**
+     * 删除一个文件夹下面的子文件夹以及所有文件，不会删除根目录（递归删除）
+     * @param $dirName
+     * @return bool
+     */
+    public function removeDir($dirName){
+        if(!is_dir($dirName)){
+            return false;
+        }
+        $handle = @opendir($dirName);
+        while(($file = @readdir($handle)) !== false){
+            //判断是不是文件 .表示当前文件夹 ..表示上级文件夹 =2
+            if($file != '.' && $file != '..'){
+                $dir = $dirName.'/'.$file;
+                if(is_dir($dir)){
+                    $this->removeDir($dir);
+                    @rmdir($dir);// 删除所有文件后删除文件夹
+                }else{
+                    @unlink($dir);
+                }
+            }
+        }
+        closedir($handle);
+        return true;
     }
 
 
