@@ -210,30 +210,6 @@ class FileDeal
         }
     }
 
-    /**
-     * 把上传的文件保存到数据库中
-     */
-    public static function saveFileToDB()
-    {
-        /*
-         * 保存文件到数据库（以保存内容的形式）
-         */
-        if ($_FILES['file']['error'] == 0) {
-            $content = mysql_escape_string(self::readFile("upload/" . $_FILES["file"]["name"]));
-            $name = mysql_escape_string($_FILES['file']['name']);
-            $size = mysql_escape_string($_FILES['file']['size']);
-            $type = mysql_escape_string($_FILES['file']['type']);
-
-            $conn = mysql_connect("localhost", "root", "123");
-            mysql_select_db('test');
-            $sql = "INSERT INTO files(name,  size,type, content)
-                VALUES ('$name', $size, '$type','$content')";
-
-            mysql_query($sql, $conn);
-            mysql_close($conn);
-        }
-    }
-
 
     /**
      * 删除文件夹中的内容(文件和子文件夹)
@@ -262,13 +238,13 @@ class FileDeal
      * @param string $dirName  文件夹路径
      * @return int $fileCount 已删除的文件的个数
      */
-    function delFileInDir($dirName){
+    public function delFileInDir($dirName){
         $fileCount = 0;
         if(file_exists($dirName) && $handle=opendir($dirName)){
             while(false!==($item = readdir($handle))){
                 if($item!= "." && $item != ".."){
                     if(file_exists($dirName.'/'.$item) && is_dir($dirName.'/'.$item)){
-                        $fileCount += delFileInDir($dirName.'/'.$item);
+                        $fileCount += $this->delFileInDir($dirName.'/'.$item);
                     }else{
                         if(unlink($dirName.'/'.$item)){
                             $fileCount ++;
@@ -307,13 +283,13 @@ class FileDeal
         @rmdir($dir);// 删除所有文件后删除文件夹
         return true;
     }
-	
+
     /**
      * 删除一个文件夹下面的子文件夹以及所有文件，不会删除根目录（递归删除）
      * @param $dirName
      * @return bool
      */
-    public function removeDir($dirName){
+    public function removeDirRemainRootDir($dirName){
         if(!is_dir($dirName)){
             return false;
         }
@@ -334,7 +310,87 @@ class FileDeal
         return true;
     }
 
+    /**
+     * 获取文件夹下所有文件
+     * @param string            $fileDir        目标文件夹路径
+     * @param array|string      $fileExt        文件类型（默认空，返回所有）
+     * @param bool              $isRecursion    是否递归读取子文件夹（默认使用递归）
+     * @param bool              $isRealPath     是否返回真实路径
+     * @param bool              $onlyFile       是否只是查找文件（默认所有）
+     * @return array|bool
+     */
+    public function readAllFile($fileDir,$fileExt = '',$isRecursion = true,$isRealPath = true,$onlyFile = false)
+    {
+        if (!is_dir($fileDir)) return false;
 
+        static  $fileList   = [];
+
+        $handle     = opendir($fileDir);
+
+        if ($handle) {
+            while (($nowFile = readdir($handle)) !== false) {
+                $temp = $fileDir . DIRECTORY_SEPARATOR . $nowFile;// 文件或文件夹路径
+
+                // 是否读取子文件夹
+                if (is_dir($temp) AND $nowFile != '.' AND $nowFile != '..' ) {
+                    if($onlyFile === false){// 是否返回文件夹
+                        if($isRealPath){
+                            $fileList[] = $temp;// 返回的是绝对路径
+                        }else{
+                            $fileList[] = $nowFile;// 返回的是文件名
+                        }
+                    }
+
+                    if($isRecursion){// 执行递归
+                        $this->readAllFile($temp,$fileExt,$isRecursion,$isRealPath,$onlyFile);
+                    }
+                } else {
+                    if ($nowFile != '.' AND $nowFile != '..') {
+                        if(!empty($fileExt)){// 判断是否是指定的格式的文件
+                            if(strrpos($nowFile,'.') === false ) continue;// 指定了文件格式，跳过无格式的文件
+
+                            // 判断文件后缀
+                            $suffix = substr($nowFile,strrpos($nowFile,'.') + 1);
+                            if(is_array($fileExt)  AND !in_array($suffix,$fileExt)) continue;
+                            if(is_string($fileExt) AND $suffix != $fileExt) continue;
+                        }
+
+                        if($isRealPath){
+                            $fileList[] = $temp;// 返回的是绝对路径
+                        }else{
+                            $fileList[] = $nowFile;// 返回的是文件名
+                        }
+
+                    }
+                }
+            }
+        }
+
+        return $fileList;
+    }
+
+    /**
+     * 创建多层目录
+     * @param     $dir
+     * @param int $mode
+     * @return bool
+     */
+    public function mkDirs($dir, $mode = 0777){
+
+        if (is_dir($dir) || @mkdir($dir, $mode)) return TRUE;
+
+        if (!$this->mkdirs(dirname($dir), $mode)) return FALSE;
+
+        return @mkdir($dir, $mode);
+
+    }
+
+
+    /**
+     * 从WEB服务器上获取文件保存到本地
+     * @param $url
+     * @return bool|string
+     */
     public function getInfoFromWeb($url)
     {
         $html = file_get_contents($url);

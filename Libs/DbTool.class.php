@@ -41,4 +41,27 @@ class DbTool {
 
     }
 
+    /**
+     * 把上传的文件保存到数据库中
+     */
+    public static function saveFileToDB()
+    {
+        /*
+         * 保存文件到数据库（以保存内容的形式）
+         */
+        if ($_FILES['file']['error'] == 0) {
+            $content = mysql_escape_string(self::readFile("upload/" . $_FILES["file"]["name"]));
+            $name = mysql_escape_string($_FILES['file']['name']);
+            $size = mysql_escape_string($_FILES['file']['size']);
+            $type = mysql_escape_string($_FILES['file']['type']);
+
+            $conn = mysql_connect("localhost", "root", "123");
+            mysql_select_db('test');
+            $sql = "INSERT INTO files(name,  size,type, content)
+                VALUES ('$name', $size, '$type','$content')";
+
+            mysql_query($sql, $conn);
+            mysql_close($conn);
+        }
+    }
 }
