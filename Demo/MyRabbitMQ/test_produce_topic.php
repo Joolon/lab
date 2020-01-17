@@ -10,11 +10,11 @@ use \Libs\MyRabbitMQ\Publisher;
 
 $rb_conf      = require 'config.php';
 $rb_conf      = $rb_conf['host'];
-$exchangeName = 'amq.direct';//交换机名
-$queueName    = 'kd_sms_send_q'; //队列名称
-$routingKey   = '111111';//路由关键字(也可以省略)
+$exchangeName = 'amq.fanout';//交换机名
+$queueName    = 'test_2'; //队列名称
+$routingKey   = 'test_*';//路由关键字(也可以省略)
 
-$publisherMQ = new Publisher($rb_conf,$exchangeName,$queueName,$routingKey,'direct');
+$publisherMQ = new Publisher($rb_conf,$exchangeName,$queueName,$routingKey,'fanout');
 
 for($i = 0; $i < 300; $i++){
     $msgBody = 'product message '.'-'.$i;//.'-'.rand(10000, 99999);
