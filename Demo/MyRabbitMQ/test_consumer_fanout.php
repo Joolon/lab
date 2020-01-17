@@ -8,9 +8,16 @@ use \Libs\MyRabbitMQ\Consumer;
 
 $rb_conf      = require 'config.php';
 $rb_conf      = $rb_conf['host'];
-$exchangeName = 'amq.direct';//交换机名
-$queueName    = 'kd_sms_send_q'; //队列名称
-$routingKey   = '111111';//路由关键字(也可以省略)
+$exchangeName = 'EX_FANOUT';//交换机名
+
+// 将6个队列绑定到 指定路由的交换机
+$queueName    = 'test_1'; //队列名称
+$queueName    = 'test_12'; //队列名称
+$queueName    = 'test_123'; //队列名称
+$queueName    = 'test_1234'; //队列名称
+$queueName    = 'test_12345'; //队列名称
+$queueName    = 'test_123456'; //队列名称
+$routingKey   = 'PURCHASE_ORDER_INNER_ON_WAY_R_KEY';//路由关键字(也可以省略)
 
 // 写一个sell 脚本 以及while 循环来处理
 // 死循环  再写一个守护进程监控

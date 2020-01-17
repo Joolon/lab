@@ -41,7 +41,7 @@ abstract class Parenter {
             $this->exchangeName = empty($exchangeName) ? '' : $exchangeName;
             $this->queueName    = empty($queueName) ? '' : $queueName;
             $this->routeKey     = empty($routeKey) ? '' : $routeKey;
-            $this->exchangeType = empty($exchangeType) ? '' : 'direct';
+            $this->exchangeType = empty($exchangeType) ? '' : $exchangeType;
             if(!empty($config)){
                 $this->setConfig($config);
             }
@@ -94,7 +94,9 @@ abstract class Parenter {
         //exclusive ：是否为当前连接的专用队列，在连接断开后，会自动删除该队列
         //autodelete：当没有任何消费者使用时，自动删除该队列
         //arguments: 自定义规则
-        $this->channel->queue_declare($this->queueName, false, true, false, false);
+        $this->channel->queue_declare($this->queueName, false, true, false, false,false);
+
+        $this->channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
     }
 
     /**
@@ -115,7 +117,6 @@ abstract class Parenter {
      */
     public function run($flag = true){
         $this->autoAck = $flag;
-        $this->channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
 
         //prefetchSize：0
         //prefetchCount：会告诉RabbitMQ不要同时给一个消费者推送多于N个消息，即一旦有N个消息还没有ack，则该consumer将block掉，直到有消息ack
