@@ -17,7 +17,7 @@ class Publisher extends Parenter {
      * @param        $routeKey
      * @param string $exchangeType
      */
-    public function __construct($config = array(),$exchangeName, $queueName, $routeKey, $exchangeType = 'direct'){
+    public function __construct($config = array(),$exchangeName, $queueName, $routeKey, $exchangeType){
         parent::__construct($config,$exchangeName, $queueName, $routeKey, $exchangeType);
     }
 
