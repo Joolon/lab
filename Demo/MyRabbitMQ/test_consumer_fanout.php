@@ -21,7 +21,7 @@ $queueName    = 'test_1234'; //队列名称
 $queueName    = 'test_12345'; //队列名称
 $queueName    = 'test_123456'; //队列名称
 $queueName    = 'test_1234567'; //队列名称
-$routingKey   = 'PURCHASE_ORDER_INNER_ON_WAY_R_KEY';//路由关键字(也可以省略)
+$routingKey   = 'PURCHASE_ORDER_INNER_ON_WAY_R_KEY';//路由关键字(与交换机对应，也可以省略)
 
 // 写一个sell 脚本 以及while 循环来处理
 // 死循环  再写一个守护进程监控
