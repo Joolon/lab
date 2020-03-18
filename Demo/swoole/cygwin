@@ -1,0 +1,52 @@
+Cygwin ：Windows 平台上运行的类 UNIX 模拟环境；它对于学习 UNIX/Linux 操作环境，或者从 UNIX到Windows 的应用程序移植，
+        或者进行某些特殊的开发工作，尤其是使用GNU工具集在Windows上进行嵌入式系统开发，非常有用。
+        随着嵌入式系统开发在国内日渐流行，越来越多的开发者对Cygwin产生了兴趣。
+
+简而言之 就是 Windows 操作系统上运行 Linux 操作系统，但又和虚拟机不同，他的速度更快。
+
+
+安装：
+
+下载安装程序：setup-x86_64.exe
+    1、双击打开安装程序
+    2、选择 Install from Internet，下一步
+    3、选择 All Users ，下一步
+    4、选择 Direct Connection，下一步
+    5、选择 镜像  http://mirrors.163.com，下一步
+    6、选择 安装的组件，下一步（也可以在 Cygwin安装成功后再安装组件）
+    7、安装完成。
+
+    安装的过程非常的缓慢，要有足够的耐心呀 ^_^，第一次安装花了 一个小时。。
+    安装成功后会创建一个 Cygwin64 Terminal 的桌面快捷键。
+
+安装时遇到的问题：
+    Possible corrupt mirror? 可能是镜像不能用，换个即可（我选择 http://mirrors.163.com 安装成功了，速度蛮快的）
+    Download Incomplete  这时候 点击 Retry 重试一下就可以了，总有安装成功的时候
+
+
+单独安装组件：与安装程序的时候一样，直到第6步选择安装组件，选择后点下一步，安装组件，这时候不会重复安装 Cygwin程序，只是安装组件。
+
+
+https://blog.csdn.net/xun527/article/details/79778923
+Cygwin 安装其他组件：
+    可以快速切换 php 版本
+
+    在windows的命令行cmd下:
+    cd C:\cygwin64
+    setup-x86_64 -q -P wget,tar,qawk,bzip2,subversion,vim,lynx  （该方法可以安装其他很多组件，但是 无法安装 phpize 组件，这也是我安装 swoole 失败的原因）
+    注意:此安装客户端位 setupX86_64.exe,你需要到cygwin官网自己下载exe文件,安装,然后拷贝到相关安装后的目录。
+
+    安装成功后可以到 Cygwin 终端中去使用啦。
+
+    安装apt-cyg    它与 ubuntu 系统里面的 apt-get 的使用方法一致
+
+
+
+
+Cygwin 玩不来哦。。。
+
+
+
+
+
+

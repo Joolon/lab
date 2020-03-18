@@ -1,0 +1,28 @@
+Swoole：让 PHP 无所不能
+
+概述：
+    Swoole 是一个PHP的协程高性能的网络通信引擎，通过C/C++语言编写，提供了多种网络协议的网络服务器端和客户端模块。
+可以快速方便的实现 TCP/UDP服务、高性能Web、WebSocket服务、物联网、实时通信、游戏、微服务等，使PHP 不在局限于传统的Web领域。
+
+支持的操作系统：Linux、FreeBSD、MacOS
+
+
+
+Windows 环境搭建swoole ：
+    windows环境是不支持swoole的，搭建非常麻烦，Windows 10可以利用自带的Ubuntu系统获得支持，Windows 10以下可以使用Cygwin来搭建（没有亲身实践）。
+    其他方法：
+        https://jingyan.baidu.com/article/63f23628664adc0209ab3d4c.html
+        https://www.cnblogs.com/itsuibi/p/8995137.html
+
+    Cygwin ：Windows平台上运行的类 UNIX 模拟环境；它对于学习UNIX/Linux操作环境，或者从UNIX到Windows的应用程序移植，
+        或者进行某些特殊的开发工作，尤其是使用GNU工具集在Windows上进行嵌入式系统开发，非常有用。
+        随着嵌入式系统开发在国内日渐流行，越来越多的开发者对Cygwin产生了兴趣。
+
+
+
+
+Ubuntu 16.04.5 LTS 系统上的使用：
+
+
+安装 swoole ：
+源码地址   git clone http://git.oschina.net/swoole/swoole

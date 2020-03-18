@@ -76,6 +76,11 @@ use DevelopModel\MongoHandle;
 
 /**
  * MangoDB
+ *
+ * MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。
+ * 在高负载的情况下，添加更多的节点，可以保证服务器性能。
+ * MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。
+ *
  * 数据操作：支持创建指定大小的集合（记录条数和空间），数据都是类似JSON的 BSON 格式
  * 原子操作：MangoDB不支持事务，任何场景都不能要求保证数据完整性，但是它的所有操作的是原子操作，要么操作成功要么操作失败，不会成功一半的情况。
  * 层级关系：数据库 -> 集合 -> 文档
@@ -128,7 +133,7 @@ if(MongoHandle::getError()){
     echo "<font color='red'>Error：".MongoHandle::getError(). '</font><br/>';
     exit;
 }
-echo 1;exit;
+//echo 1;exit;
 $db_mongo = $mongo->demo1;
 $collection = $db_mongo->createCollection('users');
 $collection = $db_mongo->createCollection('users1');
@@ -143,9 +148,15 @@ $document = array(
     "by", "菜鸟教程"
 );
 
-$res = $collection->insert($document);// 插入文档
-$collection->update(array("title"=>"MongoDB"), array('$set'=>array("title"=>"MongoDB 教程")),array('multiple' => '1'));
-$collection->remove(array(),array('justOne' => false));// justOne=>true 删除所有
+try{
+
+    $res = $collection->insert($document);// 插入文档
+    $collection->update(array("title"=>"MongoDB"), array('$set'=>array("title"=>"MongoDB 教程")),array('multiple' => '1'));
+    $collection->remove(array(),array('justOne' => false));// justOne=>true 删除所有
+
+}catch(Exception $exception){
+    echo $exception->getMessage();exit;
+}
 
 $cursor = $collection->find();
 foreach ($cursor as $document) {
