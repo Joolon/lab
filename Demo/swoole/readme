@@ -21,8 +21,31 @@ Windows 环境搭建swoole ：
 
 
 
-Ubuntu 16.04.5 LTS 系统上的使用：
+Ubuntu 18.04.14 LTS 系统上的使用：
 
 
 安装 swoole ：
-源码地址   git clone http://git.oschina.net/swoole/swoole
+安装教程 https://wiki.swoole.com/#/environment
+安装 swoole ：  sudo pecl install swoole 一键搞定
+最后，编译安装成功后，修改 php.ini 加入  extension=swoole.so
+
+
+
+使用：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
