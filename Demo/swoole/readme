@@ -25,13 +25,22 @@ Ubuntu 18.04.14 LTS 系统上的使用：
 
 
 安装 swoole ：
-安装教程 https://wiki.swoole.com/#/environment
-安装 swoole ：  sudo pecl install swoole 一键搞定
-最后，编译安装成功后，修改 php.ini 加入  extension=swoole.so
+    官方安装教程 https://wiki.swoole.com/#/environment
+    安装 swoole ：  sudo pecl install swoole 一键搞定
+    最后，编译安装成功后，修改 php.ini 加入  extension=swoole.so  （如果不确定 php.ini 文件在哪里可以使用 php --ini 查看文件的绝对路径，进去修改）
+
+    执行 php -m 查看安装的模块，发现已经有了 swoole 说明安装成功。（如果 php -m 一直看不到 swoole 的话那就有可能是 php.ini 文件没改正确）
 
 
 
 使用：
+
+$http = new Swoole\Http\Server("172.18.235.99", 9501);
+
+# 监听 IP 地址发起的请求，即是当这个指定的 IP 客户端发起请求，swoole 服务才会响应，其他 IP 的客户端不响应
+（这就和 直接访问 PHP 文件实现响应不同了，访问 PHP 文件都会响应，只是返回的内容不同，HTTP 状态还是 200 的
+改变 IP 后需要重启 swoole 服务才生效）
+
 
 
 
