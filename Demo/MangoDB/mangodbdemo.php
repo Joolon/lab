@@ -165,6 +165,7 @@ try{
     $bulk->insert(['x' => 1, 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
     $bulk->insert(['x' => 2, 'name'=>'Google', 'url' => 'http://www.google.com']);
     $bulk->insert(['x' => 3, 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
+    var_dump($bulk);
     $manager->executeBulkWrite('test.sites', $bulk);
 
     $filter = ['x' => ['$gt' => 1]];
