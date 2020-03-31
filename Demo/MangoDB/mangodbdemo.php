@@ -178,7 +178,7 @@ try{
 
     $bulk = new \MongoDB\Driver\BulkWrite;
 
-    for($i = 0;$i < 1000;$i ++){
+    for($i = 0;$i < 100000;$i ++){
         $bulk->insert(['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com']);
     }
 
