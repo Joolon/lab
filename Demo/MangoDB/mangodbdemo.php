@@ -8,7 +8,7 @@ use DevelopModel\MongoHandle;
  * Time: 21:28
  */
 
-/*
+/**
  * RDBMS  关系型数据库管理系统
  *      关系型数据库遵循的原则：ACID (原子性、一致性、独立性、持久性)
  *      A（Atomicity）原子性：事务里的操作要么全部执行，要么全都不执行。只要有一个失败，事务就会回滚。（记录全部操作的逆操作，当发生异常时回滚执行全部逆操作）
@@ -21,9 +21,8 @@ use DevelopModel\MongoHandle;
  *      结构化组织化的数据
  *      结构化查询语句
  *      支持简单的事务
- */
-
-/*
+ *
+ *
  * CAP定理：对于一个分布式系统来说，不可能同时很好的满足一致性、可用性和分割容忍 三个需求，最多只能满足两个。
  *      因此分为  CA原则，CP原则，AP原则
  *      C（Consistency）一致性：所有节点在同一时间具有相同的数据
@@ -39,7 +38,7 @@ use DevelopModel\MongoHandle;
  *      更高的性能：
  */
 
-/*
+/**
  * NoSQL ：Not Only SQL  不仅仅是SQL
  *      即是非关系型数据库，适用于超大规模数据的存储，相较于SQL数据库，NoSQL能够很好地处理大数据
  *      NoSQL
@@ -128,6 +127,43 @@ use DevelopModel\MongoHandle;
 echo "<pre>";
 set_time_limit(0);
 
+
+$manager = MongoHandle::getMongo();
+
+$bulk = new \MongoDB\Driver\BulkWrite;
+$document = ['_id' => new \MongoDB\BSON\ObjectID, 'name' => '菜鸟教程'];
+
+$_id= $bulk->insert($document);
+
+var_dump($_id);
+exit;
+
+//$manager = new \MongoDB\Driver\Manager("mongodb://localhost:27017");
+$writeConcern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 1000);
+$result = $manager->executeBulkWrite('test.runoob', $bulk, $writeConcern);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exit;
+
+
+// 以下是 PHP 5 使用方式
 $mongo = MongoHandle::getMongo();
 if(MongoHandle::getError()){
     echo "<font color='red'>Error：".MongoHandle::getError(). '</font><br/>';

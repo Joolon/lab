@@ -3,7 +3,7 @@
 include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/constants.php';
 
 //创建Server对象，监听 127.0.0.1:9501端口
-$serv = new Swoole\Server(SWOOLE_SERVER, 9501);
+$serv = new Swoole\Server(SWOOLE_SERVER, 9502);
 
 
 //监听连接进入事件

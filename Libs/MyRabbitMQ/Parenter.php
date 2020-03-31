@@ -94,7 +94,7 @@ abstract class Parenter {
         //exclusive ：是否为当前连接的专用队列，在连接断开后，会自动删除该队列
         //autodelete：当没有任何消费者使用时，自动删除该队列
         //arguments: 自定义规则
-        $this->channel->queue_declare($this->queueName, false, true, false, false,false);
+        $this->channel->queue_declare($this->queueName, false, true, false, false,["x-expires", 6]);
 
         $this->channel->queue_bind($this->queueName, $this->exchangeName, $this->routeKey);
     }
@@ -135,6 +135,7 @@ abstract class Parenter {
             $this->get($msg);
         });
 
+        echo '不消费！';exit;
         //监听消息
         while(count($this->channel->callbacks)){
             $this->channel->wait();
