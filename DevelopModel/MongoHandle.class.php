@@ -19,6 +19,16 @@ class MongoHandle{
 
     private function __construct()
     {
+
+    }
+
+    private function __clone()
+    {
+        // TODO: Implement __clone() method.
+    }
+
+    private static function _init(){
+
         $mongodb_host = C('MONGODB_HOST');
         $mongodb_port = C('MONGODB_PORT');
         $mongodb_user = C('MONGODB_USER');
@@ -29,12 +39,6 @@ class MongoHandle{
         self::$_user   = $mongodb_user;
         self::$_pwd    = $mongodb_pwd;
         self::$_db     = $mongodb_db;
-
-    }
-
-    private function __clone()
-    {
-        // TODO: Implement __clone() method.
     }
 
     /**
@@ -47,9 +51,8 @@ class MongoHandle{
             if(self::$_handler instanceof \MongoDB\Driver\Manager){
                 return self::$_handler;
             }else{
-
-                try{// 判断连接是否成功
-                    // 实例化对象
+                try{
+                    self::_init();// 实例化对象
                     self::$_handler = new \MongoDB\Driver\Manager("mongodb://".self::$_server,
                           [
                               'username' => self::$_user,
