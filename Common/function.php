@@ -107,7 +107,7 @@ function num_to_cn($num)
  */
 function C($name, $default = NULL)
 {
-    $config_arr = include_once(BASE_PATH . 'Conf/config.php');
+    $config_arr = include(BASE_PATH . 'Conf/config.php');
 
     if (isset($config_arr[$name])) {
         return $config_arr[$name];
