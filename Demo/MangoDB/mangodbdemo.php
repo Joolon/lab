@@ -106,13 +106,22 @@ use DevelopModel\MongoHandle;
  * 管理工具：RockMongo （PHP5开发的Web管理工具，类似 phpMyAdmin）
  *
  *
- * 安装与使用
+ * Windows 下安装与使用：
  * 搭建服务器：http://www.runoob.com/mongodb/mongodb-window-install.html  （若 MSI 文件安装不成功，尝试使用 ZIP 文件搭建）
  * 创建数据库目录：C:\>mkdir data    数据文件夹
  *                 C:\data>mkdir db  数据库文件夹
  * 启动服务：C:\MongoDB\bin\mongod --dbpath C:\data\db
  *           C:\MongoDB\bin\mongo.exe  客户端连接
  * 查看安装是否成功：db.version()  查看安装的版本号
+ *
+ * Ubuntu 18.04 LTS 环境下安装与使用：
+ * 安装教程：
+ *      https://blog.csdn.net/torresaaa/article/details/87709016
+ *
+ * 启动服务：
+ *      sudo systemctl enable mongod  # 加入mongod服务
+ *      sudo systemctl start mongod   # 开启mongod服务
+ *      sudo systemctl stop mongod  # 停止mongod服务
  *
  */
 
@@ -131,16 +140,29 @@ set_time_limit(0);
 $manager = MongoHandle::getMongo();
 
 $bulk = new \MongoDB\Driver\BulkWrite;
-$document = ['_id' => new \MongoDB\BSON\ObjectID, 'name' => '菜鸟教程'];
+$bulk->insert(['x' => 1, 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
+$bulk->insert(['x' => 2, 'name'=>'Google', 'url' => 'http://www.google.com']);
+$bulk->insert(['x' => 3, 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
+$manager->executeBulkWrite('test.sites', $bulk);
 
-$_id= $bulk->insert($document);
+$filter = ['x' => ['$gt' => 1]];
+$options = [
+    'projection' => ['_id' => 0],
+    'sort' => ['x' => -1],
+];
 
-var_dump($_id);
-exit;
+// 查询数据
+$query = new \MongoDB\Driver\Query($filter, $options);
+$cursor = $manager->executeQuery('test.sites', $query);
 
-//$manager = new \MongoDB\Driver\Manager("mongodb://localhost:27017");
-$writeConcern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 1000);
-$result = $manager->executeBulkWrite('test.runoob', $bulk, $writeConcern);
+foreach ($cursor as $document) {
+    print_r($document);
+}
+
+echo 'sss';exit;
+
+
+
 
 
 
