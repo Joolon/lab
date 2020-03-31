@@ -24,11 +24,12 @@ return array(
     'LOG_LEVEL'             =>  'EMERG,ALERT,CRIT,ERR',// 允许记录的日志级别
     'LOG_EXCEPTION_RECORD'  =>   false,    // 是否记录异常信息日志
 
+    // 超级管理员用户 数据库:admin  用户名:admin 密码:abc123
     'MONGODB_HOST'          => '127.0.0.1',
-    'MONGODB_USER'          => 'admin',
-    'MONGODB_PWD'           => 'abc123',
+    'MONGODB_USER'          => 'test',
+    'MONGODB_PWD'           => 'test',
     'MONGODB_PORT'          => '27017',
-    'MONGODB_DB'            => '',
+    'MONGODB_DB'            => 'test',
 
     'USER_INFO'             => array(
         'URL_MODEL'     => 1,

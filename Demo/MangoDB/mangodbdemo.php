@@ -132,7 +132,8 @@ use DevelopModel\MongoHandle;
 /**
  * MYSQL 与 MangoDB数据同步：两边建立一样的数据库、表名、字段名（方便数据同步）
  *
- *
+ * 指定用户登录：mongo --host 127.0.0.1:27017 -u "myUserAdmin" --authenticationDatabase "admin" -p'abc123'
+ * 创建用户权限：db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
  *
  */
 
