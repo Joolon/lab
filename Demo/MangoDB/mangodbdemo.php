@@ -159,6 +159,15 @@ echo "<pre>";
 ini_set('display_errors','On');
 error_reporting(E_ALL);
 
+function randomKeys($length = 18){
+    $key     = '';
+    $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ';
+    for($i = 0; $i < $length; $i++){
+        $key .= $pattern{mt_rand(0, 35)};//生成php随机数
+    }
+    return $key;
+}
+$start_time = time();
 try{
     $manager = MongoHandle::getMongo();
 
@@ -168,26 +177,29 @@ try{
     }
 
     $bulk = new \MongoDB\Driver\BulkWrite;
-    $bulk->insert(['x' => microtime().rand(0,10000), 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
-    $bulk->insert(['x' => microtime().rand(0,10000), 'name'=>'Google', 'url' => 'http://www.google.com']);
-    $bulk->insert(['x' => microtime().rand(0,10000), 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
-    $manager->executeBulkWrite('test.sites', $bulk);
 
-    $filter = ['x' => ['$gt' => 1]];
-    $options = [
-        'projection' => ['_id' => 0],
-        'sort' => ['x' => -1],
-    ];
-
-    // 查询数据
-    $query = new \MongoDB\Driver\Query($filter, $options);
-    $cursor = $manager->executeQuery('test.sites', $query);
-
-    foreach ($cursor as $document) {
-        print_r($document);
+    for($i = 0;$i < 1000;$i ++){
+        $bulk->insert(['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com']);
     }
 
+    $manager->executeBulkWrite('test.sites', $bulk);
 
+//    $filter = ['x' => ['$gt' => 1]];
+//    $options = [
+//        'projection' => ['_id' => 0],
+//        'sort' => ['x' => -1],
+//    ];
+//
+//    // 查询数据
+//    $query = new \MongoDB\Driver\Query($filter, $options);
+//    $cursor = $manager->executeQuery('test.sites', $query);
+//
+//    foreach ($cursor as $document) {
+//        print_r($document);
+//    }
+
+
+    echo '耗时：'.(time() - $start_time);
 }catch(Exception $e){
     echo $e->getMessage();
     exit;
