@@ -25,9 +25,10 @@ return array(
     'LOG_EXCEPTION_RECORD'  =>   false,    // 是否记录异常信息日志
 
     // 超级管理员用户 数据库:admin  用户名:admin 密码:abc123
+    // 超级用户角色   数据库:admin  用户名:root  密码:root
     'MONGODB_HOST'          => '127.0.0.1',
-    'MONGODB_USER'          => 'test',
-    'MONGODB_PWD'           => 'test',
+    'MONGODB_USER'          => 'root',
+    'MONGODB_PWD'           => 'root',
     'MONGODB_PORT'          => '27017',
     'MONGODB_DB'            => 'test',
 

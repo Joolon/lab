@@ -131,13 +131,20 @@ use DevelopModel\MongoHandle;
  *
  * 访问 MongoDB
  * 内置角色：
- * 权限控制：每个数据库都必须设定访问用户，同一用户可以分配到多个数据库中，只有使用分配了权限的用户访问才能执行相应的操作。
+ *      可以用无身份认证方式打开 mongo 直接打开，
+ * 权限控制：每个数据库都必须设定访问用户，同一用户可以分配到多个数据库中，只有使用分配了权限的用户访问才能执行相应的操作，帐号是跟着库走的，所以在指定库里授权，必须也在指定库里验证(auth)。
  * 超级管理员：db.createUser({user:"admin",pwd:"abc123",roles:[{role:"userAdminAnyDatabase",db:"admin"}]})     admin 数据库是固定的
+ * 超级用户角色：db.createUser({user:"root",pwd:"root",roles:[{role: 'root', db: 'admin'}]})  使用【超级管理员】登录
+ *          db.auth('root','root');
  *
- * 指定用户登录：mongo --host 127.0.0.1:27017 -u "myUserAdmin" --authenticationDatabase "admin" -p'abc123'
+ * 数据库管理员： > use test
+ *                > db.createUser({user: "test", pwd: "test", roles:["dbOwner"]})
+ * 指定用户登录：mongo --host 127.0.0.1:27017 -u "myUserAdmin" --authenticationDatabase "admin" -p'abc123'  超级管理员
+ *
  *               可以给其他任何数据库添加用户权限，只是用来管理用户，不能读写除admin之外的数据库。
  * 创建用户权限：db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
  *
+ *      登录的快捷方式 mongo admin -u root -p 123456  admin是数据库名称，默认进入的数据库
  */
 
 /**
