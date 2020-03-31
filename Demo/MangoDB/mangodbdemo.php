@@ -114,6 +114,8 @@ use DevelopModel\MongoHandle;
  *           C:\MongoDB\bin\mongo.exe  客户端连接
  * 查看安装是否成功：db.version()  查看安装的版本号
  *
+ *
+ *
  * Ubuntu 18.04 LTS 环境下安装与使用：
  * 安装教程：
  *      https://blog.csdn.net/torresaaa/article/details/87709016
@@ -127,45 +129,64 @@ use DevelopModel\MongoHandle;
  *      sudo systemctl start mongod   # 开启mongod服务
  *      sudo systemctl stop mongod    # 停止mongod服务
  *
+ * 访问 MongoDB
+ * 内置角色：
+ * 权限控制：每个数据库都必须设定访问用户，同一用户可以分配到多个数据库中，只有使用分配了权限的用户访问才能执行相应的操作。
+ * 超级管理员：db.createUser({user:"admin",pwd:"abc123",roles:[{role:"userAdminAnyDatabase",db:"admin"}]})     admin 数据库是固定的
+ *
+ * 指定用户登录：mongo --host 127.0.0.1:27017 -u "myUserAdmin" --authenticationDatabase "admin" -p'abc123'
+ *               可以给其他任何数据库添加用户权限，只是用来管理用户，不能读写除admin之外的数据库。
+ * 创建用户权限：db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
+ *
  */
 
 /**
  * MYSQL 与 MangoDB数据同步：两边建立一样的数据库、表名、字段名（方便数据同步）
  *
- * 指定用户登录：mongo --host 127.0.0.1:27017 -u "myUserAdmin" --authenticationDatabase "admin" -p'abc123'
- * 创建用户权限：db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
  *
  */
 
 
 echo "<pre>";
+ini_set('display_errors','On');
 error_reporting(E_ALL);
-set_time_limit(0);
 
-$manager = MongoHandle::getMongo();
-if(!is_object($manager) or $manager === false){
-    echo 'MongoDB连接出错：',MongoHandle::getError();
+try{
+    $manager = MongoHandle::getMongo();
+    var_dump($manager);
+
+    if(!is_object($manager) or $manager === false){
+        echo 'MongoDB连接出错：',MongoHandle::getError();
+        exit;
+    }
+
+    $bulk = new \MongoDB\Driver\BulkWrite;
+    var_dump($bulk);
+    $bulk->insert(['x' => 1, 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
+    $bulk->insert(['x' => 2, 'name'=>'Google', 'url' => 'http://www.google.com']);
+    $bulk->insert(['x' => 3, 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
+    $manager->executeBulkWrite('test.sites', $bulk);
+
+    $filter = ['x' => ['$gt' => 1]];
+    $options = [
+        'projection' => ['_id' => 0],
+        'sort' => ['x' => -1],
+    ];
+
+    // 查询数据
+    $query = new \MongoDB\Driver\Query($filter, $options);
+    var_dump($query);
+    $cursor = $manager->executeQuery('test.sites', $query);
+    var_dump($cursor);
+
+    foreach ($cursor as $document) {
+        print_r($document);
+    }
+
+
+}catch(Exception $e){
+    echo $e->getMessage();
     exit;
-}
-
-$bulk = new \MongoDB\Driver\BulkWrite;
-$bulk->insert(['x' => 1, 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
-$bulk->insert(['x' => 2, 'name'=>'Google', 'url' => 'http://www.google.com']);
-$bulk->insert(['x' => 3, 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
-$manager->executeBulkWrite('test.sites', $bulk);
-
-$filter = ['x' => ['$gt' => 1]];
-$options = [
-    'projection' => ['_id' => 0],
-    'sort' => ['x' => -1],
-];
-
-// 查询数据
-$query = new \MongoDB\Driver\Query($filter, $options);
-$cursor = $manager->executeQuery('test.sites', $query);
-
-foreach ($cursor as $document) {
-    print_r($document);
 }
 
 echo 'sss';exit;
