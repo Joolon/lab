@@ -107,7 +107,7 @@ function num_to_cn($num)
  */
 function C($name, $default = NULL)
 {
-    $config_arr = include(BASE_PATH . DS . 'Conf\config.php');
+    $config_arr = include_once(BASE_PATH . 'Conf/config.php');
 
     if (isset($config_arr[$name])) {
         return $config_arr[$name];
@@ -115,7 +115,7 @@ function C($name, $default = NULL)
         return $name;
     } else {
         if ($default == NULL) {
-            die('Not defined this variable!');
+            trigger_error('未定义的变量');
         } else {
             define($name, $default);
             return $default;
