@@ -130,21 +130,22 @@ use DevelopModel\MongoHandle;
  *      sudo systemctl stop mongod    # 停止mongod服务
  *
  * 访问 MongoDB
- * 内置角色：
+ * 内置角色：   ----MongoDB的权限控制很严格，也很细致，要小心配置才能正常访问，简单的搞一个 root 角色就可以了
+ *
  *      可以用无身份认证方式打开 mongo 直接打开，
  * 权限控制：每个数据库都必须设定访问用户，同一用户可以分配到多个数据库中，只有使用分配了权限的用户访问才能执行相应的操作，帐号是跟着库走的，所以在指定库里授权，必须也在指定库里验证(auth)。
- * 超级管理员：db.createUser({user:"admin",pwd:"abc123",roles:[{role:"userAdminAnyDatabase",db:"admin"}]})     admin 数据库是固定的
- * 超级用户角色：db.createUser({user:"root",pwd:"root",roles:[{role: 'root', db: 'admin'}]})  使用【超级管理员】登录
- *          db.auth('root','root');
+ * 超级管理员：   > db.createUser({user:"admin",pwd:"abc123",roles:[{role:"userAdminAnyDatabase",db:"admin"}]})     admin 数据库是固定的
+ * 超级用户角色： > db.createUser({user:"root",pwd:"root",roles:[{role: 'root', db: 'admin'}]})  使用【超级管理员】登录
+ *                > db.auth('root','root');  创建用户之后就必须设置一下
  *
  * 数据库管理员： > use test
  *                > db.createUser({user: "test", pwd: "test", roles:["dbOwner"]})
  * 指定用户登录：mongo --host 127.0.0.1:27017 -u "myUserAdmin" --authenticationDatabase "admin" -p'abc123'  超级管理员
  *
  *               可以给其他任何数据库添加用户权限，只是用来管理用户，不能读写除admin之外的数据库。
- * 创建用户权限：db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
+ * 创建用户权限：> db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
  *
- *      登录的快捷方式 mongo admin -u root -p 123456  admin是数据库名称，默认进入的数据库
+ * 登录的快捷方式： > mongo admin -u root -p 123456  admin是数据库名称，默认进入的数据库
  */
 
 /**
@@ -160,7 +161,6 @@ error_reporting(E_ALL);
 
 try{
     $manager = MongoHandle::getMongo();
-    var_dump($manager);
 
     if(!is_object($manager) or $manager === false){
         echo 'MongoDB连接出错：',MongoHandle::getError();
@@ -168,11 +168,9 @@ try{
     }
 
     $bulk = new \MongoDB\Driver\BulkWrite;
-    var_dump($bulk);
-    $bulk->insert(['x' => 1, 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
-    $bulk->insert(['x' => 2, 'name'=>'Google', 'url' => 'http://www.google.com']);
-    $bulk->insert(['x' => 3, 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
-    var_dump($bulk);
+    $bulk->insert(['x' => microtime().rand(0,10000), 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
+    $bulk->insert(['x' => microtime().rand(0,10000), 'name'=>'Google', 'url' => 'http://www.google.com']);
+    $bulk->insert(['x' => microtime().rand(0,10000), 'name'=>'taobao', 'url' => 'http://www.taobao.com']);
     $manager->executeBulkWrite('test.sites', $bulk);
 
     $filter = ['x' => ['$gt' => 1]];
@@ -183,9 +181,7 @@ try{
 
     // 查询数据
     $query = new \MongoDB\Driver\Query($filter, $options);
-    var_dump($query);
     $cursor = $manager->executeQuery('test.sites', $query);
-    var_dump($cursor);
 
     foreach ($cursor as $document) {
         print_r($document);
