@@ -117,11 +117,15 @@ use DevelopModel\MongoHandle;
  * Ubuntu 18.04 LTS 环境下安装与使用：
  * 安装教程：
  *      https://blog.csdn.net/torresaaa/article/details/87709016
+ * 安装 mongodb 拓展：
+ *      https://www.runoob.com/mongodb/php7-mongdb-tutorial.html
+ *      更直接的方式 sudo pecl install mongodb   执行之后要添加 extension=mongodb.so 配置
+ *          （phpinfo()输出的路径有点不对，应该是动态加载的，可以用 php --ini 查看配置文件的路径）
  *
  * 启动服务：
  *      sudo systemctl enable mongod  # 加入mongod服务
  *      sudo systemctl start mongod   # 开启mongod服务
- *      sudo systemctl stop mongod  # 停止mongod服务
+ *      sudo systemctl stop mongod    # 停止mongod服务
  *
  */
 
@@ -134,10 +138,16 @@ use DevelopModel\MongoHandle;
 
 
 echo "<pre>";
+error_reporting(E_ALL);
 set_time_limit(0);
 
 
 $manager = MongoHandle::getMongo();
+
+if(!is_object($manager) or $manager === false){
+    echo 'MongoDB连接出错：',MongoHandle::getError();
+    exit;
+}
 
 $bulk = new \MongoDB\Driver\BulkWrite;
 $bulk->insert(['x' => 1, 'name'=>'菜鸟教程', 'url' => 'http://www.runoob.com']);
@@ -160,72 +170,3 @@ foreach ($cursor as $document) {
 }
 
 echo 'sss';exit;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-exit;
-
-
-// 以下是 PHP 5 使用方式
-$mongo = MongoHandle::getMongo();
-if(MongoHandle::getError()){
-    echo "<font color='red'>Error：".MongoHandle::getError(). '</font><br/>';
-    exit;
-}
-//echo 1;exit;
-$db_mongo = $mongo->demo1;
-$collection = $db_mongo->createCollection('users');
-$collection = $db_mongo->createCollection('users1');
-$collection = $db_mongo->createCollection('users2');
-$collection = $db_mongo->createCollection('users3');
-
-$document = array(
-    "title"       => "MongoDB",
-    "description" => "database",
-    "likes"       => 100,
-    "url"         => "http://www.runoob.com/mongodb/",
-    "by", "菜鸟教程"
-);
-
-try{
-
-    $res = $collection->insert($document);// 插入文档
-    $collection->update(array("title"=>"MongoDB"), array('$set'=>array("title"=>"MongoDB 教程")),array('multiple' => '1'));
-    $collection->remove(array(),array('justOne' => false));// justOne=>true 删除所有
-
-}catch(Exception $exception){
-    echo $exception->getMessage();exit;
-}
-
-$cursor = $collection->find();
-foreach ($cursor as $document) {
-    echo $document["title"] . "\n";
-}
-
-print_r($cursor);
-
-print_r($mongo);
-
-
-
-
-
