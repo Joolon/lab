@@ -141,9 +141,7 @@ echo "<pre>";
 error_reporting(E_ALL);
 set_time_limit(0);
 
-
 $manager = MongoHandle::getMongo();
-
 if(!is_object($manager) or $manager === false){
     echo 'MongoDB连接出错：',MongoHandle::getError();
     exit;
