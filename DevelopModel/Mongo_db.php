@@ -7,6 +7,8 @@ use \MongoDB\Driver\WriteConcern;
 use \MongoDB\Driver\ConnectionException;
 use \MongoRegex;
 use \MongoDB\Driver\BulkWrite;
+use \MongoDB\Driver\Query;
+use \MongoDB\Driver\Command;
 use \MongoDB\Driver\InvalidArgumentException;
 
 /**
@@ -63,7 +65,7 @@ class Mongo_db {
             $this->db            = new Manager($this->connection_string, $this->options);
             $this->write_concern = new WriteConcern(WriteConcern::MAJORITY, 100);
 
-            return $this;
+            return ($this);
         }catch(ConnectionException $e){
             if($this->mongo_supers_connect_error){
                 trigger_error("Unable to connect to MongoDB", E_USER_ERROR);
@@ -555,7 +557,7 @@ class Mongo_db {
             $options['projection'] = $this->selects;
         }
 
-        $query  = new \MongoDB\Driver\Query($this->wheres, $options);
+        $query  = new Query($this->wheres, $options);
         $cursor = $this->db->executeQuery($this->db_name.".".$collection, $query);
 
         $this->_clear();
@@ -571,8 +573,6 @@ class Mongo_db {
         }else{
             return $returns;
         }
-
-
     }
 
     /**
@@ -588,7 +588,7 @@ class Mongo_db {
             trigger_error("In order to retreive a count of documents from MongoDB, a collection name must be passed", E_USER_ERROR);
         }
 
-        $command = new \MongoDB\Driver\Command(['count' => $collection, 'query' => $this->wheres]);
+        $command = new Command(['count' => $collection, 'query' => $this->wheres]);
         $result  = $this->db->executeCommand($this->db_name, $command);
         $res     = $result->toArray();
         $cnt     = 0;
