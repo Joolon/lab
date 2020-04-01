@@ -146,6 +146,8 @@ use DevelopModel\MongoHandle;
  * 创建用户权限：> db.createUser({ user: "test", pwd: "test", roles: [{ role: "readWrite", db: "test" }] })
  *
  * 登录的快捷方式： > mongo admin -u root -p 123456  admin是数据库名称，默认进入的数据库
+ *
+ * 文件存储路径：cat /etc/mongodb.conf    dbpath就是文件存储的位置
  */
 
 /**
@@ -176,7 +178,7 @@ try{
         exit;
     }
 
-    $bulk = new \MongoDB\Driver\BulkWrite;
+    $bulk = new \MongoDB\Driver\BulkWrite;// BulkWrite objects may only be executed once and this instance has already been executed
 
     for($i = 0;$i < 100000;$i ++){
         $bulk->insert(['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com']);
