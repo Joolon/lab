@@ -23,7 +23,8 @@ include_once BASE_PATH.'autoload.php';// 自动加载类文件
 include_once BASE_PATH.'Common/function.php';
 
 
-include_once BASE_PATH.'Demo/MangoDB/mangodbdemo.php';
+//include_once BASE_PATH.'Demo/MangoDB/mangodbdemo.php';
+include_once BASE_PATH.'Demo/MangoDB/mangodbdemo_curd.php';
 exit;
 //include_once BASE_PATH.'Demo/Redis/test_seckill.php';
 

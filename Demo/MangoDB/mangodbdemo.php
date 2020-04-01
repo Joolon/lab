@@ -161,6 +161,7 @@ echo "<pre>";
 ini_set('display_errors','On');
 error_reporting(E_ALL);
 
+
 function randomKeys($length = 18){
     $key     = '';
     $pattern = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ';
@@ -169,6 +170,7 @@ function randomKeys($length = 18){
     }
     return $key;
 }
+
 $start_time = time();
 try{
     $manager = MongoHandle::getMongo();
@@ -180,26 +182,24 @@ try{
 
     $bulk = new \MongoDB\Driver\BulkWrite;// BulkWrite objects may only be executed once and this instance has already been executed
 
-    for($i = 0;$i < 100000;$i ++){
+    for($i = 0;$i < 1000;$i ++){
         $bulk->insert(['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com']);
     }
 
     $manager->executeBulkWrite('test.sites', $bulk);
 
-//    $filter = ['x' => ['$gt' => 1]];
-//    $options = [
-//        'projection' => ['_id' => 0],
-//        'sort' => ['x' => -1],
-//    ];
-//
-//    // 查询数据
-//    $query = new \MongoDB\Driver\Query($filter, $options);
-//    $cursor = $manager->executeQuery('test.sites', $query);
-//
-//    foreach ($cursor as $document) {
-//        print_r($document);
-//    }
+    $filter = ['time' => ['$gt' => 1585660181]];
+    $options = [
+        'limit' => 5
+    ];
 
+    // 查询数据
+    $query = new \MongoDB\Driver\Query($filter, $options);
+    $cursor = $manager->executeQuery('test.sites', $query);
+
+    foreach ($cursor as $document) {
+        print_r($document);
+    }
 
     echo '耗时：'.(time() - $start_time);
 }catch(Exception $e){

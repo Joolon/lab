@@ -3,15 +3,9 @@
  * mongodb 配置文件
  */
 
-$config['mongo_host'] = '127.0.0.1';
-
-// Generally will be 27017 unless you've configured Mongo otherwise
+$config['mongo_host'] = '47.107.183.46';
 $config['mongo_port'] = '27017';
-
-// The database you want to work from (required)
-$config['mongo_db'] = 'test';
-
-// Leave blank if Mongo is not running in auth mode
+$config['mongo_db']   = 'test';
 $config['mongo_user'] = 'root';
 $config['mongo_pass'] = 'root';
 
@@ -33,6 +27,9 @@ $config['mongo_supers_connect_error'] = true;
 
 
 // If you are having problems connecting try changing this to TRUE
-$config['host_db_flag'] = true;
+$config['host_db_flag'] = false;
+
+
+return $config;
 
 

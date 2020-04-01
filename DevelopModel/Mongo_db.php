@@ -30,9 +30,11 @@ class Mongo_db {
     public  $wheres                      = array(); // Public to make debugging easier
     private $sorts                       = array();
     public  $mongo_return                = null;
-    private $mongo_supers_connect_error = null;
-    private $limit                       = 9999999;
+    private $mongo_supers_connect_error  = null;
+    private $limit                       = 1000;
     private $offset                      = 0;
+
+    private $options                     = array();
 
     /**
      * --------------------------------------------------------------------------------
@@ -42,10 +44,109 @@ class Mongo_db {
      * Automatically check if the Mongo PECL extension has been installed/enabled.
      * Generate the connection string and establish a connection to the MongoDB.
      */
-
     public function __construct(){
         $this->connection_string();
         $this->connect();
+    }
+
+    /**
+     * --------------------------------------------------------------------------------
+     * CONNECT TO MONGODB
+     * --------------------------------------------------------------------------------
+     *
+     * Establish a connection to MongoDB using the connection string generated in
+     * the connection_string() method.  If 'mongo_persist_key' was set to true in the
+     * config file, establish a persistent connection.  We allow for only the 'persist'
+     * option to be set because we want to establish a connection immediately.
+     */
+    private function connect(){
+        try{
+            $this->db = new \MongoDB\Driver\Manager($this->connection_string, $this->options);
+            $this->write_concern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 100);
+
+            return ($this);
+        }catch(\MongoDB\Driver\ConnectionException $e){
+            if($this->mongo_supers_connect_error){
+                trigger_error("Unable to connect to MongoDB", E_USER_ERROR);
+            }else{
+                trigger_error("Unable to connect to MongoDB: {$e->getMessage()}", E_USER_ERROR);
+            }
+        }
+    }
+
+    /**
+     * --------------------------------------------------------------------------------
+     * BUILD CONNECTION STRING
+     * --------------------------------------------------------------------------------
+     *
+     * Build the connection string from the config file.
+     */
+    private function connection_string(){
+        $config_arr = include(BASE_PATH.'Conf/mongodb.php');
+
+        $this->host         = $config_arr['mongo_host'];
+        $this->port         = $config_arr['mongo_port'];
+        $this->user         = $config_arr['mongo_user'];
+        $this->pass         = $config_arr['mongo_pass'];
+        $this->db_name      = $config_arr['mongo_db'];
+        $this->persist      = $config_arr['mongo_persist'];
+        $this->persist_key  = $config_arr['mongo_persist_key'];
+        $this->query_safety = $config_arr['mongo_query_safety'];
+        $this->mongo_return = $config_arr['mongo_return'];
+        $this->mongo_return = $config_arr['mongo_return'];
+        $host_db_flag         = (bool)$config_arr['host_db_flag'];
+        $connection_string  = "mongodb://";
+
+        $this->mongo_supers_connect_error = $config_arr['mongo_supers_connect_error'];
+
+        if(empty($this->host)){
+            trigger_error("The Host must be set to connect to MongoDB", E_USER_ERROR);
+        }
+
+        if(empty($this->db_name)){
+            trigger_error("The Database must be set to connect to MongoDB", E_USER_ERROR);
+        }
+
+//        if(!empty($this->user) && !empty($this->pass)){
+//            $connection_string .= "{$this->user}:{$this->pass}@";
+//        }
+
+        if(isset($this->port) && !empty($this->port)){
+            $connection_string .= "{$this->host}:{$this->port}";
+        }else{
+            $connection_string .= "{$this->host}";
+        }
+
+        if($host_db_flag === true){
+            $this->connection_string = trim($connection_string).'/'.$this->db_name;
+        }else{
+            $this->connection_string = trim($connection_string);
+        }
+
+        $this->options = array(
+            'username'         => $this->user,
+            'password'         => $this->pass,
+            'db'               => $this->db_name,
+            'connect'          => true, // true表示Mongo构造函数中建立连接。
+            'connectTimeoutMS' => 5000, // 配置建立连接超时时间，单位是ms
+            // 'replicaSet'       => false, // 配置replicaSet名称
+        );
+
+    }
+
+    /**
+     * --------------------------------------------------------------------------------
+     * _clear
+     * --------------------------------------------------------------------------------
+     *
+     * Resets the class variables to default settings
+     */
+    private function _clear(){
+        $this->selects = array();
+        $this->wheres  = array();
+        $this->limit   = 100;
+        $this->offset  = 0;
+        $this->sorts   = array();
     }
 
     /**
@@ -54,16 +155,17 @@ class Mongo_db {
      * --------------------------------------------------------------------------------
      *
      * Switch from default database to a different db
+     * @param       $database
+     * @return bool
      */
-
-    public function switch_db($database = '', $options = []){
+    public function switch_db($database){
         if(empty($database)){
-            trigger_error("To switch MongoDB databases, a new database name must be specified", E_USER_ERROR);
+            trigger_error("未选择数据库", E_USER_ERROR);
         }
         $this->connection_string = str_replace($this->db_name, $database, $this->connection_string);
         $this->db_name           = $database;
         try{
-            $this->db = new \MongoDB\Driver\Manager($this->connection_string, $options);
+            $this->db = new \MongoDB\Driver\Manager($this->connection_string, $this->options);
 
             return true;
         }catch(\Exception $e){
@@ -84,7 +186,6 @@ class Mongo_db {
      *
      * @usage: $this->mongo_db->select(array('foo', 'bar'))->get('foobar');
      */
-
     public function select($includes = array(), $excludes = array()){
         if(!is_array($includes)){
             $includes = array();
@@ -118,7 +219,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where(array('foo' => 'bar'))->get('foobar');
      */
-
     public function where($wheres = array()){
         foreach($wheres as $wh => $val){
             $this->wheres[$wh] = $val;
@@ -136,7 +236,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->or_where(array( array('foo'=>'bar', 'bar'=>'foo' ))->get('foobar');
      */
-
     public function or_where($wheres = array()){
         if(count($wheres) > 0){
             if(!isset($this->wheres['$or']) || !is_array($this->wheres['$or'])){
@@ -160,7 +259,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_in('foo', array('bar', 'zoo', 'blah'))->get('foobar');
      */
-
     public function where_in($field, $in = array()){
         $this->_where_init($field);
         $this->wheres[$field]['$in'] = $in;
@@ -177,7 +275,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_in('foo', array('bar', 'zoo', 'blah'))->get('foobar');
      */
-
     public function where_in_all($field, $in = array()){
         $this->_where_init($field);
         $this->wheres[$field]['$all'] = $in;
@@ -194,7 +291,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_not_in('foo', array('bar', 'zoo', 'blah'))->get('foobar');
      */
-
     public function where_not_in($field, $in = array()){
         $this->_where_init($field);
         $this->wheres[$field]['$nin'] = $in;
@@ -211,7 +307,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_gt('foo', 20);
      */
-
     public function where_gt($field, $x){
         $this->_where_init($field);
         $this->wheres[$field]['$gt'] = $x;
@@ -227,7 +322,6 @@ class Mongo_db {
      * Get the documents where the value of a $field is greater than or equal to $x
      * @usage : $this->mongo_db->where_gte('foo', 20);
      */
-
     public function where_gte($field, $x){
         $this->_where_init($field);
         $this->wheres[$field]['$gte'] = $x;
@@ -244,7 +338,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_lt('foo', 20);
      */
-
     public function where_lt($field, $x){
         $this->_where_init($field);
         $this->wheres[$field]['$lt'] = $x;
@@ -261,7 +354,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_lte('foo', 20);
      */
-
     public function where_lte($field, $x){
         $this->_where_init($field);
         $this->wheres[$field]['$lte'] = $x;
@@ -278,7 +370,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_between('foo', 20, 30);
      */
-
     public function where_between($field, $x, $y){
         $this->_where_init($field);
         $this->wheres[$field]['$gte'] = $x;
@@ -314,7 +405,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_not_equal('foo', 1)->get('foobar');
      */
-
     public function where_ne($field, $x){
         $this->_where_init($field);
         $this->wheres[$field]['$ne'] = $x;
@@ -331,8 +421,7 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_near('foo', array('50','50'))->get('foobar');
      */
-
-    function where_near($field = '', $co = array()){
+    public function where_near($field = '', $co = array()){
         $this->__where_init($field);
         $this->where['$near'] = $co;
 
@@ -368,7 +457,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->like('foo', 'bar', 'im', FALSE, TRUE);
      */
-
     public function like($field, $value = "", $flags = "i", $enable_start_wildcard = true, $enable_end_wildcard = true){
         $field = (string)trim($field);
         $this->where_init($field);
@@ -400,7 +488,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->where_between('foo', 20, 30);
      */
-
     public function order_by($fields = array()){
         foreach($fields as $col => $val){
             if($val == -1 || $val === false || strtolower($val) == 'desc'){
@@ -422,7 +509,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->limit($x);
      */
-
     public function limit($x = 99999){
         if($x !== null && is_numeric($x) && $x >= 1){
             $this->limit = (int)$x;
@@ -440,7 +526,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->offset($x);
      */
-
     public function offset($x = 0){
         if($x !== null && is_numeric($x) && $x >= 1){
             $this->offset = (int)$x;
@@ -458,7 +543,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->get_where('foo', array('bar' => 'something'));
      */
-
     public function get_where($collection = "", $where = array()){
         return ($this->where($where)->get($collection));
     }
@@ -472,7 +556,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->get('foo', array('bar' => 'something'));
      */
-
     public function get($collection = ""){
         if(empty($collection)){
             trigger_error("In order to retreive documents from MongoDB, a collection name must be passed", E_USER_ERROR);
@@ -514,7 +597,6 @@ class Mongo_db {
 
     }
 
-
     /**
      * --------------------------------------------------------------------------------
      * COUNT
@@ -524,7 +606,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->get('foo');
      */
-
     public function count($collection = ""){
         if(empty($collection)){
             trigger_error("In order to retreive a count of documents from MongoDB, a collection name must be passed", E_USER_ERROR);
@@ -551,7 +632,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->insert('foo', $data = array());
      */
-
     public function insert($collection = "", $insert = array()){
         if(empty($collection)){
             trigger_error("No Mongo collection selected to insert into", E_USER_ERROR);
@@ -596,7 +676,6 @@ class Mongo_db {
      *
      * @usage: $this->mongo_db->update('foo', $data = array());
      */
-
     public function update($collection = "", $data = array(), $upsert = false){
         if(empty($collection)){
             trigger_error("No Mongo collection selected to update", E_USER_ERROR);
@@ -622,7 +701,6 @@ class Mongo_db {
 
     }
 
-
     /**
      * --------------------------------------------------------------------------------
      * DELETE
@@ -632,7 +710,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->delete('foo', $data = array());
      */
-
     public function delete($collection = "", $where = array()){
         if(empty($collection)){
             trigger_error("No Mongo collection selected to delete from", E_USER_ERROR);
@@ -668,7 +745,6 @@ class Mongo_db {
      *
      * @usage : $this->mongo_db->delete_all('foo', $data = array());
      */
-
     public function delete_all($collection = "", $where = array()){
         if(empty($collection)){
             trigger_error("No Mongo collection selected to delete from", E_USER_ERROR);
@@ -695,111 +771,6 @@ class Mongo_db {
 
     }
 
-
-    /**
-     * --------------------------------------------------------------------------------
-     * CONNECT TO MONGODB
-     * --------------------------------------------------------------------------------
-     *
-     * Establish a connection to MongoDB using the connection string generated in
-     * the connection_string() method.  If 'mongo_persist_key' was set to true in the
-     * config file, establish a persistent connection.  We allow for only the 'persist'
-     * option to be set because we want to establish a connection immediately.
-     */
-
-    private function connect(){
-        $options = array();
-        if($this->persist === true){
-            $options['persist'] = isset($this->persist_key) && !empty($this->persist_key) ? $this->persist_key : 'ci_mongo_persist';
-        }
-        $options = array(
-            'connect'          => true, // true表示Mongo构造函数中建立连接。
-            'connectTimeoutMS' => 5000, // 配置建立连接超时时间，单位是ms
-            //  'replicaSet'       => false, // 配置replicaSet名称
-        );
-
-        try{
-            $this->db = new \MongoDB\Driver\Manager($this->connection_string, $options);
-
-            $this->write_concern = new \MongoDB\Driver\WriteConcern(\MongoDB\Driver\WriteConcern::MAJORITY, 100);
-
-            return ($this);
-        }catch(\MongoDB\Driver\ConnectionException $e){
-            if($this->mongo_supers_connect_error){
-                trigger_error("Unable to connect to MongoDB", E_USER_ERROR);
-            }else{
-                trigger_error("Unable to connect to MongoDB: {$e->getMessage()}", E_USER_ERROR);
-            }
-        }
-    }
-
-    /**
-     * --------------------------------------------------------------------------------
-     * BUILD CONNECTION STRING
-     * --------------------------------------------------------------------------------
-     *
-     * Build the connection string from the config file.
-     */
-
-    private function connection_string(){
-        $config_arr = include(BASE_PATH.'Conf/config.php');
-
-        $this->host         = $config_arr['mongo_host'];
-        $this->port         = $config_arr['mongo_port'];
-        $this->user         = $config_arr['mongo_user'];
-        $this->pass         = $config_arr['mongo_pass'];
-        $this->db_name      = $config_arr['mongo_db'];
-        $this->persist      = $config_arr['mongo_persist'];
-        $this->persist_key  = $config_arr['mongo_persist_key'];
-        $this->query_safety = $config_arr['mongo_query_safety'];
-        $this->mongo_return = $config_arr['mongo_return'];
-        $this->mongo_return = $config_arr['mongo_return'];
-        $host_db_flag         = (bool)$config_arr['host_db_flag'];
-        $connection_string  = "mongodb://";
-
-        $this->mongo_supers_connect_error = $config_arr['mongo_supers_connect_error'];
-
-        if(empty($this->host)){
-            trigger_error("The Host must be set to connect to MongoDB", E_USER_ERROR);
-        }
-
-        if(empty($this->db_name)){
-            trigger_error("The Database must be set to connect to MongoDB", E_USER_ERROR);
-        }
-
-        if(!empty($this->user) && !empty($this->pass)){
-            $connection_string .= "{$this->user}:{$this->pass}@";
-        }
-
-        if(isset($this->port) && !empty($this->port)){
-            $connection_string .= "{$this->host}:{$this->port}";
-        }else{
-            $connection_string .= "{$this->host}";
-        }
-
-        if($host_db_flag === true){
-            $this->connection_string = trim($connection_string).'/'.$this->db_name;
-        }else{
-            $this->connection_string = trim($connection_string);
-        }
-    }
-
-    /**
-     * --------------------------------------------------------------------------------
-     * _clear
-     * --------------------------------------------------------------------------------
-     *
-     * Resets the class variables to default settings
-     */
-
-    private function _clear(){
-        $this->selects = array();
-        $this->wheres  = array();
-        $this->limit   = 9999999;
-        $this->offset  = 0;
-        $this->sorts   = array();
-    }
-
     /**
      * --------------------------------------------------------------------------------
      * WHERE INITIALIZER
@@ -807,7 +778,6 @@ class Mongo_db {
      *
      * Prepares parameters for insertion in $wheres array().
      */
-
     private function _where_init($param){
         if(!isset($this->wheres[$param])){
             $this->wheres[$param] = array();
