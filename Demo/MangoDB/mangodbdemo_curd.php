@@ -20,6 +20,14 @@ function randomKeys($length = 18){
 
 $mongo_db = new Mongo_db();
 
+$res = $mongo_db->batch_insert('users',[
+    ['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com','address' => '深圳市龙岗区'],
+    ['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com'],
+    ['uid' => randomKeys(), 'name'=>randomKeys(),'time' => time(),'url' => 'http://www.runoob.com']
+]);
+var_dump($res);
+
+echo 1;exit;
 
 $res = $mongo_db->switch_db('test');
 $res = $mongo_db->where_gt('time',1585660181)->offset(101)->limit(2)->get('sites');
