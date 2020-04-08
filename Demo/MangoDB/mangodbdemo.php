@@ -74,6 +74,17 @@ use DevelopModel\MongoHandle;
 
 
 /**
+ * 如何选择
+ *
+ * MongoDB,Redis,HBase 三者都是NoSQL数据库，他们的最大区别和不同定位是什么？
+ *      MongoDB应用于简单场景下但是性能快高数倍于MySQL，
+ *      Redis使用非常简单、基本只能用来做缓存（稳坐缓存的第一把交椅），
+ *      HBase用来做离线计算；NoSQL的优点正好是SQL的软肋，器弱点正好是SQL的杀手锏。
+ *
+ *
+ */
+
+/**
  * MangoDB
  *
  * MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。
@@ -81,7 +92,7 @@ use DevelopModel\MongoHandle;
  * MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。
  *
  * 数据操作：支持创建指定大小的集合（记录条数和空间），数据都是类似JSON的 BSON 格式
- * 原子操作：MangoDB不支持事务，任何场景都不能要求保证数据完整性，但是它的所有操作的是原子操作，要么操作成功要么操作失败，不会成功一半的情况。
+ * 原子操作：MangoDB不支持事务，任何场景都不能要求保证数据完整性，要保证数据完整性的就不要用mongodb，但是它的所有操作的是原子操作，要么操作成功要么操作失败，不会成功一半的情况。
  * 层级关系：数据库 -> 集合 -> 文档
  * 基本操作：增删集合、增删查改文档
  * 索引：索引可以大大提高查询效率，如果没有索引，MangoDB就必须扫描整个集合中的所有文件并选取符合条件的记录。
@@ -106,6 +117,20 @@ use DevelopModel\MongoHandle;
  * 管理工具：RockMongo （PHP5开发的Web管理工具，类似 phpMyAdmin）
  *
  *
+ * 优缺点：
+ * 1、MySQL做存储，MongoDB做缓存：MongoDB里的数据是从MySQL中清洗出来存到MongoDB中的，多个MySQL表的数组综合起来存储在MongoDB中，MongoDB只做单点的业务需求，综合的数据还是在MySQL中。
+ * 2、MYSQL 与 MangoDB数据同步：两边建立一样的数据库、表名、字段名（方便数据同步）
+ * 3、字段不固定，可以自由拓展，很灵活；同时这也增加了数据的复杂性。
+ * 4、使得MongoDB能在生产环境中提供高读写的能力，吞吐量较于mysql等SQL数据库大大增强。
+ * 5、不支持主外键，无法像MySQL一样通过主外键保证数据的完整性。
+ *
+ *
+ *
+ *
+ */
+
+
+/**
  * Windows 下安装与使用：
  * 搭建服务器：http://www.runoob.com/mongodb/mongodb-window-install.html  （若 MSI 文件安装不成功，尝试使用 ZIP 文件搭建）
  * 创建数据库目录：C:\>mkdir data    数据文件夹
@@ -113,7 +138,6 @@ use DevelopModel\MongoHandle;
  * 启动服务：C:\MongoDB\bin\mongod --dbpath C:\data\db
  *           C:\MongoDB\bin\mongo.exe  客户端连接
  * 查看安装是否成功：db.version()  查看安装的版本号
- *
  *
  *
  * Ubuntu 18.04 LTS 环境下安装与使用：
@@ -148,12 +172,6 @@ use DevelopModel\MongoHandle;
  * 登录的快捷方式： > mongo admin -u root -p 123456  admin是数据库名称，默认进入的数据库
  *
  * 文件存储路径：cat /etc/mongodb.conf    dbpath就是文件存储的位置
- */
-
-/**
- * MYSQL 与 MangoDB数据同步：两边建立一样的数据库、表名、字段名（方便数据同步）
- *
- *
  */
 
 

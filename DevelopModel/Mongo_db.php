@@ -90,7 +90,6 @@ class Mongo_db {
         $this->persist_key  = $config_arr['mongo_persist_key'];
         $this->query_safety = $config_arr['mongo_query_safety'];
         $this->mongo_return = $config_arr['mongo_return'];
-        $this->mongo_return = $config_arr['mongo_return'];
         $host_db_flag       = (bool)$config_arr['host_db_flag'];
         $connection_string  = "mongodb://";
 
@@ -406,7 +405,7 @@ class Mongo_db {
      * @usage : $this->mongo_db->where_near('foo', array('50','50'))->get('foobar');
      */
     public function where_near($field = '', array $co){
-        $this->__where_init($field);
+        $this->_where_init($field);
         $this->where['$near'] = $co;
 
         return ($this);
@@ -444,7 +443,7 @@ class Mongo_db {
      */
     public function like($field, $value = "", $flags = "i", $enable_start_wildcard = true, $enable_end_wildcard = true){
         $field = (string)trim($field);
-        $this->where_init($field);
+        $this->_where_init($field);
         $value = (string)trim($value);
         $value = quotemeta($value);
 
@@ -565,14 +564,16 @@ class Mongo_db {
         $returns = array();
 
         foreach($cursor as $doc){
+            if($this->mongo_return == 'object'){
+                $doc = (object)$doc;
+            }else{
+                $doc = json_decode(json_encode($doc),true);
+            }
+
             $returns[] = $doc;
         }
 
-        if($this->mongo_return == 'object'){
-            return (object)$returns;
-        }else{
-            return $returns;
-        }
+        return $returns;
     }
 
     /**
@@ -629,7 +630,7 @@ class Mongo_db {
             }
 
             if($id){
-                $result = $this->db->executeBulkWrite($this->db_name.".".$collection, $bulk);
+                $result = $this->db->executeBulkWrite($this->db_name.".".$collection, $bulk);// Returns MongoDB\Driver\WriteResult on success.
                 if($result->getInsertedCount()){
                     return $id;
                 }else{

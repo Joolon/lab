@@ -27,9 +27,12 @@ $mongo_db = new Mongo_db();
 //]);
 
 $res = $mongo_db->switch_db('test');
+
+$mongo_db->mongo_return = 'object';
+
 $res = $mongo_db->where_gt('time',1585660181)
     ->offset(1)
-    ->limit(3)
+    ->limit(4)
     ->get('sites');
 
 print_r($res);
