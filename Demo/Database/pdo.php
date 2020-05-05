@@ -16,7 +16,7 @@ use Db\UPdo;
  *
  *
  * PDO：
- * PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口。
+ * PHP 数据对象 （PDO ：PHP Data Objects） 扩展为PHP访问数据库定义了一个轻量级的一致接口。
  * PDO 提供了一个数据访问抽象层，这意味着，不管使用哪种数据库，都可以用相同的函数（方法）来查询和获取数据。
  *
  *
@@ -29,14 +29,19 @@ use Db\UPdo;
  */
 
 
+
 //$uPDO = UPdo::getInstance();
 //$pdoStatement = $uPDO->query('SELECT * from pur_order_old limit 4');
-//
 //print_r($pdoStatement->fetchAll(\PDO::FETCH_ASSOC));exit;
 
-//$conn = new mysqli('localhost', 'root', 'root', 'demo');
-//$sql = "select * from pur_order_old limit 2";
-//$query = $conn->query($sql);
-//while($row = $query->fetch_array()){
-//    print_r($row);
-//}
+
+$conn = new mysqli('localhost', 'root', 'root', 'demo');
+$sql = "select * from pur_order_old limit 4";
+$query = $conn->query($sql);
+// fetch_assoc 关联数组展示
+//print_r($query->fetch_object());exit;
+while($row = $query->fetch_array()){
+    print_r($row);
+}
+
+echo 'sss';exit;
