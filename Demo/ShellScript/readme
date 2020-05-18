@@ -1,0 +1,63 @@
+# shell
+
+# shell 是用 c 语言编写的应用程序，通过该程序可以访问到操作系统内核的服务，是用户使用 linux 的桥梁；
+# shell 即是一种命令语言，也是一种程序设计语言；
+
+# 应用举例：Windows Explorer，Unix shell
+
+
+# shell脚本介绍（shell script）
+
+# shell脚本是为 shell 写的一种应用程序，通常说的 shell 是指 shell脚本，但是 shell 和 shell脚本是两个概念。
+# 开发环境：只要有一个能写代码的编辑器和一个能解释执行的脚本解释器就可以了。
+
+
+
+# shell脚本的版本
+
+# Bourne Shell(/usr/bin/sh 或 /bin/sh)
+# Bourne Again Shell(/bin/bash)
+# C Shell(/usr/bin/csh)
+# K Shell(/usr/bin/ksh)
+# Shell for Root(/sbin/sh)
+
+---- 前面是shell脚本的种类，后面是shell脚本解释器的shell程序
+---- 由于 bash 易用且免费，被广泛使用。
+
+
+
+
+# 延伸：
+# 图灵奖：美国计算机协会设立的专门奖励对计算机事业做出重要贡献的个人。
+
+
+
+
+
+
+
+# 语法
+
+#  #! 告诉系统其后的路径所指定的程序即是解释此脚本的 shell程序（是一个约定标记，用来告诉用什么shell程序来执行脚本）
+
+
+#!/bin/bash
+
+
+echo 命令向命令窗口输出内容
+
+运行方式：作为可执行程序（直接敲命令的模式） 或 作为解释器参数（/bin/bash  ./test.sh ）
+
+/bin/bash ./test.sh 与 /bin/bash test.sh 的区别：
+---- /bin/bash ./test.sh 是在当前目录中查找（cd 切换后的目录），/bin/bash test.sh 是在系统 PATH 里面查找，当然是找不到的。
+
+
+
+
+
+
+
+
+
+
+
