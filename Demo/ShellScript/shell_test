@@ -68,7 +68,7 @@ echo "My name is ${myName}test"
 
 
 
-# 传递参数  - 作为解释器参数运行
+# 传递参数  - 作为可执行程序
 # 
 
 
