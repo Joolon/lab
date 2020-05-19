@@ -1,6 +1,6 @@
 
 #!/bin/bash  指定解释器程序
-# echo       用来输出内容
+# echo       用来输出内容（双引号可以省略，效果完全一样）
 # readonly   只读变量（将变量定义为只读变量，其值不能被改变  错误提示：-bash: myurl: readonly variable）
 # unset      删除变量（不能删除 只读变量）
 
