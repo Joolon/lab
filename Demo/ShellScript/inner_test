@@ -7,9 +7,10 @@
 # ./inner_test 1 2 3 4 5 6
 
 
-echo "\n\n\n";
-echo "\n\n\n";
-echo "\n\n\n";
+echo "";
+echo "";
+echo "";
+
 echo "作为可执行程序传递参数";
 echo "执行的文件名为：$0"; # 注意 这里文件名也当做参数了
 echo "第一个参数为：$1";
@@ -37,9 +38,11 @@ done;
 
 
 
-echo "\n\n\n";
-echo "\n\n\n";
-echo "\n\n\n";
+echo "";
+echo "";
+echo "";
+
+
 echo "---- 演示数组 array_name=(a b c defghi) ----"
 array_name=(a b c def);
 
@@ -53,15 +56,23 @@ echo "数组所有元素：${array_name[@]}";
 
 
 
-echo "\n\n\n";
-echo "\n\n\n";
-echo "\n\n\n";
+echo "";
+echo "";
+echo "";
+
+
 
 # expr 是一个表达式运算工具，用 `` 符号包括，表达式和运算符之间要有空格
 #       var=`expr 2 + 3`   var的值为5
 
 var=`expr 2 + 3`
 echo "expr 2 + 3 表达式：$var "
+
+
+echo "";
+echo "";
+echo "";
+
 
 
 echo "假设： a=26 b=5"
