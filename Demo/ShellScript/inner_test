@@ -70,7 +70,7 @@ b=5
 
 echo "算术运算符（加、减、乘、除、取余、赋值、相等、不相等）";
 
-if [ $a == $b]
+if [ `$a == $b`]
 then
     echo "$a 等于 $b"
 fi
@@ -181,7 +181,7 @@ fi
 if [ -n $a]
 then
     echo  "-n ：$a 字符长长度不为 0"
-then
+else
     echo "-n ：$a 字符串长度为 0"
 fi
 
