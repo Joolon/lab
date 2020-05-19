@@ -1,6 +1,10 @@
-#!/bin/bash  # 指定解释器程序
+# 指定解释器程序，必须单独占一行，不能有其他东西
 
-# 作为可执行程序 ./inner_test 1 2 3 4 5 6
+#!/bin/bash
+
+# 作为可执行程序
+# chmod +x inner_test  给予可执行权限
+# ./inner_test 1 2 3 4 5 6
 
 
 

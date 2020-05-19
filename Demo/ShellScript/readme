@@ -21,8 +21,9 @@
 # K Shell(/usr/bin/ksh)
 # Shell for Root(/sbin/sh)
 
----- 前面是shell脚本的种类，后面是shell脚本解释器的shell程序
+---- 前面是shell脚本的种类，后面是shell脚本解释器的shell程序。
 ---- 由于 bash 易用且免费，被广泛使用。
+---- 指定解释器程序，必须单独占一行，不能有其他东西。
 
 
 
