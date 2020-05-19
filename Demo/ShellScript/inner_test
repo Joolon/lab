@@ -7,15 +7,14 @@
 # ./inner_test 1 2 3 4 5 6
 
 
-#-e 开启转义，\c 不换行
-#-e 开启转义，\n 换行
+# -e 开启转义，\n 换行，\c 不换行（只对当前单条语句有效）
 
 echo -e "\n\n\n";
 echo -e "My name is: \c";
 echo "Jolon";
 
 echo -e "\n\n\n";
-echo "当前时间为：\c";
+echo -e "当前时间为：\c";
 echo `date`;
 
 echo "It is a test" > myfile;
