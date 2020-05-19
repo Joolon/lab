@@ -70,12 +70,12 @@ b=5
 
 echo "算术运算符（加、减、乘、除、取余、赋值、相等、不相等）";
 
-if [ a == b]
+if [ $a == $b]
 then
     echo "$a 等于 $b"
 fi
 
-if [ a != b]
+if [ $a != $b]
 then
     echo "$a 不等于 $b"
 fi
@@ -90,12 +90,12 @@ echo "关系运算符"
 # ge 大于等于 greater than
 # le 小于等于 less than
 
-if [ a -eq b]
+if [ $a -eq $b]
 then echo "$a 等于 $b"
 else echo "$a 不等于 $b"
 fi
 
-if [ a -gt b]
+if [ $a -gt $b]
 then
     echo "$a 大于 $b"
 else
@@ -109,14 +109,14 @@ echo "布尔运算符（与、或、非）"
 # -o  或运算
 # -a  与运算
 
-if [ a -lt 25 -o b -gt 5]
+if [ $a -lt 25 -o $b -gt 5]
 then
     echo "$a 小于 25 或 $b 大于 5：true"
 else
     echo "$a 小于 25 或 $b 大于 5：false"
 fi
 
-if [ a -lt 25 -a b -gt 5]
+if [ $a -lt 25 -a $b -gt 5]
 then
     echo "$a 小于 25 且 $b 大于 5：true"
 else
@@ -156,7 +156,7 @@ echo "字符串运算符（=、!=、-z、-n、$）"
 # $     字符串是否为空
 
 echo "假设 a=abc b=abd"
-if [ a = b ]
+if [ $a = $b ]
 then
     echo "$a = $b"
 else
@@ -164,21 +164,21 @@ else
 fi
 
 
-if [ a != b ]
+if [ $a != $b ]
 then
     echo "$a != $b"
 else
     echo "$a = $b"
 fi
 
-if [ -z a]
+if [ -z $a]
 then
     echo "-z ：$a 字符串长度为 0"
 else
     echo "-z ：$a 字符串长度不为 0"
 fi
 
-if [ -n a]
+if [ -n $a]
 then
     echo  "-n ：$a 字符长长度不为 0"
 then
