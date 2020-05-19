@@ -7,21 +7,21 @@
 # ./inner_test 1 2 3 4 5 6
 
 
-# -e 开启转义，\c 不换行
-# -e 开启转义，\n 换行
+#-e 开启转义，\c 不换行
+#-e 开启转义，\n 换行
 
-echo -e "\n\n\n"";
+echo -e "\n\n\n";
 echo -e "My name is: \c";
 echo "Jolon";
 
-echo -e "\n\n\n"";
+echo -e "\n\n\n";
 echo "当前时间为：\c";
 echo `date`;
 
 echo "It is a test" > myfile;
 
 
-echo -e "\n\n\n"";
+echo -e "\n\n\n";
 
 echo "作为可执行程序传递参数";
 echo "执行的文件名为：$0"; # 注意 这里文件名也当做参数了
@@ -50,7 +50,7 @@ done;
 
 
 
-echo -e "\n\n\n"";
+echo -e "\n\n\n";
 
 
 echo "---- 演示数组 array_name=(a b c defghi) ----"
@@ -66,7 +66,7 @@ echo "数组所有元素：${array_name[@]}";
 
 
 
-echo -e "\n\n\n"";
+echo -e "\n\n\n";
 
 
 
@@ -77,9 +77,7 @@ var=`expr 2 + 3`
 echo "expr 2 + 3 表达式：$var "
 
 
-echo "";
-echo "";
-echo "";
+echo -e "\n\n\n";
 
 
 
