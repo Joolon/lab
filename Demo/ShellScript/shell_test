@@ -42,7 +42,7 @@
 # echo `expr index "$string" io`  查找字符串，查找 i 或 o 的位置
 
 
-# 数组：bash 只支持一维数组，不支持多维数据。不限定数组的大小，数组元素下标从0开始计数。
+# 数组：bash 只支持一维数组，不支持多维数据。不限定数组的大小，数组元素下标从0开始计数，数组元素用"空格"符号分隔开。
 
 # 数组函数
 # echo ${array_name[2]}     读取数组的索引为2 的元素
@@ -56,26 +56,173 @@
 # 2、多行注释：以 :<<EOF  或 :<<' 开头来包括代码达到注释的目的。
 
 
+# 运算符
 
-myName = "jolon"; #错误
+# 算术运算符（加、减、乘、除、取余、赋值、相等、不相等）
+# 关系运算符
+# 布尔运算符
+# 字符串运算法
+# 文件测试运算法
 
-myName="jolon";
-
-echo $myName
-echo "My name is $myNametest";
-echo "My name is ${myName}test"
-
-
-
-
-# 传递参数  - 作为可执行程序
-# 
+运算符优先级关系： 算术运算符 > 关系运算符
 
 
-# for 语句
-for i in "$*"; do
-    echo $i
-done
+# expr 是一个表达式运算工具，用 `` 符号包括，表达式和运算符之间要有空格
+#       var=`expr 2 + 3`   var的值为5
+
+
+echo "假设： a=26 b=5"
+a=26
+b=5
+
+echo "算术运算符（加、减、乘、除、取余、赋值、相等、不相等）";
+
+if [ a == b]
+then
+    echo "$a 等于 $b"
+fi
+
+if [ a != b]
+then
+    echo "$a 不等于 $b"
+fi
+
+
+
+echo "关系运算符"
+# eq 等于 equal
+# ne 不等于 not equal
+# gt 大于 greater than
+# lt 小于 less than
+# ge 大于等于 greater than
+# le 小于等于 less than
+
+if [ a -eq b]
+then echo "$a 等于 $b"
+else echo "$a 不等于 $b"
+fi
+
+if [ a -gt b]
+then
+    echo "$a 大于 $b"
+else
+    echo "$a 不大于 $b"
+fi
+
+
+
+echo "布尔运算符（与、或、非）"
+# !   非运算
+# -o  或运算
+# -a  与运算
+
+if [ a -lt 25 -o b -gt 5]
+then
+    echo "$a 小于 25 或 $b 大于 5：true"
+else
+    echo "$a 小于 25 或 $b 大于 5：false"
+fi
+
+if [ a -lt 25 -a b -gt 5]
+then
+    echo "$a 小于 25 且 $b 大于 5：true"
+else
+    echo "$a 小于 25 且 $b 大于 5：false"
+fi
+
+
+
+
+echo  "逻辑运算符（逻辑与、逻辑或） 和 布尔运算符类似，或者说 布尔运算符是逻辑运算符的一种"
+# && 逻辑与
+# || 逻辑或
+
+if [[ $a -lt 100 && $b -gt 100 ]]
+then
+   echo "返回 true"
+else
+   echo "返回 false"
+fi
+
+if [[ $a -lt 100 || $b -gt 100 ]]
+then
+   echo "返回 true"
+else
+   echo "返回 false"
+fi
+
+
+
+
+echo "字符串运算符（=、!=、-z、-n、$）"
+
+# =     字符串是否相等
+# !=    字符串是否不相等
+# -z    字符串长度是否为0，为0返回true
+# -n    字符串长度是否不为0，不为0返回true
+# $     字符串是否为空
+
+echo "假设 a=abc b=abd"
+if [ a = b ]
+then
+    echo "$a = $b"
+else
+    echo "$a != $b"
+fi
+
+
+if [ a != b ]
+then
+    echo "$a != $b"
+else
+    echo "$a = $b"
+fi
+
+if [ -z a]
+then
+    echo "-z ：$a 字符串长度为 0"
+else
+    echo "-z ：$a 字符串长度不为 0"
+fi
+
+if [ -n a]
+then
+    echo  "-n ：$a 字符长长度不为 0"
+then
+    echo "-n ：$a 字符串长度为 0"
+fi
+
+
+echo "文件测试运算符（用于检测文件的各种属性）"
+# -e file 检测文件file是否存在
+# -b file 检测文件file是否是块设备文件
+# -c file 检测文件file是否是字符设备文件
+# -d file 检测文件file是否是目录
+# -r file 检测文件file是否可读
+# -w file 检测文件file是否可写
+# -x file 检测文件file是否可执行
+# -s file 检测文件file是否为空
+
+if [ -x inner_test ]
+then echo "文件 inner_test 可执行"
+else echo "文件 inner_test 不可执行"
+fi
+
+if [ -e inner_test_001 ]
+then echo "文件 inner_test_001 存在"
+else echo "文件 inner_test_001 不存在"
+fi
+
+
+
+
+
+
+
+
+
+
+
 
 
 

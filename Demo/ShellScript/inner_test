@@ -7,7 +7,8 @@
 # ./inner_test 1 2 3 4 5 6
 
 
-
+echo "\n\n\n";
+echo "作为可执行程序传递参数";
 echo "执行的文件名为：$0"; # 注意 这里文件名也当做参数了
 echo "第一个参数为：$1";
 echo "第二个参数为：$2";
@@ -19,6 +20,7 @@ echo "所有传递的参数，作为带双引号的字符串显示：$@";# $@ �
 echo "当前脚本进程的ID：$$";
 
 
+echo "如果参数不存在的话 也不会报错的";
 
 echo "---- \$* 演示 ----";
 for i in "$*"; do
@@ -29,6 +31,32 @@ echo "---- \$@ 演示 ----";
 for i in "$@"; do
     echo $i;
 done;
+
+
+
+
+echo "\n\n\n";
+echo "---- 演示数组 array_name=(a b c def) ----"
+array_name=(a b c def);
+
+echo "数组元素的个数：${#array_name[*]}";
+echo "数组元素的个数：${#array_name[@]}";
+echo "数组第2个元素：${array_name[2]}";
+echo "数字指定元素的长度：${#array_name[3]}";
+echo "数组所有元素：${array_name[@]}";
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
