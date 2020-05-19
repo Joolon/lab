@@ -64,3 +64,21 @@ myName="jolon";
 echo $myName
 echo "My name is $myNametest";
 echo "My name is ${myName}test"
+
+
+
+
+# 传递参数  - 作为解释器参数运行
+# 
+
+
+# for 语句
+for i in "$*"; do
+    echo $i
+done
+
+
+
+
+
+
