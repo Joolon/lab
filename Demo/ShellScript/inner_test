@@ -14,6 +14,8 @@ echo "Jolon";
 
 echo -e "\n\n\n"";
 
+echo "当前时间为：" `date`;
+
 
 
 echo "作为可执行程序传递参数";
