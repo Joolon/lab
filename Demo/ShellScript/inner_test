@@ -292,10 +292,11 @@ do
 done
 
 
-echo "while 语句";
+echo "while 语句：  ((  )) 这两个括号之间不能有空格，否则会报错";
 echo "输出 1 到 5 的数字："
 int=1
-while ( $int <= 5 )
+#
+while (( $int <= 5 ))
 do
     echo $int;
     $int=`expr $int + 1`
@@ -307,7 +308,13 @@ echo "请输入信息：";
 
 while read film
 do
-    echo "您输入了：$film ";
+    if [ $film != "none" ]
+    then
+        echo "您输入了：$film ";
+    else
+        echo "您退出了输入！"
+        break;
+    fi
 done
 
 
