@@ -203,14 +203,14 @@ fi
 
 
 echo "文件测试运算符（用于检测文件的各种属性）"
-# -e file 检测文件file是否存在
-# -b file 检测文件file是否是块设备文件
-# -c file 检测文件file是否是字符设备文件
-# -d file 检测文件file是否是目录
-# -r file 检测文件file是否可读
-# -w file 检测文件file是否可写
-# -x file 检测文件file是否可执行
-# -s file 检测文件file是否为空
+# -e file 检测文件 file 是否存在
+# -b file 检测文件 file 是否是块设备文件
+# -c file 检测文件 file 是否是字符设备文件
+# -d file 检测文件 file 是否是目录
+# -r file 检测文件 file 是否可读
+# -w file 检测文件 file 是否可写
+# -x file 检测文件 file 是否可执行
+# -s file 检测文件 file 是否为空（有一个字符就不为空）
 
 if [ -x inner_test ]
 then echo "文件 inner_test 可执行"
@@ -225,6 +225,121 @@ fi
 
 
 
+
+
+echo -e "\n\n\n";
+echo "printf 函数（输出内容、格式化字符串、不会换行）";
+# 格式化字符
+# %s 格式化字符串（%8s  %-8s）
+# %c 格式化字符（%c 格式化为一个字符串，如果有多个字符的字符串只显示第一个字符）
+# %d 格式化数字
+# %f 格式化浮点数
+# - 左对齐，没有则默认右对齐
+
+# 转移字符
+# \a 警告字符（相当于什么都没有）
+# \b 退格
+# \f 换页
+# \n 换行
+# \r 回车
+# \t 水平制表符
+# \v 垂直制表符
+
+
+printf "%-10s %-8s %-4.2s\n" 姓名 性别 体重kg
+printf "%-10s %-8s %-4.2f\n" 郭靖 男 66.1234
+printf "%-10s %-8s %-4.2f\n" 杨过 男 48.6543
+printf "%-10s %-8s %-4.2f\n" 郭芙 女 47.9876
+
+
+
+
+echo -e "\n\n\n";
+
+
+echo "if-else 语句";
+echo "if else：if then else fi";
+
+# if else：if then else fi
+if [ $a -lt $b ]
+then echo " $a 小于  $b "
+else echo " $ a 不小于 $b "
+fi
+
+echo "if else-if else：if then elif then else fi";
+
+# if else-if else：if then elif then else fi
+if [ $a -lt $b ]
+then echo " $a 小于 $b "
+elif [ $a == $b ]
+then echo " $a == $b "
+else echo " $a 大于 $b "
+fi
+
+echo "for 语句";
+echo "for var in 1 2 3 4 "
+for var in 1 2 3 4
+do
+    echo $var
+done
+
+
+echo "for var in array_name(10 20 30 40) "
+array_name=(10 20 30 40);
+for var in $array_name
+do
+    echo $var
+done
+
+
+echo "while 语句";
+echo "输出 1 到 5 的数字："
+int=1
+while ( $int <= 5 )
+do
+    echo $int;
+    $int=`expr $int + 1`
+done
+
+
+echo "按下 <CTRL-D> 退出";
+echo "请输入信息：";
+
+while read film
+do
+    echo "您输入了：$film ";
+done
+
+
+echo "无限循环";
+while true
+do
+    echo `date`
+done
+
+
+echo  "until 循环：直到变成真时退出，跟 while 非常相似";
+
+
+echo "case 多选择语句：;; 选择结束符，* 无一匹配模式， 3|4 匹配到3或4"
+echo "请输入 1 到 4 之间的数字："
+read aNum
+echo "您输入的数字为："
+
+case aNum in
+    1) echo "1";
+    ;;
+
+    2) echo "2";
+    ;;
+
+    3|4) echo "3 或 4";
+    ;;
+
+    # * 表示无一匹配模式
+    *) echo "您输入的数字超过了范围";
+
+esac;
 
 
 
