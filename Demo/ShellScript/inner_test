@@ -345,7 +345,8 @@ case aNum in
     ;;
 
     # * 表示无一匹配模式
-    *) echo "您输入的数字超过了范围";
+    *) echo $aNum;
+    echo "您输入的数字超过了范围";
 
 esac;
 
