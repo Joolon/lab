@@ -299,7 +299,7 @@ int=1
 while (( $int <= 5 ))
 do
     echo $int;
-    $int=`expr $int + 1`
+    int=`expr $int + 1`
 done
 
 
