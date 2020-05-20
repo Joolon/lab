@@ -350,6 +350,24 @@ case aNum in
 
 esac;
 
+echo "\n\n\n";
+echo "开始数字游戏："
+while true
+do
+    echo "请输入一个 0 到 9 之间的数字，然后按[Enter]键确认："
+    read uNum
+    case $uNum in
+     1|3|5|7|9) echo "您输入了一个奇数";
+     ;;
+
+     2|4|6|8|0) echo "您输入了一个偶数"
+     ;;
+
+     *) echo "您输入的数据太大了"
+     break;
+done
+
+
 
 
 
