@@ -334,6 +334,7 @@ echo "请输入 1 到 4 之间的数字："
 read aNum
 echo "您输入的数字为："
 
+:<<'
 case aNum in
     1) echo "1";
     ;;
@@ -349,6 +350,7 @@ case aNum in
     echo "您输入的数字超过了范围";
 
 esac;
+'
 
 echo "\n\n\n";
 echo "开始数字游戏："
