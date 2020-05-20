@@ -1,5 +1,5 @@
-
 #!/bin/bash  指定解释器程序
+
 # echo       用来输出内容到窗口、文件（双引号可以省略，效果完全一样）
 # printf     输出内容、格式化字符串，不会自动换行（添加 \n 使其换行）
 # readonly   只读变量（将变量定义为只读变量，其值不能被改变  错误提示：-bash: myurl: readonly variable）
@@ -56,7 +56,7 @@
 
 # 注释
 # 1、单行注释：以 # 开头的行就是注释，会被解释器忽略。
-# 2、多行注释：以 :<<EOF  或 :<<' 开头来包括代码达到注释的目的。
+# 2、多行注释：以 :<<EOF ... EOF  或 :<<' ... ' 开头来包括代码达到注释的目的。
 
 
 # 运算符
@@ -83,70 +83,6 @@
 # case-esac 语句
 # break     语句
 # continue  语句
-
-
-
-
-# if else：if then else fi
-if [ $a -lt $b ]
-then echo " $a 小于  $b "
-else echo " $ a 不小于 $b "
-fi
-
-
-# if else-if else：if then elif then else fi
-
-if [ $a -lt $b ]
-then
-    echo " $a 小于 $b "
-elif [ $a == $b ]
-then
-    echo " $a == $b "
-else
-    echo " $a 大于 $b "
-fi
-
-
-# for 语句
-for var in $array
-do
-    command
-done
-
-
-# while 语句
-
-while command
-do
-    command
-done
-
-
-
-int=1
-while ( $int <= 5 )
-do
-    echo $int;
-    $int=`expr $int + 1`
-done
-
-echo "按下 <CTRL-D> 退出";
-echo "请输入信息：";
-
-while read film
-do
-    echo "您输入了：$film ";
-done
-
-
-
-
-
-
-
-
-
-
 
 
 
