@@ -322,6 +322,7 @@ echo "无限循环";
 while true
 do
     echo `date`
+    break
 done
 
 
