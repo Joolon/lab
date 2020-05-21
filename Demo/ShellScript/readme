@@ -2,6 +2,8 @@
 
 # shell 是用 c 语言编写的应用程序，通过该程序可以访问到操作系统内核的服务，是用户使用 linux 的桥梁；
 # shell 即是一种命令语言，也是一种程序设计语言；
+# shell 是一个命令解释器
+
 
 # 应用举例：Windows Explorer，Unix shell
 
