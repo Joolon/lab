@@ -407,15 +407,21 @@ echo $?
 
 function demoFun2(){
  echo "这是我的第二个 shell 函数!"
- expr 1 + 1
+ return `expr 2 + 2`
 }
 
 demoFun2
 echo $?
 demoFun1
 echo 在这里插入命令！
-echo $?
+echo $? # 只能在函数执行之后立即获取返回值，如果中间执行了其他代码就获取不到了，应该被覆盖了吧
 
+
+
+echo -e "-\n\n\n";
+
+echo "Hello World!" | grep "Wor";# 从目标字符串中匹配子字符串，返回匹配位置开始之后的字符
+echo $?;  # 输出匹配成功与否  0.匹配到，1.未匹配到
 
 
 

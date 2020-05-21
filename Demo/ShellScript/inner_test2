@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "欢迎来到 inner_test2"
+
+
+. ./inner_test
+
+
+echo "inner_test2声明周期已经结束了";
