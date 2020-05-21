@@ -81,4 +81,71 @@ class HttpTool{
     }
 
 
+
+    /**
+     * 根据参数 生成 token
+     * @param $sku_list
+     * @return array|string
+     */
+    public function create_access_token($params){
+        $params    = $this->format_params();
+        $params    = $this->ascSort($params);
+        $new_token = strtolower(md5($this->createLinkString($params).$this->_api_secret));
+
+        $params['token'] = $new_token;
+
+        return $params;
+    }
+
+
+    public function ascSort($para = ''){
+        if(is_array($para)){
+            ksort($para);
+            reset($para);
+        }
+
+        return $para;
+    }
+
+    /**
+     * 格式化参数
+     * @return array
+     */
+    private function format_params(){
+
+        $params = [
+
+
+        ];
+
+        return $params;
+    }
+
+    /**
+     * 参数加密拼接方法
+     * @param $para
+     * @return bool|string
+     */
+    private function createLinkString($para){
+        $arg = "";
+        foreach($para as $key => $val){
+            if($val === '' || $val === null)
+                continue;
+            if(is_array($val))
+                $val = json_encode($val);
+            $arg .= $key."=".urlencode($val)."&";
+        }
+
+        //去掉最后一个&字符
+        $arg = substr($arg, 0, count($arg) - 2);
+
+        //如果存在转义字符，那么去掉转义
+        if(get_magic_quotes_gpc()){
+            $arg = stripslashes($arg);
+        }
+
+        return $arg;
+    }
+
+
 }

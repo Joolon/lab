@@ -1,19 +1,16 @@
 <?php
 
 
-$mq = new Rabbitmq();
-//设置参数
-$mq->setQueueName('PURCHASE_DATA_DOWN');
-$mq->setExchangeName('EXPORTLIST');
-$mq->setRouteKey('PURCHASE_DATA_DOWN_ON_WAY_R_KEY');
-$mq->setType(AMQP_EX_TYPE_DIRECT);
-//            //构造存入数据 +
-$push_data = [
-    'data' => []
-];
 
 //存入消息队列
-$mq->sendMessage($push_data);
+$mq = new Rabbitmq();//创建消息队列对象
+$mq->setQueueName('STATEMENT_WARE_RECORD_REFRESH');//设置参数
+$mq->setExchangeName('STATEMENT_ORDER');//构造存入数据
+$mq->setRouteKey('STATEMENT_WARE_RECORD_REFRESH_FOR_001');
+$mq->setType(AMQP_EX_TYPE_DIRECT);
+$mq->sendMessage($push_data_list);
+
+
 
 class Rabbitmq{
     private $CI;
