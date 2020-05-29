@@ -1,11 +1,12 @@
-Swoole：让 PHP 无所不能
+Swoole：让 PHP 无所不能（高性能异步并发）
 
 概述：
     Swoole 是一个PHP的协程高性能的网络通信引擎，通过C/C++语言编写，提供了多种网络协议的网络服务器端和客户端模块。
 可以快速方便的实现 TCP/UDP服务、高性能Web、WebSocket服务、物联网、实时通信、游戏、微服务等，使PHP 不在局限于传统的Web领域。
 
-支持的操作系统：Linux、FreeBSD、MacOS
-
+运行：
+1、支持的操作系统：Linux、FreeBSD、MacOS
+2、Swoole 提供的绝大的部分模块只能用于 cli 命令行终端。
 
 
 Windows 环境搭建swoole ：
@@ -30,7 +31,7 @@ Ubuntu 18.04.14 LTS 系统上的使用：
     最后，编译安装成功后，修改 php.ini 加入  extension=swoole.so  （如果不确定 php.ini 文件在哪里可以使用 php --ini 查看文件的绝对路径，进去修改）
 
     执行 php -m 查看安装的模块，发现已经有了 swoole 说明安装成功。（如果 php -m 一直看不到 swoole 的话那就有可能是 php.ini 文件没改正确）
-
+    执行 php --ri swoole 查看 swoole 拓展信息
 
 
 使用：
