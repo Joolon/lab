@@ -21,7 +21,7 @@ Swoole 提供了异步任务处理的功能，可以投递一个异步任务到 
 $userInfo = ['name'=>'jack','email'=>'jack@qq.com']; // 这是我们准备传递给swoole服务端的数据
 
 // 创建swoole客户端
-$client = new swoole_client(SWOOLE_SOCK_TCP);
+$client = new Swoole\Client(SWOOLE_SOCK_TCP);
 
 if (!$client->connect(SWOOLE_SERVER, 9505, -1))
 {
