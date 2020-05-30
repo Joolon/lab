@@ -30,6 +30,8 @@ $ws->on('message', function ($ws, $frame) {
 		$ws->push($frame->fd, "server: onMessage".date('Y-m-d H:i:s'));
 		
 	}
+	
+	
 });
 
 //监听WebSocket连接关闭事件
