@@ -12,7 +12,7 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
  */
  
 //创建websocket服务器对象，监听0.0.0.0:9502端口
-$ws = new Swoole\WebSocket\Server("0.0.0.0", 9504);
+$ws = new Swoole\WebSocket\Server(SWOOLE_SERVER, 9504);
 
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) {

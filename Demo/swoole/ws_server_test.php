@@ -17,7 +17,7 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
 <script lang="javascript">
 
 
-var wsServer = 'ws://<?php echo SWOOLE_SERVER ?>:9502';
+var wsServer = 'ws://<?php echo SWOOLE_SERVER ?>:9504';
 
 alert(wsServer);
 var websocket = new WebSocket(wsServer);
