@@ -50,6 +50,23 @@ $http = new Swoole\Http\Server("172.18.235.99", 9501);
 
 
 
+常见问题处理：
+
+1、php tcp_server.php   提示端口被占用
+
+ 启动服务时提示错误 WARNING swSocket_bing(172.18.235.99:9502) Failed Error Address already in use （端口已经占用）   
+ 解决：查看端口占用情况  netstat -anp | grep 9502 
+ 得到占用进程： kill 920    (查看到 920/php 字样：920 是进程号，可以通过该进程号 杀死进程；php 表示为php的进程  )
+ 重新启动服务即可。
+ 
+ 
+ 
+ 
+
+
+
+
+
 
 
 
