@@ -23,7 +23,13 @@ $ws->on('open', function ($ws, $request) {
 //监听WebSocket消息事件
 $ws->on('message', function ($ws, $frame) {
     echo "Message: {$frame->data}\n";
-    $ws->push($frame->fd, "server: {$frame->data}");
+	
+	while(1){
+		sleep(1000);
+		
+		$ws->push($frame->fd, "server: onMessage".date('Y-m-d H:i:s'));
+		
+	}
 });
 
 //监听WebSocket连接关闭事件
