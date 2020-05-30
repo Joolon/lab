@@ -24,3 +24,13 @@ $serv->on('Packet', function ($serv, $data, $clientInfo) {
 
 //启动服务器
 $serv->start(); 
+
+
+/*
+
+客户端访问（  支持远程 IP 访问）
+netcat -u 127.0.0.1 9502
+hello
+Server: hello
+
+*/

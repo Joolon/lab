@@ -36,3 +36,13 @@ $serv->on('Close', function ($serv, $fd) {
 
 //启动服务器
 $serv->start();
+
+
+/*
+
+客户端访问（  支持远程 IP 访问）
+telnet 127.0.0.1 9501
+hello
+Server: hello
+
+*/
