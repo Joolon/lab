@@ -33,8 +33,10 @@ $client->send($taskName);
 
 // 接收服务端返回的内容
 echo $client->recv();
+echo PHP_EOL;
 
 // 关闭客户端
 $client->close();
 
-echo '已处理完成';exit;
+echo '已处理完成'.PHP_EOL;
+exit;
