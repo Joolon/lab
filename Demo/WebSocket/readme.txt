@@ -26,5 +26,5 @@ WebSocket基于TCP协议
 	
 	
 	
-	php应用实现webSocket更多使用workerman或swoole框架.
+	php应用实现webSocket更多使用 workerman 或 swoole 框架.
 
