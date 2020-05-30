@@ -3,7 +3,7 @@
 include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/constants.php';
 
 
-echo 1;exit;
+// echo 1;exit;
 
 ?>
 
@@ -17,7 +17,9 @@ echo 1;exit;
 <script lang="javascript">
 
 
-var wsServer = 'ws://127.0.0.1:9502';
+var wsServer = 'ws://<?php echo SWOOLE_SERVER ?>:9502';
+
+alert(wsServer);
 var websocket = new WebSocket(wsServer);
 websocket.onopen = function (evt) {
     console.log("Connected to WebSocket server.");
