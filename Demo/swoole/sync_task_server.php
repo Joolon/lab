@@ -30,6 +30,12 @@ $serv->on('receive', function($serv, $fd, $from_id, $data) {
 $serv->on('task', function ($serv, $task_id, $from_id, $data) {
     echo "New AsyncTask[id=$task_id]".PHP_EOL;
     //返回任务执行的结果
+	
+	for($i = 0 ;$i < 100 ; $i ++){
+		sleep(1000);
+		echo date("Y-m-d H:i:s")."处理中...".PHP_EOL;
+	}
+	
     $serv->finish("$data -> OK");
 });
 

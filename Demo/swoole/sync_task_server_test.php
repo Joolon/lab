@@ -36,3 +36,5 @@ echo $client->recv();
 
 // 关闭客户端
 $client->close();
+
+echo '已处理完成';exit;
