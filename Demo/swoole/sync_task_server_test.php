@@ -16,14 +16,23 @@ Swoole 提供了异步任务处理的功能，可以投递一个异步任务到 
 */
 
 
-$serv = new Swoole\Server(SWOOLE_SERVER, 9505);
 
-//设置异步任务的工作进程数量
-$serv->set(array('task_worker_num' => 4));
 
-//此回调函数在worker进程中执行
-$serv->on('receive', function($serv, $fd, $from_id, $data) {
-    //投递异步任务
-    $task_id = $serv->task($data);
-    echo "Dispatch AsyncTask: id=$task_id\n";
-});
+$userInfo = ['name'=>'jack','email'=>'jack@qq.com']; // 这是我们准备传递给swoole服务端的数据
+
+// 创建swoole客户端
+$client = new swoole_client(SWOOLE_SOCK_TCP);
+
+if (!$client->connect(SWOOLE_SERVER, 9505, -1))
+{
+    exit("connect failed. Error: {$client->errCode}\n");
+}
+
+// 发送 用户数据 到服务端
+$client->send(json_encode($userInfo));
+
+// 接收服务端返回的内容
+echo $client->recv();
+
+// 关闭客户端
+$client->close();
