@@ -16,7 +16,7 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
 $serv = new Swoole\Server(SWOOLE_SERVER, 9505);
 
 //设置异步任务的工作进程数量
-$serv->set(array('task_worker_num' => 4));
+$serv->set(array('task_worker_num' => 100));
 
 //此回调函数在worker进程中执行
 $serv->on('receive', function($serv, $fd, $from_id, $data) {
