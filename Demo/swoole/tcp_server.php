@@ -8,6 +8,7 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
  * 
  * 调用服务是根据端口号来区分的，所以服务器端口 和 客户端端口要一致
  * $fd 参数表示客户端连接的唯一识别码，通过该参数可以和客户端进行点对点的通信
+ *     $fd 是如从 1 2 3 这样的自然数
  * 
  */
 

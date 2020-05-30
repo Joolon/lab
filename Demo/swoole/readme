@@ -52,12 +52,25 @@ $http = new Swoole\Http\Server("172.18.235.99", 9501);
 
 常见问题处理：
 
-1、php tcp_server.php   提示端口被占用
+1、php tcp_server.php   提示端口被占用（一般是退出方式不正确，退出服务器时用 Ctrl + C 退出 就没问题了）
 
  启动服务时提示错误 WARNING swSocket_bing(172.18.235.99:9502) Failed Error Address already in use （端口已经占用）   
  解决：查看端口占用情况  netstat -anp | grep 9502 
  得到占用进程： kill 920    (查看到 920/php 字样：920 是进程号，可以通过该进程号 杀死进程；php 表示为php的进程  )
  重新启动服务即可。
+ 
+ kill -s 9 port 强制杀死进程
+ 
+ 
+ 
+ 
+ 
+ TCP 与 UDP ：
+	UDP是无连接的，TCP是有连接的；
+	TCP服务器关闭后，客户端会强制退出，不能再发送服务；
+	UDP服务器关闭后，客户端不会强制退出，向服务器发送消息服务器不会做出响应，也不会提示错误。
+ 
+ 
  
  
  
