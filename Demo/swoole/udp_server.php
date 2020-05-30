@@ -5,10 +5,8 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
 
 /**
  * UDP 服务器
- 
- 
-  *UDP 与 TCP 不同，UDP没有连接的概念，
  * 
+ * UDP 与 TCP 不同，UDP没有连接的概念，
  * 
  */
  
