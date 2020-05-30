@@ -12,8 +12,9 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
  *
  * 如果 当前任务池中的任务数量 大于 配置的进程数，那么服务器还会响应客户端请求，但是会给出警告提示：服务器处于满负荷状态。
  * [2020-05-30 17:08:16 #6435.1]	WARNING	swServer_master_onTimer (ERRNO 9007): No idle task worker is available
- 
- 
+ * 当 服务器 执行完任务后会去执行 任务池中的其他任务，直到任务池中的任务都执行完毕
+ *
+ *
  *
  */
 
