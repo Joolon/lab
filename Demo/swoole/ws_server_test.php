@@ -17,7 +17,7 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
 <script lang="javascript">
 
 
-var wsServer = 'ws://47.107.183.46:9502';
+var wsServer = 'ws://47.107.183.46:9504';
 
 alert(wsServer);
 var websocket = new WebSocket(wsServer);
