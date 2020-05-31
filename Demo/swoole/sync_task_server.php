@@ -35,7 +35,7 @@ $serv->on('task', function ($serv, $task_id, $from_id, $data) {
 	for($i = 0 ; 1 ; $i ++){
 		$message = "--->>> $data  "."  {$i}  ".date("Y-m-d H:i:s")."处理中...".PHP_EOL;
 		echo $message;
-		file_put_contents('/test_log.txt',$message,FILE_APPEND);
+		file_put_contents('./test_log.txt',$message,FILE_APPEND);
 		sleep(1);
 	}
 	
