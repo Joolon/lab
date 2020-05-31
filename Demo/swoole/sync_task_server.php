@@ -32,8 +32,10 @@ $serv->on('task', function ($serv, $task_id, $from_id, $data) {
 	// 满负荷情况下 不会执行任务，阻塞进程
     echo "--->>> $data  新的异步任务[id=$task_id]".PHP_EOL;
 	
-	for($i = 0 ;$i < 100 ; $i ++){
-		echo "--->>> $data  "."  {$i}  ".date("Y-m-d H:i:s")."处理中...".PHP_EOL;
+	for($i = 0 ; 1 ; $i ++){
+		$message = "--->>> $data  "."  {$i}  ".date("Y-m-d H:i:s")."处理中...".PHP_EOL;
+		echo $message;
+		file_put_contents('/test_log.txt',$message,FILE_APPEND);
 		sleep(1);
 	}
 	
