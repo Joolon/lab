@@ -3,6 +3,17 @@ Swoole：让 PHP 无所不能（高性能异步并发）
 概述：
     Swoole 是一个PHP的协程高性能的网络通信引擎，通过C/C++语言编写，提供了多种网络协议的网络服务器端和客户端模块。
 可以快速方便的实现 TCP/UDP服务、高性能Web、WebSocket服务、物联网、实时通信、游戏、微服务等，使PHP 不在局限于传统的Web领域。
+Swoole4 协程的成熟将 PHP 带入了前所未有的时期， 为性能的提升提供了独一无二的可能性。
+
+
+
+
+Swoole\Server  是所有异步服务器的基类，Http\Server,WebSocket\Server,Redis\Server 等都是继承该类。
+可以用 swoole 实现 redis 的功能，和实际操作 reids 服务器是一样的。
+服务器风格：协程风格、异步风格。
+协程：是为了提高并发的，相对同步IO来说 并发能力得到了很大的提升。
+
+
 
 运行：
 1、支持的操作系统：Linux、FreeBSD、MacOS
@@ -22,8 +33,10 @@ Windows 环境搭建swoole ：
 
 
 
-Ubuntu 18.04.14 LTS 系统上的使用：
 
+
+
+Ubuntu 18.04.14 LTS 系统上的使用：
 
 安装 swoole ：
     官方安装教程 https://wiki.swoole.com/#/environment
@@ -55,27 +68,19 @@ Swoole Server 是异步服务器，所以是通过监听事件的方式来编写
 
 1、php tcp_server.php   提示端口被占用（一般是退出方式不正确，退出服务器时用 Ctrl + C 退出 就没问题了）
 
- 启动服务时提示错误 WARNING swSocket_bing(172.18.235.99:9502) Failed Error Address already in use （端口已经占用）   
- 解决：查看端口占用情况  netstat -anp | grep 9502 
+ 启动服务时提示错误 WARNING swSocket_bing(172.18.235.99:9502) Failed Error Address already in use （端口已经占用）
+ 解决：查看端口占用情况  netstat -anp | grep 9502
  得到占用进程： kill 920    (查看到 920/php 字样：920 是进程号，可以通过该进程号 杀死进程；php 表示为php的进程  )
  重新启动服务即可。
- 
+
  kill -s 9 port 强制杀死进程
- 
- 
- 
- 
- 
+
+
  TCP 与 UDP ：
 	UDP是无连接的，TCP是有连接的；
 	TCP服务器关闭后，客户端会强制退出，不能再发送服务；
 	UDP服务器关闭后，客户端不会强制退出，向服务器发送消息服务器不会做出响应，也不会提示错误。
- 
- 
- 
- 
- 
- 
+
 
 
 

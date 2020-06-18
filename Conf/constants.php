@@ -7,4 +7,4 @@
  */
 
 
-defined('SWOOLE_SERVER') OR define('SWOOLE_SERVER','172.18.235.99');//swoole本地环境
+defined('SWOOLE_SERVER') OR define('SWOOLE_SERVER','172.18.235.99');//swoole本地环境  ifconfig 查看 IP

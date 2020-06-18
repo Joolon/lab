@@ -6,9 +6,28 @@
 $mq = new Rabbitmq();//创建消息队列对象
 $mq->setQueueName('STATEMENT_WARE_RECORD_REFRESH');//设置参数
 $mq->setExchangeName('STATEMENT_ORDER');//构造存入数据
-$mq->setRouteKey('STATEMENT_WARE_RECORD_REFRESH_FOR_001');
+$mq->setRouteKey('SO_REFRESH_FOR_001');
 $mq->setType(AMQP_EX_TYPE_DIRECT);
 $mq->sendMessage($push_data_list);
+
+
+// 读取消息
+$mq = new Rabbitmq();//创建消息队列对象
+$mq->setQueueName('STATEMENT_WARE_RECORD_REFRESH');//设置参数
+$mq->setExchangeName('STATEMENT_ORDER');
+$mq->setRouteKey('SO_REFRESH_FOR_001');
+$mq->setType(AMQP_EX_TYPE_DIRECT);
+
+$queue_obj = $mq->getQueue();
+$row_count = $queue_obj->declareQueue();// 获得总消息数
+
+for($i = 0; true ;$i ++){
+    $envelope = $queue_obj->get();// 从队列中检索下一条消息
+
+    if($envelope){
+        $data = $envelope->getBody();
+    }
+}
 
 
 

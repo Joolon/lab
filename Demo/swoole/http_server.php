@@ -4,36 +4,35 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
 
 
 /**
- * Http 服务器 
+ * Http 服务器
  *
  * 支持路由
  * 相当于一个浏览器访问的 WEB 服务器了。
- * 
+ *
  */
 $http = new Swoole\Http\Server("0.0.0.0", 9503);
 
 /**
- * 
+ *
  * $request 参数包含了请求信息，如 GET/POST 请求的数据
- * 
+ *
  * $response 参数是对 $request 请求的响应
- * 
-*/
-$http->on('request', function ($request, $response) {
-    var_dump($request->server['request_uri'],$request->get, $request->post);
+ *
+ */
+$http->on('request', function($request, $response){
+    var_dump($request->server['request_uri'], $request->get, $request->post);
     $response->header("Content-Type", "text/html; charset=utf-8");
     $response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
-	
-	
-	
-	/*
-	
-	// 可以用来执行 执行的路由
-	list($controller, $action) = explode('/', trim($request->server['request_uri'], '/'));
+
+
+    /*
+
+    // 可以用来执行 执行的路由
+    list($controller, $action) = explode('/', trim($request->server['request_uri'], '/'));
     //根据 $controller, $action 映射到不同的控制器类和方法
     (new $controller)->$action($request, $response);
-	
-	*/
+
+    */
 });
 
 $http->start();
