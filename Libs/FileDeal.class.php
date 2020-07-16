@@ -38,22 +38,23 @@ class FileDeal
      * @param int $type
      * @param int $length
      * @return array|string
+     * @throws \Exception
      */
-    public static function readFile($file_path = "upload/a.doc", $type = 1, $length = 0)
+    public function readFile($file_path = "upload/a.doc", $type = 1, $length = 0)
     {
         /*
          * readfile($file_path)读取文件并写入到输出缓冲，返回字节的个数
          * 缺点：无论如何都会显示文件中的内容，不能控制显示字符个数
          */
         $content = '';
+        $i = 0;
 
         /*
          * 可以控制读取字符个数
          * fopen()打开不存在的文件则会创建该文件
          */
         if (!$handle_file = @fopen($file_path, "r")) {
-            echo '不能打开文件：' . $file_path;
-            exit;
+            throw new \Exception('不能打开文件：' . $file_path);
         }
 
         if ($type == 1) {// 设置为读取字节数
@@ -78,7 +79,7 @@ class FileDeal
         }
         fclose($handle_file);// 关闭文件释放缓存资源
 
-        return $content;
+        return ['content' => $content,'lines' => $i];
     }
 
     /**
