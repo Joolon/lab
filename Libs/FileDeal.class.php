@@ -35,19 +35,19 @@ class FileDeal
     /**
      * 读取文件的字节数或行数
      * @param string $file_path
-     * @param int $type
-     * @param int $length
+     * @param int $type  1.读取文件字节数，2.读取文件行数
+     * @param int $length 读取长度（null 表示全部读取不限制，type=1则为字节长度，type=2则为行数）
      * @return array|string
      * @throws \Exception
      */
-    public function readFile($file_path = "upload/a.doc", $type = 1, $length = 0)
+    public function readFile($file_path = "upload/a.doc", $type = 1, $length = null)
     {
         /*
          * readfile($file_path)读取文件并写入到输出缓冲，返回字节的个数
          * 缺点：无论如何都会显示文件中的内容，不能控制显示字符个数
          */
-        $content = '';
-        $i = 0;
+        $content        = '';
+        $total_lines    = 0;
 
         /*
          * 可以控制读取字符个数
@@ -68,18 +68,18 @@ class FileDeal
             if (!is_int($length) || $length <= 0) {
                 while (!feof($handle_file)) {   // 函数检查是否已到达 "end-of-file" (EOF)
                     $content[] = fgets($handle_file); // 读取单行，文件指针会移动到下一行。
+                    $total_lines ++;
                 }
             } else {
-                $i = 0;
-                while (!feof($handle_file) AND $i < $length) {
+                while (!feof($handle_file) AND $total_lines < $length) {
                     $content[] = fgets($handle_file);
-                    $i++;
+                    $total_lines ++;
                 }
             }
         }
         fclose($handle_file);// 关闭文件释放缓存资源
 
-        return ['content' => $content,'lines' => $i];
+        return ['content' => $content,'total_lines' => $total_lines];
     }
 
     /**
@@ -88,7 +88,7 @@ class FileDeal
      */
     public static function writeFile($file_name = "upload/testfile.txt", $content = "Bill Gatess\n")
     {
-        // 判斷文件是否可写
+        // 判断文件是否可写
         if (is_writable($file_name)) {
             // 打开文件（可设置读写模式打开）
             if (!$handle_file = @fopen($file_name, 'w')) {
@@ -397,6 +397,8 @@ class FileDeal
         $html = file_get_contents($url);
         return $html;
     }
+
+
 
 
 }
