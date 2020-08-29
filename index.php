@@ -24,7 +24,8 @@ include_once BASE_PATH.'Common/function.php';
 
 
 //include_once BASE_PATH.'Demo/MangoDB/mangodbdemo.php';
-include_once BASE_PATH.'Demo/MangoDB/mangodbdemo_curd.php';
+//include_once BASE_PATH.'Demo/MangoDB/mangodbdemo_curd.php';
+include_once BASE_PATH.'Demo/Database/pdo.php';
 exit;
 //include_once BASE_PATH.'Demo/Redis/test_seckill.php';
 

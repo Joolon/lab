@@ -109,6 +109,32 @@ class StringTool
     }
 
     /**
+     * 转换一个String字符串为byte数组
+     * @param string $string 需要转换的字符串
+     * @return array
+     */
+    public static function getBytes($string){
+        $bytes = array();
+        for($i = 0; $i < strlen($string); $i++){
+            $bytes[] = ord($string[$i]);
+        }
+        return $bytes;
+    }
+
+    /**
+     * 将字节数组转化为String类型的数据
+     * @param array $bytes 字节数组
+     * @return string 一个String类型的数据
+     */
+    public static function toStr($bytes){
+        $str = '';
+        foreach($bytes as $ch){
+            $str .= chr($ch);
+        }
+        return $str;
+    }
+
+    /**
      * GUID生成企业系统生成 36 位唯一序号
      * @return string
      */
