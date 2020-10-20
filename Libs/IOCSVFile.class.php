@@ -41,6 +41,7 @@ class IOCSVFile
             foreach ($dataList as $data) {
                 $str_datas = '';
                 foreach ($data as $key2 => $value2) {
+                    $value2 = specialDealContent($value2);
                     $str_datas .= ',' . $value2;
                 }
                 echo ltrim($str_datas, ',') . "\n";
@@ -227,4 +228,22 @@ class IOCSVFile
 function myConvert(&$value, $key)
 {
     $value = iconv('gbk', 'utf-8', $value);
+}
+
+/**
+ * 处理 字符串中含有逗号和双引号的内容
+ * @param $content
+ * @return string
+ */
+function specialDealContent($content){
+    if(stripos($content,'"') !== false){
+        // 如果该字段中有双引号，该双引号前要再加一个双引号，然后把该字段使用双引号括起来。
+        $content = str_replace('"','""',$content);
+        $content = '"'.$content.'"';
+    }elseif(stripos($content,',') !== false){
+        // 如果字段中有逗号（,），该字段使用双引号（”）括起来
+        $content = '"'.$content.'"';
+    }
+
+    return $content;
 }
