@@ -6,6 +6,10 @@
  * Date: 2016/6/24
  * Time: 18:04
  */
+ 
+ const ADCCASD ='111';
+ 
+ var_dump(ADCCASD);EXIT;
 
 header("Content-type: text/html; charset=utf-8");
 ini_set('date.timezone','Asia/Shanghai');
@@ -25,7 +29,26 @@ include_once BASE_PATH.'Common/function.php';
 
 //include_once BASE_PATH.'Demo/MangoDB/mangodbdemo.php';
 //include_once BASE_PATH.'Demo/MangoDB/mangodbdemo_curd.php';
-include_once BASE_PATH.'Demo/Database/pdo.php';
+//include_once BASE_PATH.'Demo/Database/pdo.php';
+
+$data = [
+    [
+        'a',
+        'b',
+        '二位二通直动式常闭电磁阀 铝 DC12V 1/4\",11223452,,2020-09-23 09:30:41","',
+        'c'
+    ]
+];
+
+
+$IOCsv = new \Libs\IOCSVFile();
+
+//$IOCsv->exportCsv([],$data);
+
+
+echo PHP_INT_MIN;
+
+
 exit;
 //include_once BASE_PATH.'Demo/Redis/test_seckill.php';
 
