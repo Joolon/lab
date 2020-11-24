@@ -24,6 +24,9 @@ $http->on('request', function($request, $response){
     $response->header("Content-Type", "text/html; charset=utf-8");
     $response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
 
+    while(1){
+        file_put_contents('./log.txt',date('Y-m-d H:i:s').PHP_EOL,FILE_APPEND);
+    }
 
     /*
 
