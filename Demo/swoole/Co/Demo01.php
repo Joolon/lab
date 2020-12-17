@@ -1,6 +1,6 @@
 <?php
 
-namespace Study\Co;
+namespace Demo\swoole\Co;
 
 use Swoole\Coroutine;
 use Swoole\Coroutine\WaitGroup;
@@ -22,6 +22,8 @@ class Demo01 {
         // 创建一个协程容器: https://wiki.swoole.com/#/coroutine/scheduler
         // 相当于进入厨房
         \Co\run(function () {
+            $fds = array();
+
             // 等待结果: https://wiki.swoole.com/#/coroutine/wait_group?id=waitgroup
             $wg = new WaitGroup();// 协程任务记录器
 
@@ -34,8 +36,10 @@ class Demo01 {
                 sleep(2);
                 echo "汤好了..." . PHP_EOL;
 
+
                 // 装盘
                 $result['soup'] = '一锅汤';
+                print_r($result);
                 $wg->done(); // 标记任务完成
             });
 
@@ -51,6 +55,7 @@ class Demo01 {
 
                 // 装盘
                 $result['rice'] = '一锅米饭';
+                print_r($result);
                 $wg->done(); // 标记任务完成
             });
 
@@ -74,6 +79,7 @@ class Demo01 {
 
                 // 装盘
                 $result['food'] = '鱼香肉丝';
+                print_r($result);
                 $wg->done();
             });
 
