@@ -12,6 +12,8 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
  */
 $http = new Swoole\Http\Server("0.0.0.0", 9503);
 
+$_array = [];
+
 /**
  *
  * $request 参数包含了请求信息，如 GET/POST 请求的数据
@@ -20,13 +22,28 @@ $http = new Swoole\Http\Server("0.0.0.0", 9503);
  *
  */
 $http->on('request', function($request, $response){
-    var_dump($request->server['request_uri'], $request->get, $request->post);
+    //var_dump($request->server['request_uri'], $request->get, $request->post);
     $response->header("Content-Type", "text/html; charset=utf-8");
-    $response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
 
-    while(1){
-        file_put_contents(dirname(__FILE__).'/log.txt',date('Y-m-d H:i:s').PHP_EOL,FILE_APPEND);
+    global $_array;
+    //请求 /a（协程 1 ）
+    if ($request->server['request_uri'] == '/a') {
+        $_array['name'] = 'a';
+        co::sleep(3.0);
+        echo $_array['name'];
+        $response->end($_array['name']);
     }
+    //请求 /b（协程 2 ）
+    else {
+        $_array['name'] = 'b';
+        $response->end();
+    }
+
+    //$response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
+
+//    while(1){
+//        file_put_contents(dirname(__FILE__).'/log.txt',date('Y-m-d H:i:s').PHP_EOL,FILE_APPEND);
+//    }
 
     /*
 
