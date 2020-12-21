@@ -10,7 +10,7 @@ use Swoole\Coroutine;
  * Class Demo03_Timer
  * @package Demo\swoole\Co
  */
-class Demo03_Timer {
+class Demo05_Timer {
 
     /**
      * 定时器的使用

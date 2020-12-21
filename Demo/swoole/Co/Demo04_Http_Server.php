@@ -6,7 +6,7 @@ use Swoole\Coroutine;
 use Swoole\Coroutine\WaitGroup;
 use Swoole;
 
-class Demo03_Http_Server {
+class Demo04_Http_Server {
 
     /**
      * 本任务下子任务 耗时分别是：2、4、10，

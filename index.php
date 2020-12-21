@@ -6,10 +6,6 @@
  * Date: 2016/6/24
  * Time: 18:04
  */
- 
- const ADCCASD ='111';
- 
- var_dump(ADCCASD);EXIT;
 
 header("Content-type: text/html; charset=utf-8");
 ini_set('date.timezone','Asia/Shanghai');
