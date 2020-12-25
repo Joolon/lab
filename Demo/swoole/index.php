@@ -7,6 +7,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Co/Demo03_Redis_Pool.php
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Co/Demo05_Timer.php';
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Co/Demo06_Swoole_Table.php';
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Process/Demo01_Process.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Process/Demo01_Process_Co.php';
 
 
 
@@ -16,7 +17,8 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Process/Demo01_Process.p
 //$demo01 = new \Demo\swoole\Co\Demo03_Redis_Pool();
 //$demo01 = new \Demo\swoole\Co\Demo05_Timer();
 //$demo01 = new \Demo\swoole\Co\Demo06_Swoole_Table();
-$demo01 = new \Demo\swoole\Process\Demo01_Process();
+//$demo01 = new \Demo\swoole\Process\Demo01_Process();
+$demo01 = new \Demo\swoole\Process\Demo01_Process_Co();
 
 
 $demo01->cookByCo();
