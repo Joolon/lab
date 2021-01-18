@@ -11,14 +11,14 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Process/Demo01_Process_C
 
 
 
-//$demo01 = new \Demo\swoole\Co\Demo01();
+$demo01 = new \Demo\swoole\Co\Demo01();
 //$demo01 = new \Demo\swoole\Co\Demo02();
 //$demo01 = new \Demo\swoole\Co\Demo04_Http_Server();
 //$demo01 = new \Demo\swoole\Co\Demo03_Redis_Pool();
 //$demo01 = new \Demo\swoole\Co\Demo05_Timer();
 //$demo01 = new \Demo\swoole\Co\Demo06_Swoole_Table();
 //$demo01 = new \Demo\swoole\Process\Demo01_Process();
-$demo01 = new \Demo\swoole\Process\Demo01_Process_Co();
+//$demo01 = new \Demo\swoole\Process\Demo01_Process_Co();
 
 
 $demo01->cookByCo();

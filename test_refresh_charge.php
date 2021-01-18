@@ -35,23 +35,7 @@ function getCurlData($curl, $Data, $method = 'post', $header = '',$type=false)
 
 $arr = [ 
 
-
-"UPDATE pur_supplier_trading_detail SET trading_money='0.000',trading_origin_money='0.000',is_calculated=0 WHERE relative_trading_num='11372059' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='0.000',trading_origin_money='0.000',is_calculated=0 WHERE relative_trading_num='11379707' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='580.000',trading_origin_money='580.000',is_calculated=0 WHERE relative_trading_num='11433055' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='0.000',trading_origin_money='0.000',is_calculated=0 WHERE relative_trading_num='11742428' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='110.400',trading_origin_money='110.400',is_calculated=0 WHERE relative_trading_num='11747732' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='75.000',trading_origin_money='75.000',is_calculated=0 WHERE relative_trading_num='11748100' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='111.000',trading_origin_money='111.000',is_calculated=0 WHERE relative_trading_num='11745944' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='646.000',trading_origin_money='646.000',is_calculated=0 WHERE relative_trading_num='11750335' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='621.000',trading_origin_money='621.000',is_calculated=0 WHERE relative_trading_num='11753509' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='52.000',trading_origin_money='52.000',is_calculated=0 WHERE relative_trading_num='11747837' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='58.000',trading_origin_money='58.000',is_calculated=0 WHERE relative_trading_num='11751758' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='3034.000',trading_origin_money='3034.000',is_calculated=0 WHERE relative_trading_num='11769879' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='700.000',trading_origin_money='700.000',is_calculated=0 WHERE relative_trading_num='11769667' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='462.000',trading_origin_money='462.000',is_calculated=0 WHERE relative_trading_num='11768156' LIMIT 1; ",
-"UPDATE pur_supplier_trading_detail SET trading_money='0.000',trading_origin_money='0.000',is_calculated=0 WHERE relative_trading_num='11777976' LIMIT 1; "
-    
+"",
 ];
 
 $header = array('Content-Type:application/json');
