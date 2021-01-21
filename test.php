@@ -19,13 +19,25 @@ https://packagist.org/packages/ 软件包列表
     1.composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
     2.composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
-
 可以安装软件：
     CURL    # 主要用作微信开发
     Upload  # 文件操作
     excel   # 表格
     mail    # 邮件
     log     # 日志
+
+
+常用全局命令:
+# comooser init           用于创建新项目的composer.json
+# composer                打印所有命令
+# composer -V             版本号
+# composer --version      版本号
+# composer self-update    更新composer版本为最新版
+# composer show           显示本项目下已经安装的包
+# composer info           显示本项目下已经安装的包
+# composer clearcache     清理缓存
+
+
 
 HHVM：
 
@@ -43,14 +55,23 @@ Artisan：
 
 CSRF 的作用：保护表单安全。
     Laravel 提供简单的方法保护你的应用不受到 跨站请求伪造（CSRF）的攻击。跨站请求伪造是一种恶意的攻击，它利用已通过身份验证的用户身份来运行未授权的命令。
+    任何指向 web 中 POST, PUT 或 DELETE 路由的 HTML 表单请求都应该包含一个 CSRF 令牌，否则，这个请求将会被拒绝。
 
 
 
 Laravel
+Laravel框架的依赖注入确实很强大，并且通过容器实现依赖注入可以有选择性的加载需要的服务，减少初始化框架的开销。
 
 Laravel 使用 Composer 来管理代码依赖。所以，在使用 Laravel 之前，请先确认你的电脑上安装了 Composer。
+Laravel 运行还必须要求服务器满足一些硬性配置，PHP拓展要开启。
 
-系统要求为以下：
+Laravel 版本：
+    最早一个版本是 2011年6月发布的，1.0版本；每年都会发布新版本，当前最新版本是2020年9月8号发布的 Laravel 8.x。
+    当前最新稳定的 LTS 版本是 Laravel 6.x，要求 PHP ≥ 7.2.0。LTS版本：是Long Time Support，长期支持的意思。
+
+
+
+系统要求为以下（5.3.31）：
     PHP >= 5.6.4
     OpenSSL PHP Extension
     PDO PHP Extension
@@ -107,6 +128,10 @@ APP_DEBUG：打印错误追溯信息，true|false
 
 
 路由：
+位置：laravel\yzmedu2\routes
+路由请求类型有：get、post、put、patch、delete、options、match、any
+路由的作用：百度优先对短链接进行收录，及 SEO 优化
+
 1、直接输出内容
     Route::get('/user', function () {
         echo '123';
@@ -118,18 +143,102 @@ APP_DEBUG：打印错误追溯信息，true|false
 3、加载控制器
     Route::get('user', 'IndexController@index');
     Route::post('check','LoginController@check');
-    Route::put('putHandle','LoginController@putHandle');
+    Route::put('putHandle','LoginController@putHandle');// PUT请求
+
+    控制器的书写方式：
+        public function putHandle(Request $request){
+            dd($request->input());
+        }
+
+请求实例：
+    $request 通过 服务容器 自动诸如当前的请求实例。含有各种请求获取与判断的方法，比如是GET还是POST方式等。
+    控制器或者路由闭包获取请求：要获取请求实例，应该在控制器方法或者路由闭包中使用 Illuminate\Http\Request 类型提示。
+    https://learnku.com/docs/laravel/5.3/requests/1164#request-path-and-method
+
+
+
+4、一个路由实现多个请求，实现一个接口响应 GET 和 POST 两种方式
+    Route::match(['get','post'],'/indexMore','IndexController@index');
+    Route::any('/indexAny','IndexController@index');// 响应任何方式的 indexAny 请求
+
+
+5、资源路由
+    利用 names 属性来修改，格式为 动作 => 名词。
+    例如 'index' => 'photos.index', 为 PhotosController 里的方法 index ，对应路由命名 'photos.index'。
+完整例子如下：
+    Route::resource('photos', 'PhotosController', ['names' => [
+        'index'   => 'photos.index',
+        'create'  => 'photos.create',
+        'store'   => 'photos.store',
+        'show'    => 'photos.show',
+        'edit'    => 'photos.edit',
+        'update'  => 'photos.update',
+        'destroy' => 'photos.destroy'
+    ]]);
+
+6、带参数的路由
+    必选路由参数 Route::get('user/{id}', function ($id) {});
+    定义多个参数 Route::get('user/{name}/{sex}', function ($name,$sex) {});
+    定义多个参数 Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId) {});
+    可选参数    Route::get('user/{name?}', function ($name = null) {});# 相应的变量必须有默认值
+
+7、命名路由
+    含义：取别名：访问还是原来的名字访问，可以通过 route('别名') 获取原来路由的名字。
+    作用：命名路由可以方便的生成 URLs 或者重定向。
+    Route::get('abc','IndexController@abc')->name('one');
+
+8、重定向
+    通过路由 return redirect('abc');
+    通过命名路由（别名）return redirect()->route('one');
+
+9、路由组：路由组（如Home和Admin模块）允许共享路由属性，比如中间件和命名空间等，没必要为每个路由单独设置共有属性。
+命名空间配置（Admin模块配置）：
+    Route::group([],function(){
+        Route::get('admin','Admin\IndexController@index');
+        Route::get('admin/user','Admin\UserController@index');
+        Route::get('admin/goods','Admin\GoodsController@index');
+    });
+
+    // 提取公共 命名空间+前缀
+    Route::group(['namespace' => 'Admin','prefix' => 'admin'],function(){
+        Route::get('/','IndexController@index');
+        Route::get('user','UserController@index');
+        Route::get('goods','GoodsController@index');
+    });
+
+
+中间件：过滤进入应用程序的 HTTP 请求
+    HTTP 中间件提供了一个方便的机制来过滤进入应用程序的 HTTP 请求，例如，Auth 中间件验证用户的身份，如果用户未通过身份验证，中间件将会把用户导向登录页面，反之，当用户通过了身份验证，中间件将会通过此请求并接着往下执行。当然，除了身份验证之外，中间件也可以被用来运行各式各样的任务，如：CORS 中间件负责替所有即将离开程序的响应加入适当的标头；而日志中间件则可以记录所有传入应用程序的请求。Laravel 框架已经内置了一些中间件，包括维护、身份验证、CSRF 保护，等等。所有的中间件都放在 app/Http/Middleware 目录内。
+
+    创建中间件 php artisan make:middleware adminLogin
+    注册中间件 yzmedu2/app/Http/Kernel.php 文件的 $routeMiddleware 中添加配置
 
 
 
 
 
+10、Blade 模板：
+    Blade 模板是 Laravel 提供的一个既简单又强大的模板引擎，与其他流行的PHP模板引擎不一样，Blade 不限制在视图中使用原生 PHP 代码。
+所有 Blade 视图文件都将被编译成原生的 PHP 代码并缓存起来，除非它被修改，否则不会重新编译，所以 Blade 基本不会给应用增加任何额外的负担。
+Blade 视图文件使用 .blade.php 拓展名，一般存放在 resource/views 目录下。
+
+
+模板布局：主要解决网站公共部分内容的修改。
+
+创建模板布局文件，模板布局文件通过 @yield("main") 占位符进行占位。
+普通页面通过 @extends("layouts.admin") 继承模板文件，通过 @section 命令将内容注入到视图中，@section 区块的内容将会替换 @yield 的区域。
+    @yield 占位符：指令是用来显示指定区块的内容的，创建模板布局文件，模板布局文件通过 @yield("main") 占位符进行占位
+    @section 替换占位符：命令正如其名字所暗示的一样是用来定义一个视图区块的
+    @extends 继承布局模板：命令来为子页面指定其所 「继承」 的页面布局
 
 
 
 
 
-
+闪存：Laravel 允许将本次请求的输入数据保留到下次请求提交前，数据保存到 SESSION 中，下次请求填写的数据可以根据 KEY 从 SESSION 获取数据，主要为了避免在表单验证错误后重新填写表单重复填写的麻烦。
+$request->flash();# 将输入数据闪存至 Session
+$username = $request->old('username');# 获取旧输入数据
+old('username')；# Blade 模板中通过 old 全局辅助函数获取
 
 
 
