@@ -12,8 +12,6 @@ include_once dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'Conf/const
  */
 $http = new Swoole\Http\Server("0.0.0.0", 9503);
 
-$_array = [];
-
 /**
  *
  * $request 参数包含了请求信息，如 GET/POST 请求的数据
@@ -26,9 +24,6 @@ $http->on('request', function($request, $response){
     $response->header("Content-Type", "text/html; charset=utf-8");
     $response->end("<h1>Hello Swoole. #".rand(1000, 9999)."</h1>");
 
-    while(1){
-        file_put_contents(dirname(__FILE__).'/log.txt',date('Y-m-d H:i:s').PHP_EOL,FILE_APPEND);
-    }
 
     /*
 
