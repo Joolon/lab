@@ -39,5 +39,24 @@ class DateTimeTool
         }
     }
 
+    /**
+     * 生成 日期范围
+     * @param string $start_date 开始日期，如 2021-01-01
+     * @param null   $end_date   结束日期，如 2022-12-01，为空则为当前时间
+     * @return array
+     */
+    public function create_date_range($start_date,$end_date = null){
+
+        if(is_null($end_date)) $end_date = date('Y-m-d',strtotime('-1 day'));
+
+        // 生成 从指定时间开始 到当前时间的日期的时间戳
+        $timestamp_list = range(strtotime($start_date),strtotime($end_date),24*60*60);
+
+        // 生成 日期范围
+        $date_list = array_map(function ($item_time){ return date('Y-m-d',$item_time);},$timestamp_list);
+
+        return $date_list;
+    }
+
 
 }
