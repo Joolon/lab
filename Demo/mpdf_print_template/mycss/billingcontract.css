@@ -1,0 +1,83 @@
+
+.ui-box {
+    /*display: flex;*/
+    justify-content: center;
+    padding: 10px 30px 20px 30px;
+    width: 900px;
+}
+
+.ui-basicInformation {
+    text-align: center;
+    font-size: 14px;
+    border-spacing: 1px;
+    border-collapse: collapse;
+}
+
+td {
+    background-color: white;
+    line-height: 24px;
+    border: 1px solid gray;
+}
+/*.ui-half-td {*/
+    /*width: 50%;*/
+    /*min-width: 420px;*/
+/*}*/
+
+/*.ui-base-tr .ui-quarter-td {*/
+    /*width: 5%;*/
+    /*min-width: 100px;*/
+/*}*/
+
+/*td:nth-child(2n) {*/
+    /*width: 40% !important;*/
+    /*background-color: white;*/
+/*}*/
+
+/*.ui-purchase-num-tr .ui-one-eight-td {
+    width: 10%;
+}*/
+
+/*tr:nth-child(6) td {*/
+    /*!*font-weight: 550;*!*/
+    /*height: 24px !important;*/
+/*}*/
+
+.ui-summary-title {
+    font-size: 16px;
+}
+
+.ui-contract-content {
+    text-align: left;
+}
+
+.ui-contract-content td {
+    padding-left: 3px;
+}
+
+.ui-signatrue-confirm {
+    text-align: left;
+    padding-left: 6px;
+    line-height: 24px;
+}
+
+.ui-redColor {
+    color: red;
+    font-size: 14px;
+    line-height: 16px !important;
+}
+
+.ui-cooperation {
+    text-align: left;
+    padding-left: 6px;
+}
+
+.ui-half-align {
+    text-align: right;
+}
+
+.ui-font-weight {
+    font-weight: bold;
+}
+.td_width{
+    width: 15%;
+}

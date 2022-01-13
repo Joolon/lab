@@ -1,0 +1,30 @@
+.ui-title {
+    font-size: 50px;
+    text-align: center;
+}
+.ui-box {
+    padding: 10px 30px 20px 30px;
+    width: 1300px;
+}
+.ui-basicInformation {
+    text-align: center;
+    font-size: 30px;
+    border-spacing: 1px;
+    border-collapse: collapse;
+    margin-top:-20px;
+}
+.ui-basicInformation .ui-tr{
+    height: 45px;
+    font-size: 35px;
+}
+.ui-basicInformation .ui-td {
+    font-size: 35px;
+    width: 160px;
+    height: 45px;
+    background-color: #f9f9f9;
+}
+.ui-td span {
+    display: block;
+    width: 600px!important;
+}
+

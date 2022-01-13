@@ -1,0 +1,29 @@
+.ui-title {
+        font-size: 28px;
+        padding-top: 10px;
+        font-weight: 540;
+        margin-left: 350px;
+    }
+    .ui-box {
+        display: flex;
+        justify-content: center;
+        padding: 10px 30px 20px 30px;
+        width: 1000px;
+    }
+    .ui-basicInformation {
+        text-align: center;
+        font-size: 14px;
+        border-spacing: 1px;
+        border-collapse: collapse;
+        margin-top:-20px;
+    }
+    td {
+        background-color: white;
+        line-height: 40px;
+        border: 1px solid gray;
+    }
+    th{
+        width:20%;
+        min-width:30px;
+        min-height:40px;
+    }

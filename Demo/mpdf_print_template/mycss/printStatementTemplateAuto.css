@@ -1,0 +1,119 @@
+.ui-box1 {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  width: 1200px;
+  text-align:center;
+}
+.ui-box2 {
+  display: flex;
+  justify-content: center;
+  width: 220mm;
+  text-align:center;
+}
+.ui-title {
+margin-right: 30px;
+}
+
+.ui-basicInformation {
+text-align: center;
+border-spacing: 1px;
+border-collapse: collapse;
+}
+.ui-bottom-warp {
+  border-bottom:0px solid #fff;
+}
+.ui-orderNo-warp {
+  display: inline-block;
+  margin-left: 8mm;
+}
+tr {
+padding: 5px 0;
+}
+td {
+background-color: white;
+line-height: 20px;
+border: 1px solid gray;
+padding: 5px 0;
+}
+
+.ui-quarter-td {
+  /*width: 5%;*/
+  /*height: 30px;*/
+  line-height: 15px;
+  padding-left: 3px;
+}
+
+.ui-summary-title {
+font-size: 16px;
+}
+
+.ui-contract-content {
+text-align: left;
+}
+
+.ui-contract-content td {
+padding-left: 3px;
+}
+
+.ui-redColor {
+color: red;
+font-size: 14px;
+line-height: 16px !important;
+}
+
+.ui-cooperation {
+text-align: left;
+padding-left: 6px;
+}
+
+.ui-half-align {
+text-align: right;
+}
+
+.ui-base-tr-red td{
+color: red;
+border: none;
+}
+.ui-font-weight {
+font-weight: bold;
+}
+.ui-padding-num {
+padding: 10px 0;
+}
+.mb5 {
+margin-bottom: 5px;
+}
+.mt5 {
+margin-top: 3px;
+}
+.mr20 {
+margin-right: 20px;
+}
+.ml30 {
+margin-left: 30px;
+}
+.w1200 {
+width: 220mm;
+}
+.hide {
+display: none;
+}
+
+/*字体大小限制*/
+.ui-table-font-size-1{
+  font-size: 4mm;
+}
+.ui-table-font-size-2{
+  font-size: 4mm;
+}
+.ui-table-font-size-3{
+  font-size: 4mm;
+}
+.ui-table-font-size-4{
+  font-size: 4.5mm;
+  font-weight: bold;
+}
+.ui-table-font-size-5{
+    font-size: 3mm;
+  }

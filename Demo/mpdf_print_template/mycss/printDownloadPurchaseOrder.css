@@ -1,0 +1,54 @@
+table {
+    position: relative;
+    width: 100%;
+    max-width: 1116px;
+    margin: 0 auto;
+    text-align: left;
+    border-spacing: 0;
+}
+
+thead, tbody {
+    border: 1px solid #dddddd;
+}
+
+thead {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+tbody {
+    font-weight: 300;
+    font-size: 12px;
+}
+
+tr {
+    position: relative;
+    border: none;
+}
+
+th, td {
+    position: relative;
+    border: solid 1px #dddddd;
+    text-indent: 0.5rem;
+}
+
+.text-align-c {
+    text-align: center;
+}
+
+.color-red {
+    color: red;
+    font-weight: 600;
+}
+
+.height80 {
+    height: 80px;
+}
+
+.lhe15 {
+    line-height: 15px !important;
+}
+
+.lh35 {
+    line-height: 28px !important;
+}
