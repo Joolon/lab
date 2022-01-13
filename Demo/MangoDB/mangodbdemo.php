@@ -79,7 +79,9 @@ use DevelopModel\MongoHandle;
  * MongoDB,Redis,HBase 三者都是NoSQL数据库，他们的最大区别和不同定位是什么？
  *      MongoDB应用于简单场景下但是性能快高数倍于MySQL，
  *      Redis使用非常简单、基本只能用来做缓存（稳坐缓存的第一把交椅），
- *      HBase用来做离线计算；NoSQL的优点正好是SQL的软肋，器弱点正好是SQL的杀手锏。
+ *      HBase用来做离线计算；
+ *
+ * NoSQL的优点正好是SQL的软肋，其弱点正好是SQL的杀手锏，他们互相搭配组成强大的系统。
  *
  *
  */

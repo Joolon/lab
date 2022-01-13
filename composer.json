@@ -1,5 +1,8 @@
 {
   "require": {
-    "php-amqplib/php-amqplib":"2.6.*"
+    "php-amqplib/php-amqplib":"2.6.*", // AMQP
+    "firebase/php-jwt":"5.2.1",// JWT 生成工具
+    "flc/alidayu":"2.0.7", // 阿里大于：消息发送
+    "mpdf/mpdf":"8.0.11",// PDF生成工具（本人常用工具）
   }
 }

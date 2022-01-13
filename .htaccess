@@ -1,4 +1,19 @@
-RewriteEngine On
+# 打开重写功能
+RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+# 把 index.php 重定向为 index.html
+RewriteRule index.html index.php
+
+# 支持正则表达式
+# 伪静态：减少&符号和GET参数，简明了URL，便于SEO搜索引擎优化
+# 把 list.php?model=A 重定向为 list-A.html
+# $1 表示反向引用，为第一个模式匹配的结果；$2 为第二个括号内的结果；[NC]表示大小写不敏感
+RewriteRule list-([A-Z]+)\.html     $list.php?model=$1 [NC]
+RewriteRule list-([A-Z]+)-page-(\d+).html   $list.php?model=$1&page=$2 [NC]
+
+
+
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0

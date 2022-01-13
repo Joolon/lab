@@ -230,6 +230,20 @@ class StringTool
     }
 
     /**
+     * 截取字符串显示
+     * @param $str
+     * @param $len
+     * @param $max_len
+     * @return string
+     */
+    public static function toSubStr($str, $len, $max_len)
+    {
+
+        if (empty($str) || !is_string($str)) return false;
+        return mb_strlen($str,'utf-8') < $len ? $str : mb_substr($str, 0, $max_len, 'utf-8') . '......';
+    }
+
+    /**
      * 汉字转拼音
      * @param $_String
      * @param string $_Code
@@ -305,6 +319,105 @@ class StringTool
             $_Res[$_Arr1[$i]] = $_Arr2[$i];
         }
         return $_Res;
+    }
+
+
+    /**
+     * 格式化金额 输出
+     * @author Jolon
+     * @param float $price 金额
+     * @param int $point 小数点位数
+     * @param bool $thousands_sep 是否添加千位分隔符
+     * @return float
+     */
+    public function format_price($price,$point = 3,$thousands_sep = false)
+    {
+        if($thousands_sep === true){
+            return number_format((float)$price, $point, '.', ',');
+        }else{
+            return number_format((float)$price, $point, '.', '');
+        }
+    }
+
+    /**
+     * 格式化金额 输出两位小数
+     * @author Jolon
+     * @param float $price 金额
+     * @return float
+     */
+    public function format_two_point_price($price){
+        return $this->format_price($price,2);
+    }
+
+    /**
+     * 去除小数点末尾的0（可以去除 浮点数或字符串类型的浮点数）
+     * @author Jolon
+     * @param mixed $val
+     * @param bool $remove_zero     移除末尾的0
+     * @param bool $thousands_sep   是否添加千位分隔符
+     * @param int $decimals         保留小数点位数
+     * @return mixed
+     */
+    public function format_price_floatval($val,$remove_zero = true,$thousands_sep = false,$decimals = 3){
+        // 不改变原始数据类型
+        if(is_float($val)){
+            if(true === $remove_zero){
+                $val = floatval($val);
+            }
+            $val = $this->format_price($val,$decimals,$thousands_sep);
+        }elseif(is_string($val) && preg_match("/^[-]?[\d]+\.[\d]+$/",$val)){
+            $val = $this->format_price($val,$decimals,$thousands_sep);
+            if(true === $remove_zero){
+                $val = rtrim($val,'0');
+                $val = rtrim($val,'.');
+            }
+        }
+
+        return $val;
+    }
+
+    /**
+     * 去除小数点末尾的0（可以去除 浮点数或字符串类型的浮点数）
+     *      比 format_price_floatval 更高级，支持递归去除多维数组
+     * @author Jolon
+     * @param mixed $origin_data_list
+     * @param bool $remove_zero    移除末尾的0
+     * @param bool $thousands_sep  是否添加千位分隔符
+     * @param int $decimals        保留小数点位数
+     * @return array|mixed
+     */
+    public function format_price_multi_floatval($origin_data_list,$remove_zero = true,$thousands_sep = false,$decimals = 3){
+        $data_list_tmp = [];
+        if(is_array($origin_data_list)){
+            foreach($origin_data_list as $key => $value){
+                if(is_array($value)){
+                    $data_list_tmp[$key] = $this->format_price_multi_floatval($value,$remove_zero,$thousands_sep,$decimals);// 递归
+                }else{
+                    $data_list_tmp[$key] = $this->format_price_floatval($value,$remove_zero,$thousands_sep,$decimals);
+                }
+            }
+        }else{
+            $data_list_tmp = $this->format_price_floatval($origin_data_list,$remove_zero,$thousands_sep,$decimals);
+        }
+
+        return $data_list_tmp;
+    }
+
+    /**
+     * 验证是否最多为2位小数 不是的话则报错
+     * @author jeff
+     * @param float $data 金额
+     * @return bool
+     */
+    public function is_two_decimal($data)
+    {
+        $data = (float)$data;
+        $data = abs($data);
+        if (preg_match('/^[0-9]+(.[0-9]{1,2})?$/', $data)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

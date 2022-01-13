@@ -11,100 +11,6 @@ class Print_pdf_deal{
 
     }
 
-    public function pdfRender($html, $title = '', $fileName, $type = 'D'){
-        /*新建一个pdf文件：
-       Orientation：orientation属性用来设置文档打印格式是“Portrait”还是“Landscape”。 Landscape为横式打印，Portrait为纵向打印
-       Unit：设置页面的单位。pt：点为单位，mm：毫米为单位，cm：厘米为单位，in：英尺为单位
-       Format：设置打印格式，一般设置为A4
-       Unicode：为true，输入的文本为Unicode字符文本
-       Encoding：设置编码格式，默认为utf-8
-       Diskcache：为true，通过使用文件系统的临时缓存数据减少RAM的内存使用。 */
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        //设置文件信息
-        $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor("jmcx");
-        $pdf->SetTitle($title);
-        $pdf->SetSubject('TCPDF Tutorial');
-        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
-        //删除预定义的打印 页眉/页尾
-        $pdf->setPrintHeader(false);
-        $pdf->setPrintFooter(false);
-        //设置默认等宽字体
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-        /*设置页面边幅：
-        Left：左边幅
-        Top：顶部边幅
-        Right：右边幅
-        Keepmargins：为true时，覆盖默认的PDF边幅。 */
-        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-        /*设置单元格的边距：
-        Left：左边距
-        Top：顶部边距
-        Right：右边距
-        Bottom：底部边距。*/
-        $pdf->setCellPaddings(0, 0, 0, 0);
-        //GetX获得当前的横坐标，GetY获得当前的纵坐标。
-        //  $pdf->GetX();
-        //    $pdf->GetY();
-        /*移动坐。SetX移动横坐标。 SetY，横坐标自动移动到左边距的距离，然后移动纵坐标。SetXY，移动横坐标跟纵坐标：
-        X：横坐标，可设为$pdf->GetX()+数字
-        Y：纵坐标，可设为$pdf->GetY()+数字
-        Rtloff：true，左上角会一直作为坐标轴的原点
-        Resetx：true，重设横坐标。 */
-//       $pdf->SetX($x, $rtloff=false);
-//       $pdf->SetY($y, $resetx=true, $rtloff=false);
-//       $pdf->SetXY($x, $y, $rtloff=false);
-        /*设置线条的风格：
-        Width：设置线条粗细
-        Cap：设置线条的两端形状
-        Join：设置线条连接的形状
-        Dash：设置虚线模式
-        Color：设置线条颜色，一般设置为黑色，如：array(0, 0, 0)。*/
-        $pdf->SetLineStyle(array('width' => 0.2, 'cap' => 'butt', 'join' => 'miter', 'dash' => '0', 'color' => array(0, 0, 0)));
-        /*画一条线：
-        x1：线条起点x坐标
-        y1：线条起点y坐标
-        x2：线条终点x坐标
-        y2：线条终点y坐标
-        style：SetLineStyle的效果一样
-        */
-//       $pdf->Line($x1, $y1, $x2, $y2, $style=array());
-        /*执行一个换行符，横坐标自动移动到左边距的距离，纵坐标换到下一行：
-        H：设置下行跟上一行的距离，默认的话，高度为最后一个单元格的高度
-        Cell：true，添加左或右或上的间距到横坐标。 */
-//       $pdf->Ln($h='', $cell=false);
-        //设置自动分页符
-        $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
-        //设置图像比例因子
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-        //设置一些语言相关的字符串
-//       $pdf->setLanguageArray("xx");
-        /*设置字体：
- 字体类型（如helvetica(Helvetica)黑体，times (Times-Roman)罗马字体）、风格（B粗体，I斜体，underline下划线等）、字体大小 */
-        $pdf->SetFont('stsongstdlight', '', 8); //设置中文显示
-        /*增加一个页面:
-        Orientation：orientation属性用来设置文档打印格式。 Landscape为横式打印，Portrait为纵向打印。
-        Format：设置此页面的打印格式。
-        Keepmargins：true，以当前的边幅代替默认边幅来重写页面边幅。
-        Tocpage：true，所添加的页面将被用来显示内容表。*/
-        $pdf->AddPage();
-        /*设置单行单元格：
-        W：设置单元格的宽
-        H：设置单元格的高
-        Text：单元格文本
-        Border：设置单元格的边框。0，无边框，1，一个框，L，左边框，R，右边框，B， 底边框，T，顶边框，LTRB指四个边都显示
-        Ln：0，单元格后的内容插到表格右边或左边，1，单元格的下一行，2，在单元格下面
-        Align：文本位置。L，左对齐，R，右对齐，C，居中，J，自动对齐
-        Fill：填充。false，单元格的背景为透明，true，单元格必需被填充
-        Link：设置单元格文本的链接。*/
-        $pdf->Cell(0, 0, $title, 0, 1, 'C');
-        $pdf->writeHTML($html);
-        /*输入PDF文档 :
-        Name：PDF保存的名字
-        Dest：PDF输出的方式。I，默认值，在浏览器中打开；D，点击下载按钮， PDF文件会被下载下来；F，文件会被保存在服务器中；S，PDF会以字符串形式输出；E：PDF以邮件的附件输出。 */
-        $pdf->Output($fileName.".pdf", $type);
-    }
-
     /**
      * 生成 或 预览PDF文件
      * @param        $content
@@ -209,7 +115,7 @@ class Print_pdf_deal{
      * @param $zip_file_path    绝对路径保存到的ZIP压缩包
      * @return bool|string
      */
-    public function download_zip_package($file_list,$zip_file_path){
+    public static function download_zip_package($file_list,$zip_file_path){
         if($file_list){
             require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'Php_zip.php';
             $php_zip = new Php_zip();
@@ -238,7 +144,7 @@ class Print_pdf_deal{
      * @param $zip_file_path    绝对路径保存到的ZIP压缩包
      * @return bool|string
      */
-    public function create_zip_package($dir_path,$zip_file_path){
+    public static function create_zip_package($dir_path,$zip_file_path){
         if(!is_dir($dir_path)){
             return '文件夹路径错误';
         }
@@ -249,4 +155,131 @@ class Print_pdf_deal{
 
         return true;
     }
+
+
+    /**
+     * 下载文件处理
+     * @author Jaxton 2018/03/01
+     * /compact/compact/download_compact_handle
+     * @param  array $data
+     * @param string $file_alias_name 文件别名
+     * @throws Exception
+     */
+    public static function download_compact_handle($file_list,$file_alias_name){
+        $this->load->library('php_zip');
+
+        $dfile = 'statement_pdf/'.$file_alias_name;
+
+        foreach ($file_list as $filename => $file_path) {
+            $suffix = explode('.', basename($file_path));   //文件后缀
+            if (empty($suffix)) continue;                    //获取后缀失败,跳过操作
+            $suffix = '.' . array_pop($suffix);
+            $filename = $filename.$suffix;
+
+            $this->php_zip->add_file(file_get_contents($file_path), $filename);
+        }
+        //----------------------
+        $this->php_zip->output($dfile);
+
+        if(file_exists($dfile)){
+            $down_file_url = 'statement_pdf/'.$file_alias_name;
+            return 'http://'.$_SERVER['HTTP_HOST'].'/'.$down_file_url;
+        }else{
+            return false;
+        }
+    }
 }
+
+
+
+// 使用实例1
+$print_pdf_deal = new Print_pdf_deal();
+
+$html = 'html内容';
+$key = '单据号唯一KEY';
+
+if($key == 'tax_compact'){
+    $css_file_name = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'Demo/taxRefundTemplate.css';
+}else{
+    $css_file_name = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.'Demo/nonRefundableTemplate.css';
+}
+$file_name = 'ABT-HT000001';
+
+//设置PDF页脚内容
+$footer = "<p style='text-align:center'>第<span>{PAGENO}</span>页,共<span>{nb}</span>页</p>";
+// 下载文件
+Print_pdf_deal::writePdf($html,'',$file_name,'D',$css_file_name,'',$footer);
+// 查看PDF格式
+Print_pdf_deal::writePdf($html,'',$file_name,'F');
+
+
+
+// 使用实例2
+$success_list = [
+    '单据号1' => 'html内容1',
+    '单据号2' => 'html内容2'
+];
+$error_list = [
+    '单据号3数据格式错误',
+    '单据号4数据格式错误'
+];
+
+// 生成文件夹
+// HTML 生成 PDF 文件
+foreach($success_list as $pur_number => $html){
+    $fileName = $pur_number.'.pdf';
+    Print_pdf_deal::writePdf($html,'',$fileName,'F');
+    $success_list[$pur_number] = $fileName;
+}
+if($error_list){
+    $fileName = 'errors.pdf';
+    Print_pdf_deal::writePdf(implode("<br/>",$error_list),'',$fileName,'F');
+    $success_list['errors'] = $fileName;
+}
+$zip_file_name  = 'fukuanshenqing-'.date('Ymd').'-'.rand(1000,9999).'.zip';
+$file_name      = $zip_file_name;
+$file_type      = 'zip';// 压缩包
+
+try{
+
+    $down_file_url  = Print_pdf_deal::download_compact_handle($success_list,$zip_file_name);
+    if(empty($down_file_url)){
+        throw new Exception('压缩文件生成失败');
+    }
+}catch (Exception $e){
+
+}
+
+
+// 使用实例3
+if($success_list){
+    // HTML 生成 PDF 文件
+    foreach($success_list as $supplier_name => $statement_data){
+        foreach($statement_data as $statement_number => $statement_value){
+            $html_pdf       = $statement_data[$statement_number]['html_pdf'];
+            $html_excel     = $statement_data[$statement_number]['html_excel'];
+            $css_file_name  = 'printStatementTemplate.css';
+
+            // 生成文件到 指定文件夹位置
+            $file_save_path = '压缩包文件夹根目录绝对路径/'.$supplier_name.'/';// 生成供应商名称对应的目录
+            $fileNamePdf    = $file_save_path.$statement_number.$supplier_name.'.pdf';
+            $fileNameExcel  = $file_save_path.$statement_number.$supplier_name.".xls";
+
+            //设置PDF页脚内容
+            $footer = "<p style='text-align:center'>第<span>{PAGENO}</span>页,共<span>{nb}</span>页</p>";
+            $this->print_pdf_deal->writePdf($html_pdf,'',$fileNamePdf,'F', $css_file_name, '', $footer);
+
+            file_put_contents($fileNameExcel,$html_excel);// 输出EXCEL内容
+
+            $download_file_list[md5($fileNamePdf)] = $fileNamePdf;
+            $download_file_list[md5($fileNameExcel)] = $fileNamePdf;
+        }
+    }
+}
+if($error_list){
+    $fileName = '压缩包文件夹根目录绝对路径/errors.pdf';
+    $this->print_pdf_deal->writePdf(implode("<br/>",$error_list),'',$fileName,'F');
+    $download_file_list['errors'] = $fileName;
+}
+
+$down_file_url  = Print_pdf_deal::create_zip_package('压缩包文件夹根目录绝对路径','ZIP压缩包文件');
