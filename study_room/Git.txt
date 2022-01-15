@@ -1,0 +1,11 @@
+git :
+fatal: unable to access 'https://github.com/Joolon/lab.git/': OpenSSL SSL_read: Connection was reset
+===>解除ssl验证后，再次git即可  git config --global http.sslVerify "false"
+
+删除文件：从磁盘上删除文件后 还要执行 git rm 命令从本地仓库删除，再 git commit 提交
+比较文件：git diff 比较文件后 输入 q，再enter回车退出
+modified：修改的文件提交 git add . 提交所有修改
+
+
+
+

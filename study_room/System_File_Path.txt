@@ -1,0 +1,22 @@
+/etc/hosts
+/etc/crontab
+
+
+/etc/apache2
+/etc/init.d
+
+
+
+sudo (super user do) 获得 root 权限以执行指定命令
+su username 切换当前操作的用户为 username
+wget http_url	获取远程包
+tar -xvf resources.tar.gz 解压资源包
+apt-get 命令是 Ubuntu 系统中的包管理工具，可以用来安装、卸载包，也可以用来升级包
+
+
+
+php -m	查看php安装的模块
+
+
+
+

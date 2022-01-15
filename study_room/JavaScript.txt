@@ -1,0 +1,13 @@
+
+# 定时自动跳转
+function jumpToPage(){
+	window.location = 'page1.html';
+	windo.close();
+}
+setTimeOut('jumpToPage()',5000);# 5秒
+
+
+
+
+
+
