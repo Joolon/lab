@@ -1,18 +1,14 @@
 <?php
 
-echo base64_encode("1");
-echo base64_decode(base64_encode("1"));
+set_time_limit(0);
+$i =0;
+while(1){
+	$i ++;
+	file_get_contents("http://pms.yibainetwork.com:81/data_init/init_alternative_supplier_data");
+	
+	echo $i,"<br/>";
+}
 exit;
-
-$age = '123456789000';
-
-print_r(strspn($age,'123456789'));
-echo "<br/>";
-print_r(strlen($age));
-
-
-exit;
-
 
 
 
