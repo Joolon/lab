@@ -23,7 +23,11 @@ include_once BASE_PATH.'autoload.php';// 自动加载类文件
 include_once BASE_PATH.'Common/function.php';
 
 
-echo __LINE__;exit;
+$bool = \Libs\HttpTool::checkUrlIsValid('http://www.baidu.com');
+var_dump($bool);
+exit;
+
+
 
 //include_once BASE_PATH.'Demo/MangoDB/mangodbdemo.php';
 //include_once BASE_PATH.'Demo/MangoDB/mangodbdemo_curd.php';

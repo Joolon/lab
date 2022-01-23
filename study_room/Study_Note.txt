@@ -84,6 +84,21 @@
 结果怎么样： 提升 200% 网页抓取速度
 
 
+
+
+技术架构的选择：
+	1、技术选型要贴近市场标准，被广泛任何的框架，入手容易
+	2、语法简单易懂，开发成本低
+	3、性能良好
+	4、拓展性良好
+	5、网络资源多，遇到问题能查到解决办法
+
+
+
+
+
+
+简历
 介绍技术：最近几份工作经历中所参与过的产品、项目、角色 
 在工作中做的项目的技术细节
 克服过的技术难点与细节
@@ -125,187 +140,6 @@ HTML:
 
 
 
-
-img  sre=data：数据生成 image文件数据base64编码
-echo base64_encode(file_get_contents("C:\Users\Jolon\Desktop\Snipaste_2021-07-20_19-29-02.png"));exit;
-
-
-
-
-ob_flush(); //将数据从php的buffer中释放出来
-	flush(); //将释放出来的数据发送给浏览器
-
-empty($var) 等价于： !isset($var) || $var == false，所以会把值转换成 boolean 再进行比较
-
-
-	
-UNIX_TIMESTAMP(date) 日期格式转时间戳
-FROM_UNIXTIME(int)   时间戳转日期格式
-
-/etc/init.d/ 文件夹存放的是系统服务的管理（启动与停止）脚本。如redis 可以使用 service redis start/stop管理服务
-
-php-config：
-	php-config 是一个简单的命令行脚本用于获取所安装的 PHP 配置的信息。
-	在编译php扩展时，使用命令 --with-php-config 指定php-config的路径。如果安装有多个 PHP 版本，可以在配置时用 --with-php-config 选项来指定使用哪一个版本编译。
-	
-
-crontab 计划任务管理工具  xxl-job 分布式任务调度平台
-沙箱是一种按照安全策略限制程序行为的执行环境。Sandboxie(又叫沙箱、沙盘)即是一个虚拟系统程序，允许你在沙盘环境中运行浏览器或其他程序，因此运行所产生的变化可以随后删除。它创造了一个类似沙盒的独立作业环境，在其内部运行的程序并不能对硬盘产生永久性的影响。 在网络安全中，沙箱指在隔离环境中，用以测试不受信任的文件或应用程序等行为的工具。
-
-
-SaaS ：软件即服务（Software as a Service）
-骑缝章：为了防止文件打印出来后缺页、加页情况发生，可以加盖骑缝章。
-
-
-
-
-预定义变量：PHP定义预定义的变量，$_GET/$_POST 等
-
-当前请求的网页地址  $_SERVER['REQUEST_URI']
-当前脚本  $_SERVER['PHP_SELF']
-前一页面的地址  $_SERVER['HTTP_REFERER']
-当前执行脚本的绝对路径  $_SERVER['SCRIPT_FILENAME']
-浏览当前页面的用户的IP地址  $_SERVER['REMOTE_ADDR']
-URL后面的参数  $_SERVER['QUERY_STRING']
-当前脚本的根目录  $_SERVER['DOCUMENT_ROOT']
-   根目录是指最顶层的目录
-
-
-% 取模运算——计算结果的符号由被除数决定，跟除数无关。
-   8/(-3) = 2
-   -8/(-3) = -2
-   -8/3 = 2
-
-/ 除法（包含小数位）——计算结果的符号由被除数和除数共同决定。
-
-HTTP 状态
-401 需要用户授权
-PHP header函数响应HTTP 401状态： header("HTTP/1.1 401 Unauthorized");
-
-
-arsort ：根据键值对数组进行降序排序并保持索引关系
-error_reporting(2047) 的作用是允许报告所有错误和警告
-LoadModule php5_module AddType Application/x-http-php-source .php 表示Apache 以模块方式安装php
-allow_call_time_pass_reference on/off 设置在函数调用时允许参数不能是对变量的引用
-<[^>].*?>.*?<\/>/si  替换所有的JS脚本的内容和标记
-
-serialize / unserialize 序列化和反序列化
-heredoc 结束标记书写要求：结束标记所在的行不能包含出";"符号之外的任何其他字符。
-PV (page view) 页面浏览量，重复访问时会累加
-scandir 返回目录下的所有文件和文件夹，子文件夹可以递归获取
-
-tar czf aaa.tar.gz file... 压缩
-tar zxvf aaa.tar.gz 解压
-
-echo/print/print_r/var_dump 的比较：
-	echo 可以同时输出多个标量类型数据，如果遇到资源类型如数组，只会输出 Array 而不打印内容，无返回值。
-	print 同时只能输出一个标量类型数据，有返回值。
-	print_r 可以打印一个任意类型数据，有返回值。
-	var_dump 可以同时打印多个任意类型数据，会显示每项数据的数据类型，一般用于打印调试信息，没有返回值
-
-静态页面缓存：
-	ob_start() 开始输出缓冲
-	ob_get_contents() 获取缓冲区的内容
-	file_put_contents() 保存内容到文件
-	filemtime() 获取文件的修改时间（用来获取缓存文件和原文件的修改时间，判断是否修改过代码）
-
-模板引擎的种类：
-	Discuz：康盛公司内部的模板引擎，优点是小巧、简单、易用；缺点是和公司内部产品结合密切、拓展性较差
-	Smarty：最早最知名的模板引擎，开源的重量级产品，优点是功能强大、语法全面；缺点是使用比较复杂、学习成本高。
-	DedeCms 织梦：只可在自身产品中使用、不具有公用性。
-	Blitz：C语言开发的PHP拓展，使用难度大，很难推广。
-	
-
-
-
-
-
-
-算法实现：
-翻转字符串：PHP内置函数 strrev 函数
-	function userStrRevert($str){
-		if(!is_string($str)){
-			return false;
-		}
-		$len = strlen($str);
-
-		$new_str = '';
-		for($i = $len - 1;$i >= 0;$i--){
-		   $new_str .= $str[$i];
-		}
-		
-		return $new_str;
-	}
-
-字符串 首字母大写：
-	function upperFirstChar($str){
-		$arr = explode("_",$str);
-		array_walk($arr,function(&$value,$key){
-			$value = ucfirst($value);
-		});
-
-		return implode('',$arr);
-	}
-	
-遍历文件夹下的所有文件和子文件夹的文件：
-	打开文件夹 opendir()
-	读取一行文件名 readdir()  当 ($file = readdir($handle) ) === false 时表示读取到最后一行 
-	当前目录和上级目录 . & ..
-	递归
-	
-
-
-
-
-fsockopen / curl / file_get_contents 的区别：
-	fsockopen 是比较底层的调用，属于网络系统的socket调用。只有固定几个参数，操作简单，返回的是没有处理过的数据，返回完整信息，包括数据长度和内容，要经过处理才能得到需要的数据。
-	curl 是经过包装的 HTTPS 认证，支持 POST/GET/PUT/方法，支持FTP上传，HTTP上传，用户名/密码认证，下载/上传文件断点续传，代理服务器等，功能十分强大。curl 是处理后的内容，有很多配置参数，使用起来更加方便，但是也有点复杂。
-	file_get_contents 需要 openssl 支持，使用非常方便效率也比较高，更多的时候只是去拉取数据。
-	性能：curl 会自动缓存 DNS 信息，所以多次查询时大大减少了 DNS 查询的次数，所以 curl 性能比 fsockopen 好很多。
-
-COOKIE 和 SESSION 的区别，多服务器之间共享 SESSION：
-	COOKIE 存储在客户端浏览器，发起请求时服务器生成COOKIE数据返回给浏览器，如果不设置过期时间，则COOKIE在浏览器进程存在时有效，关闭时销毁，如果设置了有效期则保存在本地磁盘上，在浏览器各进程间可以共享。COOKIE 的路径和域决定了作用范围，在同域名下有效。
-	SESSION 存储在服务器端，发起请求服务器先查询是否已经生成了 SESSION_ID，如果没有则生成新的 SESSION_ID，将 SESSION_ID 返回给客户端，客户端可以通过 COOKIE 保存 SESSION_ID，也可以通过其他方式存储，比如保存在 URL 中。浏览器发起请求时通过 COOKIE 或 URL 传递 SESSION_ID，服务器根据 SESSION_ID 获取存储的 SESSION 数据。
-	多服务器之间可以通过 Redis/Memcache 等保存 SESSION_ID 共享 SESSION 数据。
-
-
-POST 上传文件如何限制大小？
-	file_uploads = On 是否允许上传文件
-	upload_max_filesize 允许上传的文件的大小
-	post_max_size=100M 允许的最大字节长度
-	max_input_vars=1000 允许提交的参数数量
-
-
-
-为什么要设置 memory_limit ？
-	设置脚本可以分配的最大内存，防止失控的脚本独占服务器内存。
-
-
-
-按值传递和按引用传递的区别：
-	按值传递：不会改变函数外部变量的值，会复制变量，如果是大变量就会消耗大量内存，
-	按引用传递：会改变函数外部变量的值，不会复制变量，所以会提高系统性能，遇到大变量的时候对系统性能的提高小显著。
-	对大变量值的传递，需要改变函数外部变量的值的时候使用 按引用传递
-	
-
-error_reporting：设置错误级别并返回当前级别。
-	高于设定的级别的错误类型就不会提示出来，可以让系统更加友好。
-	开发环境应该打开所有错误提示，任何异常都是需要处理的。生产环境屏蔽一些无关紧要的异常类型，系统更好友好。
-
-
-mysql：整句排序 与 子句排序，子句为大的SQL里面的小SQL的排序，整个句子的排序为整句排序。
-
-
-UNION 和 UNION ALL 的区别：
-	第一个 SELECT 语句中被使用的字段名称也被用于结果的字段名称
-	所有字段都相同的记录为相同的记录，UNION会对结果集进行去重，UNION ALL不会去重
-	UNION ALL 效率高于 UNION，在提前已知不会重复的情况下使用UNION ALL
-	
-
-web路径：不加域名的URL都是从网站根目录下查找
-	/style/app.css 访网站根目录下的 style/app.css文件，并不是指项目的根目录。
-	
-	
 
 
 

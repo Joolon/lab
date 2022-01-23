@@ -45,8 +45,6 @@ function var_dump_pre($value){
     echo '</pre>';
 }
 
-
-echo __LINE__;exit;
 // 金额转成中文
 function num_to_cn($num)
 {

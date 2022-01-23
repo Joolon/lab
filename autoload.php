@@ -16,9 +16,7 @@ spl_autoload_register(function ($class) {
         $class = str_replace('\\', '/', $class);// 命名空间分隔线与服务器系统目录分隔线对应
         $file = BASE_PATH.$class . '.class.php';
         if (file_exists($file)) {
-            include $file;
-        }elseif(file_exists(BASE_PATH.$class . '.php')){
-            include BASE_PATH.$class . '.php';
+            require_once $file;
         }else{
             throw new Exception('自动加载：Class Not Found'.$file);
         }
